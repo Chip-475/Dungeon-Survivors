@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db046db22631b294eb939df19b511f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::fireArea
-  perk: 2
   lvl: 0
   lvlMax: 5
   radius: 5

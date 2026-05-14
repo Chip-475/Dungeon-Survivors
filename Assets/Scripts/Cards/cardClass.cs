@@ -19,7 +19,7 @@ public class cardClass : MonoBehaviour
 
     public float duration;
 
-    protected void Start()
+    protected virtual void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<player>();
     }
