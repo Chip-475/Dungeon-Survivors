@@ -124,8 +124,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 790320851169262662}
-        m_TargetAssemblyTypeName: cardChoice, Assembly-CSharp
+      - m_Target: {fileID: 3686820884787804663}
+        m_TargetAssemblyTypeName: fireAreaCard, Assembly-CSharp
         m_MethodName: onClick
         m_Mode: 1
         m_Arguments:
@@ -136,8 +136,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3686820884787804663}
-        m_TargetAssemblyTypeName: fireAreaCard, Assembly-CSharp
+      - m_Target: {fileID: 790320851169262662}
+        m_TargetAssemblyTypeName: cardChoice, Assembly-CSharp
         m_MethodName: onClick
         m_Mode: 1
         m_Arguments:
@@ -172,6 +172,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141db7a94353f5f4ea8dd78ffd16999f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::fireAreaCard
+  lvl: 1
+  lvlMax: 5
+  radius: 10
+  duration: 10
 --- !u!1 &323079351394752304
 GameObject:
   m_ObjectHideFlags: 0

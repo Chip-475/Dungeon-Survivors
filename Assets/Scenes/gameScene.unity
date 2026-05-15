@@ -13381,6 +13381,8 @@ MonoBehaviour:
   atk: 5
   spd: 7.5
   aspd: 0.5
+  fireAreaPrefab: {fileID: 0}
+  fireAreaTrack: {fileID: 0}
 --- !u!50 &621900518
 Rigidbody2D:
   serializedVersion: 5
@@ -14138,6 +14140,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830538672}
   m_CullTransparentMesh: 1
+--- !u!1 &896662424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 896662426}
+  - component: {fileID: 896662425}
+  m_Layer: 0
+  m_Name: CardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &896662425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896662424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275dd4728f221e547a9b93301bfa119f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::cardManager
+  cards:
+  - prefab: {fileID: 318292889845066468, guid: afe19c381dc64604ca463e860dc21761, type: 3}
+    effect: {fileID: 6314038717171797895, guid: 4f782c418422bfe428e07a8f7de8fe9c, type: 3}
+    level: 1
+  cardParent: {fileID: 2042375750}
+  choices: 1
+  cardLabel: {fileID: 1701881807}
+--- !u!4 &896662426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896662424}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1018907998
 GameObject:
   m_ObjectHideFlags: 0
@@ -15010,32 +15063,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::cardManager
   cards:
-  - prefab: {fileID: 2740232774540733209, guid: 6efbe82a8e3b33f4cb28b8670c4c0ace, type: 3}
+  - prefab: {fileID: 318292889845066468, guid: 6efbe82a8e3b33f4cb28b8670c4c0ace, type: 3}
     effect: {fileID: 6314038717171797895, guid: 4f782c418422bfe428e07a8f7de8fe9c, type: 3}
     level: 1
-  - prefab: {fileID: 2740232774540733209, guid: 6efbe82a8e3b33f4cb28b8670c4c0ace, type: 3}
-    effect: {fileID: 6314038717171797895, guid: 4f782c418422bfe428e07a8f7de8fe9c, type: 3}
-    level: 2
-  - prefab: {fileID: 2740232774540733209, guid: 6efbe82a8e3b33f4cb28b8670c4c0ace, type: 3}
-    effect: {fileID: 6314038717171797895, guid: 4f782c418422bfe428e07a8f7de8fe9c, type: 3}
-    level: 3
-  - prefab: {fileID: 2740232774540733209, guid: 6efbe82a8e3b33f4cb28b8670c4c0ace, type: 3}
-    effect: {fileID: 6314038717171797895, guid: 4f782c418422bfe428e07a8f7de8fe9c, type: 3}
-    level: 4
-  - prefab: {fileID: 2740232774540733209, guid: 6efbe82a8e3b33f4cb28b8670c4c0ace, type: 3}
-    effect: {fileID: 6314038717171797895, guid: 4f782c418422bfe428e07a8f7de8fe9c, type: 3}
-    level: 5
-  - prefab: {fileID: 0}
-    effect: {fileID: 0}
-    level: 0
-  - prefab: {fileID: 0}
-    effect: {fileID: 0}
-    level: 0
-  - prefab: {fileID: 0}
-    effect: {fileID: 0}
-    level: 0
   cardParent: {fileID: 2042375750}
-  choices: 3
+  choices: 1
   cardLabel: {fileID: 1701881807}
 --- !u!1 &1683135846
 GameObject:
@@ -16146,6 +16178,7 @@ SceneRoots:
   - {fileID: 114910863}
   - {fileID: 1617267568}
   - {fileID: 1127353843}
+  - {fileID: 896662426}
   - {fileID: 143081736}
   - {fileID: 621900516}
   - {fileID: 1685363173}
