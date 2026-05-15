@@ -56,7 +56,6 @@ public class cardManager : MonoBehaviour
             {
                 spawnedCard.AddComponent<cardChoice>().setup(this, entry);
             }
-
             availableCards.RemoveAt(index);
         }
     }

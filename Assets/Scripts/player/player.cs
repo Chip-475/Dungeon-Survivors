@@ -35,6 +35,11 @@ public class player : MonoBehaviour, IDamageable
 
     private Vector2 moveInput;
 
+
+    [Header("carte")]
+    public GameObject fireAreaPrefab;
+    public fireAreaCard fireAreaTrack;
+
     private void Start()
     {
         self = GetComponent<GameObject>();
@@ -104,7 +109,13 @@ public class player : MonoBehaviour, IDamageable
         while (true)
         {
             yield return new WaitForSeconds(10);
-            if (data.fireArea) Instantiate(fireArea, transform.position, Quaternion.identity);
+            //if (data.fireArea) Instantiate(fireArea, transform.position, Quaternion.identity);
+            if(data.fireArea)
+            {
+                GameObject area = Instantiate(fireAreaPrefab, transform.position, Quaternion.identity);
+                fireArea areaScript = area.GetComponent<fireArea>();
+                areaScript.lvl = fireAreaTrack.lvl;
+            }
         }
     }
 
