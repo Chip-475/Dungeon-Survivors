@@ -46,12 +46,12 @@ public class BossController : MonoBehaviour
     private bool scattoDisp = true;
     private float ultimo = -1f;
     private Vector3 dir;
-    private GameObject hitBox;
+    [SerializeField]private GameObject hitBox;
 
     void Awake()
     {
         if (usaNav && agent == null) agent = GetComponent<NavMeshAgent>();
-        disegnaGiz();
+        OnDrawGizmosSelected();
     }
 
     void Update()
@@ -80,13 +80,13 @@ public class BossController : MonoBehaviour
                     Vector3 dire=(player.position -transform.position).normalized;
                     transform.position += dire * speed * Time.deltaTime;
                     //ora ruota verso il gioc
-                    if (dire.sqrMagnitude > 0.001f) transform.forward = Vector3.Lerp(transfrom.forward, dire, 8f, Time.deltaTime);
+                    if (dire.sqrMagnitude > 0.001f) transform.forward = Vector3.Lerp(transform.forward, dire, 8f*Time.deltaTime);
                 }
                 if (dist <= raggio && scattoDisp && Time.time - ultimo >= cooldown) StartCoroutine(esegui());
                 break;
-            case sta.avvolgimento:
-            case sta.scatto:
-            case sta.recupero:
+            case stato.avvolgimento:
+            case stato.scatto:
+            case stato.recupero:
                 break;
         }
     }
@@ -104,7 +104,7 @@ public class BossController : MonoBehaviour
         //metto la dire verso il player
         dir = (player.position - transform.position).normalized;
         float tempo = 0f;
-        hitBox.setActive(true);//la sua hitbox
+        hitBox.SetActive(true);//la sua hitbox
         while(tempo<dur)
         {
             transform.position += dir * speed * Time.deltaTime;
@@ -112,24 +112,24 @@ public class BossController : MonoBehaviour
             tempo += Time.deltaTime;
             yield return null;
         }
-        hitBox.setActive(false);
+        hitBox.SetActive(false);
         //nemici
-        StartCaroutine(nemici());
+        StartCoroutine(nemici());
         sta = stato.recupero;
         if(usaNav&&agent != null)agent.isStopped=false;
         yield return new WaitForSeconds(0.4f);
         sta= stato.inseguimento;
         //attesa del cooldown
-        float time=Time.delta.Time - ultimo;
+        float time=Time.deltaTime - ultimo;
         if (time < cooldown) yield return new WaitForSeconds(cooldown - time);
         scattoDisp = true;
     }
 
     IEnumerator nemici()
     {
-        Vector3 duceBase = transform.positiom + transform.right * offsetSpawnLaterale;
+        Vector3 duceBase = transform.position + transform.right * offsetSpawnLaterale;
         Vector3 marxBase = transform.position - transform.right * offsetSpawnLaterale;
-        for(int i=0;i<quantitaPerLato;i++)
+        for (int i=0;i<quantitaPerLato;i++)
         {
             Vector3 posDestra = duceBase + Random.insideUnitSphere*0.2f;
             Vector3 posSin = marxBase + Random.insideUnitSphere * 0.2f;
@@ -148,19 +148,19 @@ public class BossController : MonoBehaviour
         Instantiate(prefNemico, pos,Quaternion.identity);
     }
 
-    public void colpito(GameObject player)
+    public void colpito(GameObject play)
     {
-        var salute = player.GetComponent<player.hp>();
+        var salute = play.GetComponent<player>();
         if (salute != null) salute.damage(danno);
-        var rb = player.GetComponent<Rigidbody>();
+        var rb = play.GetComponent<Rigidbody>();
         if(rb!=null)
         {
-            Vector3 so=(player.transform.position - transform.position).normalized * 6f;
+            Vector3 so=(play.transform.position - transform.position).normalized * 6f;
             rb.AddForce(so + Vector3.up * 2f, ForceMode.Impulse);
         }
     }
-
-    public void disegnaGiz()
+            
+    public void OnDrawGizmosSelected()
     {
         if (!mostraGizmos) return;
         Gizmos.color = Color.yellow;
