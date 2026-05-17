@@ -13,7 +13,7 @@ public class BossController : MonoBehaviour
                                     //layer che servono anche per dare la priorita degli oggetti della scena
 
     [Header("movimento")]
-    public bool usaNav = true;     //false=dritto alt..  si muove bene
+    public bool usaNav=false;     //false=dritto alt..  si muove bene
     public NavMeshAgent agent;     //permette di farlo muovere secondo il percorso piu vicino alg A* (paura)
     public float raggio;           //tipo campo visivo
     public float speed;
@@ -51,7 +51,7 @@ public class BossController : MonoBehaviour
     void Awake()
     {
         if (usaNav && agent == null) agent = GetComponent<NavMeshAgent>();
-        OnDrawGizmosSelected();
+        Debug.Log("Boss");
     }
 
     void Update()
@@ -96,7 +96,6 @@ public class BossController : MonoBehaviour
         sta = stato.inattivo;
         scattoDisp = false;
         ultimo = Time.time;
-
         yield return new WaitForSeconds(windup);
         //scatto
         sta = stato.scatto;

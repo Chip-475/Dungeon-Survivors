@@ -15,6 +15,7 @@ public class xpBar : MonoBehaviour  // ATTACHED TO PLAYER
 
     public void startMedium()
     {
+        if (queueing)return; //evita doppie coroutine
         StartCoroutine(xpBarSetGain());
     }
 

@@ -7,8 +7,8 @@ public class Dash : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // Controllo layer
-        if ((layerPlayer & (1 << other.gameObject.layer)) == 0)return;
+        if((layerPlayer&(1 << other.gameObject.layer)) == 0)return;
         // Controllo tag
-        if (other.CompareTag("Player"))prop.colpito(other.gameObject);
+        if(other.CompareTag("Player"))prop.colpito(other.gameObject);
     }
 }

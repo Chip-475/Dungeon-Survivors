@@ -39,9 +39,12 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         prb = playerObj.GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         _agent = GetComponent<NavMeshAgent>();
-
-        _agent.updateRotation = false;
-        _agent.updateUpAxis = false;
+        if(_agent!=null)
+        {
+            _agent.updateRotation = false;
+            _agent.updateUpAxis = false;
+        }
+        
 
         if (swarmEffect.swarm)
         {
@@ -72,7 +75,8 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         print(data.killCount);
         spawnManager.enemyCount--;
         data.xpQueue.Enqueue(xpGiven);
-        if(!xpBar.queueing) xpBar.startMedium();
+        if(xpBar!=null&&!xpBar.queueing) xpBar.startMedium();
+        Debug.Log("XP QUEUE COUNT = " + data.xpQueue.Count);
     }
 
 

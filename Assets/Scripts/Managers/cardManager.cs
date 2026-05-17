@@ -36,7 +36,7 @@ public class cardManager : MonoBehaviour
 
         Time.timeScale = 0;
         cardPanel.SetActive(true);
-        int cardsToSpawn = Mathf.Min(3, spawnableCards.Count);
+        int cardsToSpawn = Mathf.Min(3, spawnableCards.Count,spawnPoints.Count);
 
         List<int> index = new List<int>();
         for (int i = 0; i < cardsToSpawn; i++)
@@ -47,7 +47,7 @@ public class cardManager : MonoBehaviour
             print($"index {x}");
 
             CardEntry entry = spawnableCards[x];
-            if (entry.effect.lvl == 5)
+            if (entry.effect.lvl==5)
             {
                 spawnableCards.Remove(entry);
                 if (spawnableCards.Count == 0) return;
