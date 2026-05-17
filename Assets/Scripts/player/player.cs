@@ -8,7 +8,6 @@ public class player : MonoBehaviour, IDamageable
     [Header("Misc")]
     public static player playerInstance;
 
-    public GameObject self;
     public Rigidbody2D rb;
     public SpriteRenderer sr;
 
@@ -34,6 +33,7 @@ public class player : MonoBehaviour, IDamageable
     public float atk;
     public float spd;
     public float aspd;
+    public float range;
 
     private Vector2 moveInput;
 
@@ -41,7 +41,6 @@ public class player : MonoBehaviour, IDamageable
     {
         playerInstance = this;
 
-        self = GetComponent<GameObject>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 
@@ -102,7 +101,6 @@ public class player : MonoBehaviour, IDamageable
         hp=Mathf.Clamp(hp, 0, hpMax);
         StartCoroutine(hpBar.hpBarMovement());
         if (hp == 0) { sr.enabled = false; isDead = true; }
-        print("Damaged for: " + damage + "\n" + "Remaining HP: " + hp + "\n");
     }
     IEnumerator spawnFireArea()
     {

@@ -13,7 +13,7 @@ public class rangedGrunt : enemyClass
     {
         base.Start();
         canShoot = false;
-        sinceShoot = shootCD;
+        sinceShoot = 0;
     }
     private new void FixedUpdate()
     {

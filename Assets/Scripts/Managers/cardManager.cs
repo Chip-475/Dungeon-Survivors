@@ -74,7 +74,6 @@ public class cardManager : MonoBehaviour
     public void pickCard(CardEntry entry)
     {
         if (!canSpawn(entry)) return;
-        print("card picked");
 
         pickedCards.Add(entry);
         entry.effect.GetComponent<ICardEffect>().cardEffect();
