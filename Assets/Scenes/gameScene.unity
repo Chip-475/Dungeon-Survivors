@@ -17886,6 +17886,9 @@ MonoBehaviour:
   obstacle:
     serializedVersion: 2
     m_Bits: 8
+  enemy:
+    serializedVersion: 2
+    m_Bits: 0
   state: 0
   pauseMenu: {fileID: 1701881807}
 --- !u!1 &1622327813
@@ -19208,11 +19211,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3046960012904061860, guid: d0941ae16d368224593c3e3ed522b255, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.579419
+      value: 13.45
       objectReference: {fileID: 0}
     - target: {fileID: 3046960012904061860, guid: d0941ae16d368224593c3e3ed522b255, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.6776023
+      value: 8.94
       objectReference: {fileID: 0}
     - target: {fileID: 3046960012904061860, guid: d0941ae16d368224593c3e3ed522b255, type: 3}
       propertyPath: m_LocalPosition.z

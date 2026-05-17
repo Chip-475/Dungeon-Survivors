@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 4927072865388628941}
   - component: {fileID: 9059670280681125311}
   - component: {fileID: 3560721098824798695}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ranged_grunt
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 6247733299205373635}
   - component: {fileID: 8525702410622745427}
   - component: {fileID: 655929324002625013}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: light_grunt
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ MonoBehaviour:
   hp: 10
   spawnCost: 0
   hpMax: 0
-  xpGiven: 100
+  xpGiven: 10
   atk: 5
   spd: 3
   fovRange: 5

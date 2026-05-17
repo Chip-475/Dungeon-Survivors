@@ -51,11 +51,13 @@ public class player : MonoBehaviour, IDamageable
         hpBar = GetComponent<hpBar>();
         xpBar = GetComponent<xpBar>();
 
+        hpMax = hp;
+
         StartCoroutine(spawnFireArea());
     }
     void FixedUpdate()
     {
-        hpMax = hp;
+        hp = Mathf.Clamp(hp, 0, hpMax);
 
         // Mouse Positions Assignment
         mousePosition = Mouse.current.position.ReadValue();

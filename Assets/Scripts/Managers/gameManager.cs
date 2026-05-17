@@ -10,12 +10,16 @@ public class gameManager : MonoBehaviour
         paused,
     }
     public LayerMask obstacle;
+    public LayerMask enemy;
     public gameState state = gameState.running;
     public GameObject pauseMenu;
 
     private void Start()
     {
         instance = this;
+
+        obstacle = LayerMask.GetMask("Obstacle");
+        enemy = LayerMask.GetMask("Enemy");
     }
 
     public void togglePause()
