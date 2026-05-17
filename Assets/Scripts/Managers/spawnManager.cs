@@ -8,7 +8,7 @@ public class spawnManager : MonoBehaviour
     public int spawnLimit;
     public static int enemyCount;
     public bool isSpawning = false;
-    
+    public float Offset = 0.1f;
     private void Start()
     {
         waves = 0;
@@ -36,15 +36,39 @@ public class spawnManager : MonoBehaviour
             index = UnityEngine.Random.Range(0, enemyList.Length);
             if (waveCost + enemyCost[index] <= spawnLimit)
             {
-                float x = UnityEngine.Random.Range(0f, 1f);
-                float y = UnityEngine.Random.Range(0f, 1f);
-                Vector3 spawnPos = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                Instantiate(enemyList[index], spawnPos, Quaternion.identity);
+                Instantiate(enemyList[index], getPosition(), Quaternion.identity);
                 enemyCount++;
                 waveCost += enemyCost[index];
             }
 
         }
         isSpawning = false;
+    }
+    public Vector3 getPosition()
+    {
+        float x = 0f;
+        float y = 0f;
+        int side = UnityEngine.Random.Range(0, 4);
+        switch (side)
+        {
+            case 0:
+                x=UnityEngine.Random.Range(0f, 1f);
+                y = -Offset;
+                break;
+            case 1:
+                x = UnityEngine.Random.Range(0f, 1f);
+                y = -Offset;
+                break;
+            case 2:
+                x = -Offset;
+                y=UnityEngine.Random.Range(0f, 1f);
+                break;
+            case 3:
+                x = 1f + Offset;
+                y = UnityEngine.Random.Range(0f, 1f);
+                break;
+        }
+        Vector3 spawnPos=Camera.main.ViewportToWorldPoint(new Vector3(x,y,10f));
+        return spawnPos;
     }
 }

@@ -18,7 +18,8 @@ public class uiManager : MonoBehaviour
         enemyKilled.text = "killed:" + data.killCount;
         enemyRemaining.text = "remaining:" + spawnManager.enemyCount;
         hpText.text = player.hp + "/" + player.hpMax;
-        xpText.text = Mathf.RoundToInt(data.xp) + "/" + Mathf.RoundToInt(data.xpMax);
+        xpText.text = Mathf.RoundToInt(data.xp) + "/" +Mathf.RoundToInt(data.xpMax);
+        Debug.Log(xpText.text);
         lvlText.text = data.level.ToString();
     }
 }
