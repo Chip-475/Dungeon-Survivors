@@ -14554,6 +14554,14 @@ PrefabInstance:
       value: blade (1)
       objectReference: {fileID: 0}
     - target: {fileID: 9123738991072641591, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123738991072641591, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123738991072641591, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
       objectReference: {fileID: 0}
@@ -16096,6 +16104,14 @@ PrefabInstance:
     - target: {fileID: 2576207545646668652, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
       propertyPath: m_Name
       value: blade
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123738991072641591, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123738991072641591, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9123738991072641591, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
       propertyPath: m_LocalPosition.x
