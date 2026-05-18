@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class scythe : MonoBehaviour
 {
-    IDamageable IDamageable;
     List<IDamageable> toDamage = new List<IDamageable>();
 
     public player player;
@@ -30,6 +29,7 @@ public class scythe : MonoBehaviour
     public IEnumerator swing()
     {
         player.canAttack = false;
+        toDamage.Clear();
 
         sr.enabled = true;
 
@@ -53,16 +53,19 @@ public class scythe : MonoBehaviour
         
         sr.enabled = false;
         transform.localEulerAngles = new Vector3(0, 0, 45);
+        toDamage.Clear();
 
         player.canAttack = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<IDamageable>(out IDamageable))
+        if (other.TryGetComponent<IDamageable>(out IDamageable damageable) && !toDamage.Contains(damageable))
         {
-            other.GetComponent<IDamageable>().damage(player.atk);
-            if(data.fireAspectLvl > 0)
+            toDamage.Add(damageable);
+            damageable.damage(player.atk);
+
+            if (data.fireAspectLvl > 0 && !other.gameObject.TryGetComponent<DoT>(out _))
             {
                 var dot = other.gameObject.AddComponent<DoT>();
                 dot.damage = (player.atk * 0.2f) * data.fireAspectLvl;

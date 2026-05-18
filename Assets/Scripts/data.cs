@@ -16,7 +16,7 @@ public class data : MonoBehaviour
     public static bool electroAura;
     public static bool iceAura;
     public static int fireAspectLvl;
-    public static bool fireArea;
+    public static int fireAreaLvl;
     public static bool moveSpeed;
     public static bool orbitingBlades;
     public static bool rangeIncrease;

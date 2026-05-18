@@ -7,8 +7,8 @@ public class bladesMovement : cardClass, ICardEffect
 
     private new void Start()
     {
-        bladesObj[0].transform.localScale = Vector3.zero;
-        bladesObj[1].transform.localScale = Vector3.zero;
+        bladesObj[0].SetActive(false);
+        bladesObj[1].SetActive(false);
     }
 
     private void LateUpdate()
@@ -19,8 +19,8 @@ public class bladesMovement : cardClass, ICardEffect
 
     public void effect()
     {
-        bladesObj[0].transform.localScale = Vector3.one * 2;
-        bladesObj[1].transform.localScale = Vector3.one * 2;
+        bladesObj[0].SetActive(true);
+        bladesObj[1].SetActive(true);
     }
     public void cardEffect()
     {

@@ -284,10 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56723eb3a6ad194786ec4af861276a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::healthUp
-  perk: 0
   lvl: 0
   lvlMax: 0
-  radius: 0
   duration: 0
 --- !u!1 &73756604
 GameObject:
@@ -14130,10 +14128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f091079a7f6d14fa65de1e0ecab29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::iceAura
-  perk: 1
   lvl: 0
   lvlMax: 0
-  radius: 5
   duration: 0
 --- !u!58 &380954469
 CircleCollider2D:
@@ -14553,13 +14549,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: blade (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 9123738991072641591, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
-      propertyPath: m_LocalScale.x
+    - target: {fileID: 2576207545646668652, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9123738991072641591, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123738991072641591, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9123738991072641591, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15355,7 +15355,7 @@ MonoBehaviour:
   atk: 5
   spd: 7.5
   aspd: 0.5
-  range: 0
+  range: 1
 --- !u!50 &621900518
 Rigidbody2D:
   serializedVersion: 5
@@ -16105,13 +16105,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: blade
       objectReference: {fileID: 0}
-    - target: {fileID: 9123738991072641591, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
-      propertyPath: m_LocalScale.x
+    - target: {fileID: 2576207545646668652, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9123738991072641591, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123738991072641591, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9123738991072641591, guid: 5eefde1fb6c8e96449ab55487b768787, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16212,10 +16216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f2358e43b642744b661337a310efbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::fireAspectCard
-  perk: 0
   lvl: 0
   lvlMax: 0
-  radius: 0
   duration: 0
 --- !u!1 &940792955
 GameObject:
@@ -16936,6 +16938,7 @@ MonoBehaviour:
   waves: 1
   spawnLimit: 0
   isSpawning: 0
+  Offset: 0.1
 --- !u!1 &1151721198
 GameObject:
   m_ObjectHideFlags: 0
@@ -17193,10 +17196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8713962654d2894daf69e47eb05d7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::fireAreaEffect
-  perk: 0
   lvl: 0
   lvlMax: 0
-  radius: 5
   duration: 0
   area: {fileID: 4154639322218962058, guid: 4f782c418422bfe428e07a8f7de8fe9c, type: 3}
 --- !u!1 &1228775479
@@ -17707,10 +17708,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dc9a0f546008e44ba46ca8cc38ce30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::attackSpeedUp
-  perk: 0
   lvl: 0
   lvlMax: 0
-  radius: 0
   duration: 0
 --- !u!1 &1488081052
 GameObject:
@@ -18157,11 +18156,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353d532c87b02684dbc63daefd9d859e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::rangeUp
-  perk: 0
   lvl: 0
   lvlMax: 0
-  radius: 0
   duration: 0
+  baseRange: 0
 --- !u!1 &1617267566
 GameObject:
   m_ObjectHideFlags: 0
@@ -18881,10 +18879,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd313e03944bd3429d991811be46a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::damageUp
-  perk: 0
   lvl: 0
   lvlMax: 0
-  radius: 0
   duration: 0
 --- !u!1 &1806906692
 GameObject:
@@ -19760,10 +19756,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd51ca16821701408756974ef3aeede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::electroAura
-  perk: 0
   lvl: 0
   lvlMax: 0
-  radius: 5
   duration: 0
 --- !u!58 &1946500062
 CircleCollider2D:
@@ -19904,10 +19898,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e193cebfacd63e24b985504c148ac0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::moveSpeedUp
-  perk: 0
   lvl: 0
   lvlMax: 0
-  radius: 0
   duration: 0
 --- !u!1 &1982183841
 GameObject:
@@ -20172,10 +20164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf2bc3df8f332543ba4d2c5f7c8bc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::bladesMovement
-  perk: 0
   lvl: 0
   lvlMax: 0
-  radius: 0
   duration: 0
   bladesObj:
   - {fileID: 727391305}

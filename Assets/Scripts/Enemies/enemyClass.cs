@@ -50,10 +50,12 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
     {
         if (playerObj.transform.position.x < transform.position.x) transform.localScale = new Vector3(-1, 1, 1);
         else transform.localScale = new Vector3(1, 1, 1);
+
+        _agent.speed = spd;
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Player") return;
+        if (!collision.gameObject.CompareTag("Player")) return;
 
         if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable))
         {
@@ -64,6 +66,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
     protected virtual void OnDestroy()
     {
         data.killCount++;
+        print(data.killCount);
         spawnManager.enemyCount--;
         data.xpQueue.Enqueue(xpGiven);
         if(!xpBar.queueing) xpBar.startMedium();

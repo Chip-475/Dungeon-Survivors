@@ -51,8 +51,6 @@ public class player : MonoBehaviour, IDamageable
         xpBar = GetComponent<xpBar>();
 
         hpMax = hp;
-
-        StartCoroutine(spawnFireArea());
     }
     void FixedUpdate()
     {
@@ -101,14 +99,6 @@ public class player : MonoBehaviour, IDamageable
         hp=Mathf.Clamp(hp, 0, hpMax);
         StartCoroutine(hpBar.hpBarMovement());
         if (hp == 0) { sr.enabled = false; isDead = true; }
-    }
-    IEnumerator spawnFireArea()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(10);
-            if (data.fireArea) Instantiate(fireArea, transform.position, Quaternion.identity);
-        }
     }
 
     // Interface Methods

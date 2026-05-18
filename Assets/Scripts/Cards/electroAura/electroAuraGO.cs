@@ -9,7 +9,9 @@ public class electroAuraGO : cardClass, ICardEffect
 {
     IEnumerator damage()
     {
-        var enemiesInRange = Physics2D.OverlapCircleAll(transform.position, radius, gameManager.instance.enemy).ToList();
+        transform.localScale = new Vector2(player.playerInstance.range * 5, player.playerInstance.range * 5);
+
+        var enemiesInRange = Physics2D.OverlapCircleAll(transform.position, player.playerInstance.range * 5 / 2, gameManager.instance.enemy).ToList();
 
         for(int i = 0; i < enemiesInRange.Count; i++)
         {
@@ -23,7 +25,7 @@ public class electroAuraGO : cardClass, ICardEffect
 
     public void effect()
     {
-        transform.localScale = new Vector2(radius * 2, radius * 2);
+        transform.localScale = new Vector2(player.playerInstance.range * 5, player.playerInstance.range * 5);
         StartCoroutine(damage());
         print("electroAura picked");
     }
