@@ -10,7 +10,7 @@ public class rangeUp : cardClass, ICardEffect
     }
     public void effect()
     {
-        player.playerInstance.range += baseRange * 0.2f;
+        player.playerInstance.range -= baseRange * 0.2f;
     }
     public void cardEffect()
     {

@@ -14,7 +14,7 @@ public class bladesMovement : cardClass, ICardEffect
     private void LateUpdate()
     {
         transform.position = player.playerInstance.transform.position;
-        transform.Rotate(new Vector3(0, 0, 90 * Time.deltaTime));
+        transform.Rotate(new Vector3(0, 0, 720 * Time.deltaTime));
     }
 
     public void effect()

@@ -19,15 +19,18 @@ public class scythe : MonoBehaviour
         bc = GetComponent<BoxCollider2D>();
         bc.enabled = false;
 
-        curve = AnimationCurve.EaseInOut(0, 0, player.aspd / 2, 180);
-        curve.preWrapMode = WrapMode.PingPong;
-        curve.postWrapMode = WrapMode.PingPong;
-
         transform.localEulerAngles = new Vector3(0, 0, 45);
     }
 
     public IEnumerator swing()
     {
+        Quaternion start = Quaternion.Euler(0, 0, 45);
+        Quaternion destination = Quaternion.Euler(0, 0, -45);
+
+        curve = AnimationCurve.EaseInOut(0, 0, player.aspd / 2, 180);
+        curve.preWrapMode = WrapMode.PingPong;
+        curve.postWrapMode = WrapMode.PingPong;
+
         player.canAttack = false;
         toDamage.Clear();
 
@@ -41,8 +44,8 @@ public class scythe : MonoBehaviour
         bc.enabled = true;
         while (time < player.aspd)
         {
-            var x = curve.Evaluate(time);
-            transform.Rotate(0, 0, -(x / player.aspd) * Time.deltaTime);
+            var step = curve.Evaluate(time) * Time.deltaTime;
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, destination, step);
 
             yield return null;
             time += Time.deltaTime;

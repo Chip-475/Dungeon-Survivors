@@ -116,7 +116,7 @@ MonoBehaviour:
   hpMax: 0
   xpGiven: 20
   atk: 10
-  spd: 1
+  spd: 2
   fovRange: 5
   fovAngle: 120
 --- !u!50 &5446788030791871121
