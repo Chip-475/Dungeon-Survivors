@@ -20,7 +20,6 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
 
     [Header("Stats")]
     [SerializeField] public float hp;
-    [SerializeField ] public int spawnCost;
     public float hpMax;
     public float xpGiven;
     [SerializeField] public float atk;
@@ -43,7 +42,10 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
 
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-
+        if (swarmEffect.swarm)
+        {
+            hp /= 2;
+        }
         hpMax = hp;
     }
     protected virtual void FixedUpdate()
