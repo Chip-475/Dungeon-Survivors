@@ -28,6 +28,10 @@ public class spawnManager : MonoBehaviour
     public void newWave()
     {
         spawnLimit = waves * 10;
+        if (swarmEffect.swarm)
+        {
+            spawnLimit *= 2;
+        }
         int waveCost = 0;
         int index = 0;
         enemyCount = 0;
