@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,11 +9,13 @@ public class gameManager : MonoBehaviour
     {
         running,
         paused,
+        deathScreen
     }
     public LayerMask obstacle;
     public LayerMask enemy;
     public gameState state = gameState.running;
     public GameObject pauseMenu;
+    public GameObject deathScreen;
 
     private void Start()
     {
@@ -36,5 +39,28 @@ public class gameManager : MonoBehaviour
             pauseMenu.SetActive(true);
             state = gameState.paused;
         }
+    }
+
+    public IEnumerator death()
+    {
+        AnimationCurve timeScaleCurve = AnimationCurve.EaseInOut(0, 1, 2, 0);
+
+        var time = 0f;
+        while(time < 2)
+        {
+            Time.timeScale = timeScaleCurve.Evaluate(time);
+
+            time += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        Time.timeScale = 0;
+
+        deathScreen.SetActive(true);
+    }
+
+    public void startDeath()
+    {
+        StartCoroutine(death());
+        state = gameState.deathScreen;
     }
 }

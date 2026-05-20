@@ -98,7 +98,7 @@ public class player : MonoBehaviour, IDamageable
         hp -= damage;
         hp=Mathf.Clamp(hp, 0, hpMax);
         StartCoroutine(hpBar.hpBarMovement());
-        if (hp == 0) { sr.enabled = false; isDead = true; }
+        if (hp == 0) { sr.enabled = false; isDead = true; gameManager.instance.startDeath(); }
     }
 
     // Interface Methods

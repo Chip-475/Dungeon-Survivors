@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56723eb3a6ad194786ec4af861276a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::healthUp
+  type: 0
   lvl: 0
   lvlMax: 0
   duration: 0
@@ -105428,6 +105429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f091079a7f6d14fa65de1e0ecab29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::iceAura
+  type: 0
   lvl: 0
   lvlMax: 0
   duration: 0
@@ -106756,6 +106758,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4c786e2a-821b-4224-b768-f8018828a919
     m_ActionName: 'Player/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2041030978}
+        m_TargetAssemblyTypeName: menuManager, Assembly-CSharp
+        m_MethodName: toggleInventory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6f516a06-cdd0-4847-9c64-4924fa139627
+    m_ActionName: 'Player/Inventory[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
@@ -107623,6 +107641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f2358e43b642744b661337a310efbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::fireAspectCard
+  type: 0
   lvl: 0
   lvlMax: 0
   duration: 0
@@ -107939,6 +107958,7 @@ RectTransform:
   - {fileID: 712581530}
   - {fileID: 1903606942}
   - {fileID: 1635918435}
+  - {fileID: 1212779837}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -108604,10 +108624,87 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8713962654d2894daf69e47eb05d7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::fireAreaEffect
+  type: 0
   lvl: 0
   lvlMax: 0
   duration: 0
   area: {fileID: 4154639322218962058, guid: 4f782c418422bfe428e07a8f7de8fe9c, type: 3}
+--- !u!1 &1212779836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1212779837}
+  - component: {fileID: 1212779839}
+  - component: {fileID: 1212779838}
+  m_Layer: 5
+  m_Name: deathScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1212779837
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212779836}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1411833247}
+  m_Father: {fileID: 1018908002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1212779838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212779836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1212779839
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212779836}
+  m_CullTransparentMesh: 1
 --- !u!1 &1228775479
 GameObject:
   m_ObjectHideFlags: 0
@@ -108997,6 +109094,143 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389773901}
   m_CullTransparentMesh: 1
+--- !u!1 &1411833246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1411833247}
+  - component: {fileID: 1411833249}
+  - component: {fileID: 1411833248}
+  m_Layer: 5
+  m_Name: deathText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1411833247
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411833246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1212779837}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 200}
+  m_SizeDelta: {x: 800, y: 250}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1411833248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411833246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: You Died
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 175
+  m_fontSizeBase: 175
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1411833249
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411833246}
+  m_CullTransparentMesh: 1
 --- !u!1 &1440216679
 GameObject:
   m_ObjectHideFlags: 0
@@ -109191,6 +109425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dc9a0f546008e44ba46ca8cc38ce30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::attackSpeedUp
+  type: 0
   lvl: 0
   lvlMax: 0
   duration: 0
@@ -109639,6 +109874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353d532c87b02684dbc63daefd9d859e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::rangeUp
+  type: 0
   lvl: 0
   lvlMax: 0
   duration: 0
@@ -109695,6 +109931,7 @@ MonoBehaviour:
     m_Bits: 0
   state: 0
   pauseMenu: {fileID: 1701881807}
+  deathScreen: {fileID: 1212779836}
 --- !u!1 &1622327813
 GameObject:
   m_ObjectHideFlags: 0
@@ -109859,6 +110096,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8263bccfe5c56e541b2407e71fed0aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::inventoryManager
+  sprites:
+  - {fileID: 21300000, guid: 5a7a14fefd0d4c0408a14474f11c56c2, type: 3}
+  - {fileID: 21300000, guid: 1b2614bc3621e9f4e81c00afdf72a516, type: 3}
+  - {fileID: 21300000, guid: fe5aeaa116d66e14894a381f10e9114f, type: 3}
+  - {fileID: 21300000, guid: 85f3d6578547b4d438e5291916405196, type: 3}
+  - {fileID: 21300000, guid: 2a59d1c34259bbf45bd25ccce3468a1b, type: 3}
+  - {fileID: 21300000, guid: fcbf0ede53c146241bdfaa765d441cc6, type: 3}
   invCards: []
   content: {fileID: 1440216679}
 --- !u!1 &1671146041
@@ -110453,6 +110697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd313e03944bd3429d991811be46a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::damageUp
+  type: 0
   lvl: 0
   lvlMax: 0
   duration: 0
@@ -111273,6 +111518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd51ca16821701408756974ef3aeede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::electroAura
+  type: 0
   lvl: 0
   lvlMax: 0
   duration: 0
@@ -111415,6 +111661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e193cebfacd63e24b985504c148ac0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::moveSpeedUp
+  type: 0
   lvl: 0
   lvlMax: 0
   duration: 0
@@ -111681,6 +111928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf2bc3df8f332543ba4d2c5f7c8bc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::bladesMovement
+  type: 0
   lvl: 0
   lvlMax: 0
   duration: 0
@@ -111793,7 +112041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::menuManager
   pause: {fileID: 1701881807}
   options: {fileID: 73756604}
-  inventory: {fileID: 0}
+  inventory: {fileID: 1635918434}
 --- !u!4 &2041030979
 Transform:
   m_ObjectHideFlags: 0

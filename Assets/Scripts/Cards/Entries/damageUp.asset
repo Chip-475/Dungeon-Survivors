@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b2e7531cde51844a8c5578bdeb46e7, type: 3}
   m_Name: damageUp
   m_EditorClassIdentifier: Assembly-CSharp::CardEntry
-  prefab: {fileID: 0}
+  prefab: {fileID: 9027969652977536628, guid: 9d76f32ced43b704c9225ef6252dad08, type: 3}
   effect: {fileID: 0}
   levelable: 0
