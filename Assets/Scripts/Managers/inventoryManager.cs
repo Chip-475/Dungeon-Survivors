@@ -7,42 +7,69 @@ using static cardManager;
 
 public class inventoryManager : MonoBehaviour
 {
-    public List<CardEntry> invCards;
+    public List<Sprite> sprites = new List<Sprite>();
+    public List<CardEntry> invCards = new List<CardEntry>();
     public GameObject content;
-    private void OnEnable()
+    public void OnEnable()
     {
-        for(int i = 0; i< content.transform.childCount; i++)
+
+        Time.timeScale = 0;
+        invCards = utilitiesDB.DeepClone(cardManager.instance.pickedCards);
+
+        for (int i = 0; i< content.transform.childCount; i++)
         {
-            Destroy(content.transform.GetChild(i));
+            Destroy(content.transform.GetChild(i).gameObject);
+            if(content.transform.GetChild(i) != null)
+            {
+                print("not destroyed");
+            }
         }
-        List<CardEntry> invCards = cardManager.instance.pickedCards;
-        foreach (var card in invCards)
+        
+        foreach (var card in cardManager.instance.cards)
         {
             card.prefab.GetComponent<Button>().interactable = false;
         }
+
         foreach(var card in invCards.Distinct())
         {
-            int lvl=invCards.Count(c=>c.prefab==card.prefab);
-            Debug.Log(lvl);
-            switch (lvl)
+            if(card.levelable)
             {
-                case 1:
-                    card.effect.lvl = 1;
-                    break;
-                case 2:
-                    card.effect.lvl = 2;
-                    break;
-                case 3:
-                    card.effect.lvl = 3;
-                    break;
-                case 4:
-                    card.effect.lvl = 4;
-                    break;
-                case 5:
-                    card.effect.lvl = 5;
-                    break;
+                int lvl = invCards.Count(c => c.prefab == card.prefab);
+                Debug.Log(lvl);
+                switch (lvl)
+                {
+                    case 1:
+                        card.prefab.GetComponent<Image>().sprite = sprites[0];
+                        break;
+                    case 2:
+                        card.prefab.GetComponent<Image>().sprite = sprites[1];
+                        break;
+                    case 3:
+                        card.prefab.GetComponent<Image>().sprite = sprites[2];
+                        break;
+                    case 4:
+                        card.prefab.GetComponent<Image>().sprite = sprites[3];
+                        break;
+                    case 5:
+                        card.prefab.GetComponent<Image>().sprite = sprites[4];
+                        break;
+                }
             }
-            Instantiate(card.prefab,content.transform);
+            else
+            {
+                card.prefab.GetComponent<Image>().sprite = sprites[5];
+            }
+
+            Instantiate(card.prefab, content.transform);
         }
+    }
+
+    private void OnDisable()
+    {
+        foreach (var card in cardManager.instance.cards)
+        {
+            card.prefab.GetComponent<Button>().interactable = true;
+        }
+        Time.timeScale = 1;
     }
 }

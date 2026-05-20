@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class cardManager : MonoBehaviour
 {
+    public static cardManager instance;
+
     [System.Serializable]
     public class CardEntry
     {
@@ -10,8 +12,6 @@ public class cardManager : MonoBehaviour
         public cardClass effect;
         public bool levelable;
     }
-
-    public static cardManager instance;
 
     public List<CardEntry> cards = new List<CardEntry>();
     [Space]
@@ -26,7 +26,7 @@ public class cardManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        spawnableCards = cards;
+        spawnableCards = utilitiesDB.DeepClone(cards);
     }
 
     [ContextMenu("Run spawnCards")]
