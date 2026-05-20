@@ -42,6 +42,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
 
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
+
         if (swarmEffect.swarm)
         {
             hp /= 2;
