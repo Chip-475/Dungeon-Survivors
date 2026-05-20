@@ -28,6 +28,10 @@ public class inventoryManager : MonoBehaviour
         foreach (var card in cardManager.instance.cards)
         {
             card.prefab.GetComponent<Button>().interactable = false;
+
+            ColorBlock colors=card.prefab.GetComponent<Button>().colors;
+            colors.disabledColor=Color.white;
+            card.prefab.GetComponent<Button>().colors=colors;
         }
 
         foreach(var card in invCards.Distinct())
