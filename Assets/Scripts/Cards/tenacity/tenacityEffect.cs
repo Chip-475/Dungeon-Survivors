@@ -1,16 +1,20 @@
 using UnityEngine;
 
-public class tenacityEffect : MonoBehaviour
+public class tenacityEffect : cardClass, ICardEffect
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static tenacityEffect instance;
+    public bool tenacity;
+    private new void Start()
     {
-        
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void effect()
     {
-        
+        tenacity = true;
+    }
+    public void cardEffect()
+    {
+        effect();
     }
 }

@@ -105347,6 +105347,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275355056}
   m_CullTransparentMesh: 1
+--- !u!1 &363622643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 363622645}
+  - component: {fileID: 363622644}
+  m_Layer: 0
+  m_Name: tenacity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &363622644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363622643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0121415d0c81848893d01ff9c1aa81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::tenacityEffect
+  type: 0
+  lvl: 0
+  lvlMax: 0
+  duration: 0
+  tenacity: 0
+--- !u!4 &363622645
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363622643}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2098438335}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &366598886
 GameObject:
   m_ObjectHideFlags: 0
@@ -106650,6 +106699,7 @@ MonoBehaviour:
   isDead: 0
   canAttack: 1
   canLaunch: 1
+  onTenacity: 0
   mousePosition: {x: 0, y: 0, z: 0}
   mouseWorldPosition: {x: 0, y: 0, z: 0}
   hp: 100
@@ -108129,8 +108179,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1057472907}
-  - component: {fileID: 1057472908}
-  - component: {fileID: 1057472909}
   m_Layer: 0
   m_Name: orbitingBlades
   m_TagString: Untagged
@@ -108153,55 +108201,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2098438335}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1057472908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1057472906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17357bdb91cf2ec4cb3bb69f605db9ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::orbitingBlades
-  bladesMovement: {fileID: 0}
---- !u!58 &1057472909
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1057472906}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
 --- !u!1 &1072825020
 GameObject:
   m_ObjectHideFlags: 0
@@ -109583,6 +109582,9 @@ MonoBehaviour:
     levelable: 1
   - prefab: {fileID: 9027969652977536628, guid: 6106b3a696d0a6b47accd578adb02652, type: 3}
     effect: {fileID: 1935228574}
+    levelable: 0
+  - prefab: {fileID: 9027969652977536628, guid: 42bfdeb6919dfeb4886b7d38454df045, type: 3}
+    effect: {fileID: 363622644}
     levelable: 0
   spawnPoints:
   - {fileID: 1228775480}
@@ -112275,6 +112277,7 @@ Transform:
   - {fileID: 1057472907}
   - {fileID: 1525980722}
   - {fileID: 1935228573}
+  - {fileID: 363622645}
   m_Father: {fileID: 621900516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807

@@ -23,6 +23,7 @@ public class player : MonoBehaviour, IDamageable
     public bool isDead;
     public bool canAttack = true;
     public bool canLaunch = true;
+    public bool onTenacity = false;
 
     public Vector3 mousePosition;
     public Vector3 mouseWorldPosition;
@@ -98,7 +99,24 @@ public class player : MonoBehaviour, IDamageable
         hp -= damage;
         hp=Mathf.Clamp(hp, 0, hpMax);
         StartCoroutine(hpBar.hpBarMovement());
-        if (hp == 0) { sr.enabled = false; isDead = true; gameManager.instance.startDeath(); }
+
+        if(hp < hpMax * 0.3f && !onTenacity && tenacityEffect.instance.tenacity)
+        {
+            onTenacity = true;
+            atk *= 2;
+        }
+        else if(onTenacity && tenacityEffect.instance.tenacity)
+        {
+            onTenacity = false;
+            atk /= 2;
+        }
+
+        if (hp == 0)
+        { 
+            sr.enabled = false;
+            isDead = true;
+            gameManager.instance.startDeath();
+        }
     }
 
     // Interface Methods
