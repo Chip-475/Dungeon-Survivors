@@ -23,7 +23,7 @@ public class spawnManager : MonoBehaviour
             waves++;
         }
     }
-
+    
     [ContextMenu("Run Function")]
     public void newWave()
     {

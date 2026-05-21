@@ -13704,10 +13704,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f091079a7f6d14fa65de1e0ecab29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::iceAura
-  perk: 1
   lvl: 0
   lvlMax: 0
-  radius: 5
   duration: 0
 --- !u!58 &380954469
 CircleCollider2D:
@@ -13745,11 +13743,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!1 &406503354 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8213228483235791034, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
-  m_PrefabInstance: {fileID: 5522418289459618290}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &422884569
 GameObject:
   m_ObjectHideFlags: 0
@@ -15076,8 +15069,6 @@ MonoBehaviour:
   spd: 7.5
   aspd: 0.5
   range: 0
-  fireAreaPrefab: {fileID: 0}
-  fireAreaTrack: {fileID: 0}
 --- !u!50 &621900518
 Rigidbody2D:
   serializedVersion: 5
@@ -16686,8 +16677,7 @@ MonoBehaviour:
   waves: 1
   spawnLimit: 0
   isSpawning: 1
-  boss: {fileID: 406503354}
-  onda: 5
+  Offset: 0.1
 --- !u!1 &1151721198
 GameObject:
   m_ObjectHideFlags: 0
@@ -18900,10 +18890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd51ca16821701408756974ef3aeede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::electroAura
-  perk: 0
   lvl: 0
   lvlMax: 0
-  radius: 5
   duration: 0
 --- !u!58 &1946500062
 CircleCollider2D:
@@ -19417,6 +19405,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 621900516}
+    - target: {fileID: 4312413446777736398, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
+      propertyPath: raggio
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312413446777736398, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
+      propertyPath: mostraGizmos
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7638394312810408043, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.773

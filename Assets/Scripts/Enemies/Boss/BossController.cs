@@ -50,40 +50,49 @@ public class BossController : MonoBehaviour
 
     void Awake()
     {
-        if (usaNav && agent == null) agent = GetComponent<NavMeshAgent>();
+        if(usaNav)agent=GetComponent<NavMeshAgent>();
         Debug.Log("Boss");
     }
-
+    void Start()
+    {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("player")?.transform;
+        }
+    }
     void Update()
     {   //cerco il player
-        if(player==null)
-        {
-            var go = GameObject.FindGameObjectWithTag("Player");
-            if (go != null) player = go.transform;
-            else return;
-        }
+        if (player == null) return;
         float dist = Vector3.Distance(transform.position, player.position);
         switch(sta)
         {
             case stato.inattivo:
                 if (dist <= raggio) sta = stato.inseguimento;
                 break;
-            case stato.inseguimento:  
+            case stato.inseguimento:
                 //per inseguirlo
-                if(usaNav&&agent!=null)
+                if (usaNav)
                 {
-                    agent.isStopped = false;
-                    agent.SetDestination(player.position);
+                    Vector2 dir = (player.position - transform.position).normalized;
+                    transform.position += (Vector3)dir * speed * Time.deltaTime;
+                    //agent.isStopped = false;
+                    //agent.SetDestination(player.position);
                 }
                 else
                 {
-                    Vector3 dire=(player.position -transform.position).normalized;
-                    transform.position += dire * speed * Time.deltaTime;
+                    Vector3 dire = (player.position - transform.position).normalized;
+                    transform.position += dire * velScatto * Time.deltaTime;
                     //ora ruota verso il gioc
-                    if (dire.sqrMagnitude > 0.001f) transform.forward = Vector3.Lerp(transform.forward, dire, 8f*Time.deltaTime);
+                    if (dire.sqrMagnitude > 0.001f)
+                    {
+                        float angolo = Mathf.Atan2(dire.y, dire.x) * Mathf.Rad2Deg;
+                        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, angolo), 8f * Time.deltaTime);
+
+                    }
+                    if (dist <= raggio && scattoDisp && Time.time - ultimo >= cooldown) StartCoroutine(esegui());
                 }
-                if (dist <= raggio && scattoDisp && Time.time - ultimo >= cooldown) StartCoroutine(esegui());
                 break;
+            
             case stato.avvolgimento:
             case stato.scatto:
             case stato.recupero:
@@ -99,15 +108,16 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(windup);
         //scatto
         sta = stato.scatto;
-        if(usaNav&&agent!=null)agent.isStopped=true;
+        //if(usaNav&&agent!=null)agent.isStopped=true;
         //metto la dire verso il player
         dir = (player.position - transform.position).normalized;
         float tempo = 0f;
         hitBox.SetActive(true);//la sua hitbox
         while(tempo<dur)
         {
-            transform.position += dir * speed * Time.deltaTime;
-            if (dir.sqrMagnitude > 0.001f) transform.forward = Vector3.Lerp(transform.forward, dir, 20 * Time.deltaTime);
+            transform.position += dir * velScatto * Time.deltaTime;
+            float angolo=Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg;
+            if (dir.sqrMagnitude > 0.001f) transform.rotation=Quaternion.Euler(0, 0f, angolo);
             tempo += Time.deltaTime;
             yield return null;
         }
@@ -115,11 +125,11 @@ public class BossController : MonoBehaviour
         //nemici
         StartCoroutine(nemici());
         sta = stato.recupero;
-        if(usaNav&&agent != null)agent.isStopped=false;
+        //if(usaNav&&agent != null)agent.isStopped=false;
         yield return new WaitForSeconds(0.4f);
         sta= stato.inseguimento;
         //attesa del cooldown
-        float time=Time.deltaTime - ultimo;
+        float time=Time.time - ultimo;
         if (time < cooldown) yield return new WaitForSeconds(cooldown - time);
         scattoDisp = true;
     }
@@ -130,8 +140,8 @@ public class BossController : MonoBehaviour
         Vector3 marxBase = transform.position - transform.right * offsetSpawnLaterale;
         for (int i=0;i<quantitaPerLato;i++)
         {
-            Vector3 posDestra = duceBase + Random.insideUnitSphere*0.2f;
-            Vector3 posSin = marxBase + Random.insideUnitSphere * 0.2f;
+            Vector3 posDestra =duceBase +(Vector3)Random.insideUnitCircle*0.2f;
+            Vector3 posSin =marxBase +(Vector3)Random.insideUnitCircle * 0.2f;
             posDestra.y=transform.position.y;
             posSin.y = transform.position.y;
             spawnNemico(posDestra);
@@ -158,7 +168,6 @@ public class BossController : MonoBehaviour
             rb.AddForce(so + Vector3.up * 2f, ForceMode.Impulse);
         }
     }
-            
     public void OnDrawGizmosSelected()
     {
         if (!mostraGizmos) return;
@@ -169,5 +178,8 @@ public class BossController : MonoBehaviour
         if (puntoLeft != null) Gizmos.DrawSphere(puntoLeft.position, 0.15f);
         if (puntoRight != null) Gizmos.DrawSphere(puntoRight.position, 0.15f);
     }
-
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("player")) other.gameObject.GetComponent<player>()?.damage(danno);
+    }
 }
