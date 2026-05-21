@@ -17,7 +17,7 @@ public class spawnManager : MonoBehaviour
     {
         if (enemyCount <= 0 && !isSpawning)
         {
-            player.playerInstance.hp += player.playerInstance.hpMax * 0.2f;
+            if(!tenacityEffect.instance.tenacity) player.playerInstance.hp += player.playerInstance.hpMax * 0.2f;
             Invoke(nameof(newWave), 2.5f);
             isSpawning = true;
             waves++;

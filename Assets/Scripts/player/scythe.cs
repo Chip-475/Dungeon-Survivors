@@ -19,45 +19,45 @@ public class scythe : MonoBehaviour
         bc = GetComponent<BoxCollider2D>();
         bc.enabled = false;
 
-        transform.localEulerAngles = new Vector3(0, 0, 45);
+        transform.localEulerAngles = new Vector3(0, 0, 60);
     }
 
     public IEnumerator swing()
     {
-        Quaternion start = Quaternion.Euler(0, 0, 45);
-        Quaternion destination = Quaternion.Euler(0, 0, -45);
+        Quaternion start = Quaternion.Euler(0, 0, 60);
+        Quaternion end = Quaternion.Euler(0, 0, -60);
 
-        curve = AnimationCurve.EaseInOut(0, 0, player.aspd / 2, 180);
-        curve.preWrapMode = WrapMode.PingPong;
-        curve.postWrapMode = WrapMode.PingPong;
+        float swingDuration = 1f / player.aspd;
+        float windup = swingDuration * 0.25f;
+        float attackTime = swingDuration * 0.5f;
+        float recovery = swingDuration * 0.25f;
 
+        transform.localRotation = start;
         player.canAttack = false;
         toDamage.Clear();
-
         sr.enabled = true;
 
         bc.enabled = false;
-        yield return new WaitForSeconds(player.aspd / 2);
+        yield return new WaitForSeconds(windup);
 
-        // Swing
-        float time = 0;
         bc.enabled = true;
-        while (time < player.aspd)
-        {
-            var step = curve.Evaluate(time) * Time.deltaTime;
-            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, destination, step);
+        float elapsed = 0f;
 
+        while (elapsed < attackTime)
+        {
+            float t = elapsed / attackTime;
+            transform.localRotation = Quaternion.Lerp(start, end, t);
+            elapsed += Time.deltaTime;
             yield return null;
-            time += Time.deltaTime;
         }
+
+        transform.localRotation = end;
         bc.enabled = false;
 
-        yield return new WaitForSeconds(player.aspd / 2);   
-        
-        sr.enabled = false;
-        transform.localEulerAngles = new Vector3(0, 0, 45);
-        toDamage.Clear();
+        yield return new WaitForSeconds(recovery);
 
+        sr.enabled = false;
+        transform.localRotation = start;
         player.canAttack = true;
     }
 

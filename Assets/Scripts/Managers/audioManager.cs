@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
     private AudioMixer mix;
 
     [Header("sorgenti")]
-    public AudioSource bckAudio;  //musica sottofondo
+    public AudioSource bgmAudio;  //musica sottofondo
     public AudioSource audioPrefab;  //effetti sonor
 
     [Header("slider")]
@@ -54,10 +54,10 @@ public class AudioManager : MonoBehaviour
 
     public void playMusic(AudioClip clip,float volume=1f)
     {
-        bckAudio.clip = clip;
-        bckAudio.volume = volume;
-        bckAudio.loop = true;
-        bckAudio.Play();
+        bgmAudio.clip = clip;
+        bgmAudio.volume = volume;
+        bgmAudio.loop = true;
+        bgmAudio.Play();
     }
 
     public void setMaster(float vol)
