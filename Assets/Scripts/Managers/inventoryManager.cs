@@ -15,7 +15,7 @@ public class inventoryManager : MonoBehaviour
 
         Time.timeScale = 0;
         invCards = utilitiesDB.DeepClone(cardManager.instance.pickedCards);
-
+        List<CardEntry> instantiableCards = new List<CardEntry>();
         for (int i = 0; i< content.transform.childCount; i++)
         {
             Destroy(content.transform.GetChild(i).gameObject);
@@ -63,7 +63,11 @@ public class inventoryManager : MonoBehaviour
             {
                 card.prefab.GetComponent<Image>().sprite = sprites[5];
             }
-
+            instantiableCards.Add(card);
+        }
+        foreach (var card in instantiableCards.Distinct())
+        {
+            Debug.Log(card.prefab.name);
             Instantiate(card.prefab, content.transform);
         }
     }
