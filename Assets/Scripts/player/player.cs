@@ -62,8 +62,7 @@ public class player : MonoBehaviour, IDamageable
         mouseWorldPosition = new Vector3(Camera.main.ScreenToWorldPoint(mousePosition).x, Camera.main.ScreenToWorldPoint(mousePosition).y, 0);
 
         // Player Rotation
-        transform.rotation = utilitiesDB.LookAt2D(mouseWorldPosition - transform.position);
-        var x = mouseWorldPosition.x >= transform.position.x ? transform.localScale = new Vector3(1, 1, 1) : transform.localScale = new Vector3(1, -1, 1);
+        var x = mouseWorldPosition.x >= transform.position.x ? transform.localScale = new Vector3(1, 1, 1) : transform.localScale = new Vector3(-1, 1, 1);
 
         // Player Movement
         rb.linearVelocity = moveInput * spd;
