@@ -1,4 +1,6 @@
+using System.Threading;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class menuManager : MonoBehaviour
 {
@@ -15,9 +17,9 @@ public class menuManager : MonoBehaviour
         pause.SetActive(false);
         options.SetActive(true);
     }
-    [ContextMenu("toggleInv")]
-    public void toggleInventory()
+    public void toggleInventory(InputAction.CallbackContext context)
     {
+        if(!context.performed) { return; }
         inventory.SetActive(!inventory.activeSelf);
     }
 }

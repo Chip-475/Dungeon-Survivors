@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using static cardManager;
+using Unity.VisualScripting;
 
 public class inventoryManager : MonoBehaviour
 {
@@ -65,7 +66,7 @@ public class inventoryManager : MonoBehaviour
             }
             instantiableCards.Add(card);
         }
-        foreach (var card in instantiableCards.Distinct())
+        foreach (var card in instantiableCards.DistinctBy(c=>c.prefab))
         {
             Debug.Log(card.prefab.name);
             Instantiate(card.prefab, content.transform);
