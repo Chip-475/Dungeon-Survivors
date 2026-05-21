@@ -106704,7 +106704,7 @@ MonoBehaviour:
   mouseWorldPosition: {x: 0, y: 0, z: 0}
   hp: 100
   hpMax: 0
-  atk: 5
+  atk: 30
   spd: 7.5
   aspd: 1.2
   range: 1
@@ -106813,7 +106813,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2041030978}
         m_TargetAssemblyTypeName: menuManager, Assembly-CSharp
         m_MethodName: toggleInventory
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
