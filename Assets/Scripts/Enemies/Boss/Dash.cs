@@ -4,7 +4,7 @@ public class Dash : MonoBehaviour
     public BossController prop;
     public LayerMask layerPlayer;
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         // Controllo layer
         if((layerPlayer&(1 << other.gameObject.layer)) == 0)return;

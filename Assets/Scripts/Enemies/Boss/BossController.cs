@@ -57,7 +57,7 @@ public class BossController : MonoBehaviour
     {
         if (player == null)
         {
-            player = GameObject.FindGameObjectWithTag("player")?.transform;
+            player = GameObject.FindGameObjectWithTag("Player")?.transform;
         }
     }
     void Update()
@@ -71,6 +71,7 @@ public class BossController : MonoBehaviour
                 break;
             case stato.inseguimento:
                 //per inseguirlo
+                /*
                 if (usaNav)
                 {
                     Vector2 dir = (player.position - transform.position).normalized;
@@ -81,7 +82,7 @@ public class BossController : MonoBehaviour
                 else
                 {
                     Vector3 dire = (player.position - transform.position).normalized;
-                    transform.position += dire * velScatto * Time.deltaTime;
+                    transform.position += dire * speed * Time.deltaTime;
                     //ora ruota verso il gioc
                     if (dire.sqrMagnitude > 0.001f)
                     {
@@ -90,7 +91,12 @@ public class BossController : MonoBehaviour
 
                     }
                     if (dist <= raggio && scattoDisp && Time.time - ultimo >= cooldown) StartCoroutine(esegui());
-                }
+                }*/
+                Vector3 dire = (player.position - transform.position).normalized;
+                if (dist > 1f) transform.position += dire * speed * Time.deltaTime;
+                float angolo=Mathf.Atan2(dire.y, dire.x)*Mathf.Rad2Deg;
+                transform.rotation=Quaternion.Euler(0,0,angolo);
+                if (dist <= raggio && scattoDisp && Time.time - ultimo >= cooldown) StartCoroutine(esegui());
                 break;
             
             case stato.avvolgimento:
@@ -117,7 +123,8 @@ public class BossController : MonoBehaviour
         {
             transform.position += dir * velScatto * Time.deltaTime;
             float angolo=Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg;
-            if (dir.sqrMagnitude > 0.001f) transform.rotation=Quaternion.Euler(0, 0f, angolo);
+            //if (dir.sqrMagnitude > 0.001f) transform.rotation=Quaternion.Euler(0, 0f, angolo);
+            transform.rotation = Quaternion.Euler(0, 0, angolo);
             tempo += Time.deltaTime;
             yield return null;
         }
