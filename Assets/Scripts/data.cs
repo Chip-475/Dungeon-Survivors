@@ -5,6 +5,9 @@ public class data : MonoBehaviour
 {
     // Misc
     public static bool isPaused;
+    public static float master;
+    public static float music;
+    public static float sfx;
 
     // Player
     public static int level;
