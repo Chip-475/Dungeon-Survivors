@@ -1,19 +1,21 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;    // si usa quando un gameobject si muove secondo sistema di navigazione diverso
+using UnityEngine.UI;
 
-public class BossController : MonoBehaviour
+public class BossController :enemyClass
 {
     [Header("riferimenti")]
-    public Transform player;  
-    public GameObject prefNemico;     
+    public Transform player;
+    public GameObject prefNemico;
     public Transform puntoLeft;
     public Transform puntoRight;      //dove spawn i nemici
     public LayerMask layerPlayer;   //layer per riconoscere il gioc
-                                    //layer che servono anche per dare la priorita degli oggetti della scena
+    public Image hpFill;                                //layer che servono anche per dare la priorita degli oggetti della scena
+
 
     [Header("movimento")]
-    public bool usaNav=true;     //false=dritto alt..  si muove bene
+    public bool usaNav = true;     //false=dritto alt..  si muove bene
     public NavMeshAgent agent;     //permette di farlo muovere secondo il percorso piu vicino alg A* (paura)
     public float raggio;           //tipo campo visivo
     public float speed;
@@ -33,7 +35,6 @@ public class BossController : MonoBehaviour
     public float danno;
 
     public bool mostraGizmos = true;
-
     private enum stato
     {
         inattivo,
@@ -42,6 +43,7 @@ public class BossController : MonoBehaviour
         scatto,
         recupero
     }
+    private bool morto;
     private stato sta = stato.inattivo;
     private bool scattoDisp = true;
     private float ultimo = -1f;
@@ -63,15 +65,14 @@ public class BossController : MonoBehaviour
     }
     void Start()
     {
+        base.Start();
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
         }
         if (agent != null)
         {
-            //l'agent sia messo nulla nev mesh
             agent.Warp(transform.position);
-            Debug.Log("Agent on NavMesh = " + agent.isOnNavMesh);
         }
         
     }
@@ -210,11 +211,11 @@ public class BossController : MonoBehaviour
     {
         var salute = play.GetComponent<player>();
         if (salute != null) salute.damage(danno);
-        var rb = play.GetComponent<Rigidbody>();
+        var rb = play.GetComponent<Rigidbody2D>();
         if(rb!=null)
         {
-            Vector3 so=(play.transform.position - transform.position).normalized * 6f;
-            rb.AddForce(so + Vector3.up * 2f, ForceMode.Impulse);
+            Vector3 so = (play.transform.position - transform.position).normalized * 6f;
+            rb.AddForce(so + Vector3.up * 2f, ForceMode2D.Impulse);
         }
     }
     public void OnDrawGizmosSelected()
@@ -230,5 +231,25 @@ public class BossController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)                                     
     {
         if (other.CompareTag("Player")) other.gameObject.GetComponent<player>()?.damage(danno);
+    }
+
+    public virtual void damage(float dmg)
+    {
+        base.damage(dmg);
+        if (hpFill != null) hpFill.fillAmount = hp / hpMax;
+        if (hp <= 0) morte();
+    }
+    private void morte()
+    {
+        morto = true;
+        if(agent!=null)
+        {
+            agent.isStopped=false;
+            agent.enabled=false;
+        }
+        hitBox.SetActive(false);
+        var col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = false;
+        Destroy(gameObject, 1f);
     }
 }

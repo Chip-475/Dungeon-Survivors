@@ -6,7 +6,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
 {
     [Header("Meta Data")]
 
-    IDamageable IDamageable;
+    public IDamageable IDamageable;
     public GameObject playerObj;
     public player player;
     public xpBar xpBar;
@@ -64,7 +64,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
     {
         if (!collision.gameObject.CompareTag("Player")) return;
 
-        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable))
+        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable)) 
         {
             collision.gameObject.GetComponent<IDamageable>().damage(atk);
         }
