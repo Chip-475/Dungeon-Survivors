@@ -13,7 +13,7 @@ public class BossController : MonoBehaviour
                                     //layer che servono anche per dare la priorita degli oggetti della scena
 
     [Header("movimento")]
-    public bool usaNav=false;     //false=dritto alt..  si muove bene
+    public bool usaNav=true;     //false=dritto alt..  si muove bene
     public NavMeshAgent agent;     //permette di farlo muovere secondo il percorso piu vicino alg A* (paura)
     public float raggio;           //tipo campo visivo
     public float speed;
@@ -50,8 +50,16 @@ public class BossController : MonoBehaviour
 
     void Awake()
     {
-        if(usaNav)agent=GetComponent<NavMeshAgent>();
-        Debug.Log("Boss");
+        if (usaNav)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            if (agent != null)
+            {
+                agent.updateRotation = false;
+                agent.updateUpAxis = false;
+            }
+        }
+        Debug.Log("Boss in awake");
     }
     void Start()
     {
@@ -59,51 +67,71 @@ public class BossController : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
         }
+        if (agent != null)
+        {
+            //l'agent sia messo nulla nev mesh
+            agent.Warp(transform.position);
+            Debug.Log("Agent on NavMesh = " + agent.isOnNavMesh);
+        }
+        
     }
     void Update()
     {   //cerco il player
-        if (player == null) return;
+        if (player == null) return; 
         float dist = Vector3.Distance(transform.position, player.position);
-        switch(sta)
+        if(dist<=raggio)
         {
-            case stato.inattivo:
-                if (dist <= raggio) sta = stato.inseguimento;
-                break;
-            case stato.inseguimento:
-                //per inseguirlo
-                /*
-                if (usaNav)
-                {
-                    Vector2 dir = (player.position - transform.position).normalized;
-                    transform.position += (Vector3)dir * speed * Time.deltaTime;
-                    //agent.isStopped = false;
-                    //agent.SetDestination(player.position);
-                }
-                else
-                {
-                    Vector3 dire = (player.position - transform.position).normalized;
-                    transform.position += dire * speed * Time.deltaTime;
-                    //ora ruota verso il gioc
-                    if (dire.sqrMagnitude > 0.001f)
-                    {
-                        float angolo = Mathf.Atan2(dire.y, dire.x) * Mathf.Rad2Deg;
-                        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, angolo), 8f * Time.deltaTime);
+            if(sta==stato.inattivo)sta=stato.inseguimento;
+        }
+        else
+        {
+            if (sta == stato.inseguimento) sta = stato.inattivo;
+        }
+            switch (sta)
+            {
+                case stato.inattivo:
+                    if (dist <= raggio) sta = stato.inseguimento;
+                    break;
+                case stato.inseguimento:
+                    //per inseguirlo
 
+                    if (usaNav && agent != null&&agent.isOnNavMesh)
+                    {
+                        //Vector2 dir = (player.position - transform.position).normalized;
+                        //transform.position += (Vector3)dir * speed * Time.deltaTime;
+                        agent.isStopped = false;
+                        agent.speed = speed;
+                        agent.SetDestination(player.position);
+                    }
+                    else
+                    {
+                        Vector3 dire = (player.position - transform.position).normalized;
+                        //transform.position += dire * speed * Time.deltaTime;
+                        //ora ruota verso il gioc
+                        /*if (dire.sqrMagnitude > 0.001f)
+                        {
+                            float angolo = Mathf.Atan2(dire.y, dire.x) * Mathf.Rad2Deg;
+                            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, angolo), 8f * Time.deltaTime);
+
+                        }*/
+                        if (dist > 1f) transform.position += dire * speed * Time.deltaTime;
+                        float angolo = Mathf.Atan2(dire.y, dire.x) * Mathf.Rad2Deg;
+                        transform.rotation = Quaternion.Euler(0, 0, angolo);
                     }
                     if (dist <= raggio && scattoDisp && Time.time - ultimo >= cooldown) StartCoroutine(esegui());
-                }*/
-                Vector3 dire = (player.position - transform.position).normalized;
-                if (dist > 1f) transform.position += dire * speed * Time.deltaTime;
-                float angolo=Mathf.Atan2(dire.y, dire.x)*Mathf.Rad2Deg;
-                transform.rotation=Quaternion.Euler(0,0,angolo);
-                if (dist <= raggio && scattoDisp && Time.time - ultimo >= cooldown) StartCoroutine(esegui());
-                break;
-            
-            case stato.avvolgimento:
-            case stato.scatto:
-            case stato.recupero:
-                break;
-        }
+                    /*
+                    Vector3 dire = (player.position - transform.position).normalized;
+                    if (dist > 1f) transform.position += dire * speed * Time.deltaTime;
+                    float angolo=Mathf.Atan2(dire.y, dire.x)*Mathf.Rad2Deg;
+                    transform.rotation=Quaternion.Euler(0,0,angolo);
+                    if (dist <= raggio && scattoDisp && Time.time - ultimo >= cooldown) StartCoroutine(esegui());*/
+                    break;
+
+                case stato.avvolgimento:
+                case stato.scatto:
+                case stato.recupero:
+                    break;
+            }
     }
 
     IEnumerator esegui()
@@ -114,9 +142,10 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(windup);
         //scatto
         sta = stato.scatto;
-        //if(usaNav&&agent!=null)agent.isStopped=true;
+        if(usaNav&&agent!=null&& agent.isOnNavMesh) agent.isStopped=true;
         //metto la dire verso il player
-        dir = (player.position - transform.position).normalized;
+        if (player != null) dir = (player.position - transform.position).normalized;
+        else dir = transform.right;
         float tempo = 0f;
         hitBox.SetActive(true);//la sua hitbox
         while(tempo<dur)
@@ -132,7 +161,11 @@ public class BossController : MonoBehaviour
         //nemici
         StartCoroutine(nemici());
         sta = stato.recupero;
-        //if(usaNav&&agent != null)agent.isStopped=false;
+        if (usaNav && agent != null && agent.isOnNavMesh)
+        {
+            agent.isStopped = false;
+            if(player!=null)agent.SetDestination(player.position);
+        }
         yield return new WaitForSeconds(0.4f);
         sta= stato.inseguimento;
         //attesa del cooldown
@@ -161,7 +194,16 @@ public class BossController : MonoBehaviour
     private void spawnNemico(Vector3 pos)
     {
         if (prefNemico == null) return;
-        Instantiate(prefNemico, pos,Quaternion.identity);
+        GameObject nem=Instantiate(prefNemico, pos,Quaternion.identity);
+        var nemAgent = nem.GetComponent<NavMeshAgent>();
+        if (nemAgent != null)
+        {
+            nemAgent.updateRotation = false;
+            nemAgent.updateUpAxis = false;
+            nemAgent.Warp(pos);
+            // opzionale: imposta destinazione al player
+            if (player != null) nemAgent.SetDestination(player.position);
+        }
     }
 
     public void colpito(GameObject play)
@@ -185,8 +227,8 @@ public class BossController : MonoBehaviour
         if (puntoLeft != null) Gizmos.DrawSphere(puntoLeft.position, 0.15f);
         if (puntoRight != null) Gizmos.DrawSphere(puntoRight.position, 0.15f);
     }
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)                                     
     {
-        if (other.CompareTag("player")) other.gameObject.GetComponent<player>()?.damage(danno);
+        if (other.CompareTag("Player")) other.gameObject.GetComponent<player>()?.damage(danno);
     }
 }

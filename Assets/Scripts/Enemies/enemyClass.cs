@@ -58,6 +58,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         else transform.localScale = new Vector3(1, 1, 1);
 
         _agent.speed = spd;
+        if (_agent==null) seguiPlayer();
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -79,6 +80,14 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         Debug.Log("XP QUEUE COUNT = " + data.xpQueue.Count);
     }
 
+    protected void seguiPlayer()
+    {
+        if (playerObj == null) return;
+        Vector2 dir=(playerObj.transform.position-transform.position).normalized;
+        rb.MovePosition(rb.position + dir * spd * Time.fixedDeltaTime);
+        float ang=Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg;
+        transform.rotation=Quaternion.Euler(0,0,ang);
+    }
 
     // Misc
     protected void onDamaged(float damage)

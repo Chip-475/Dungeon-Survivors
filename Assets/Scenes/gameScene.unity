@@ -13704,6 +13704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f091079a7f6d14fa65de1e0ecab29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::iceAura
+  type: 0
   lvl: 0
   lvlMax: 0
   duration: 0
@@ -15061,6 +15062,7 @@ MonoBehaviour:
   isDead: 0
   canAttack: 1
   canLaunch: 1
+  onTenacity: 0
   mousePosition: {x: 0, y: 0, z: 0}
   mouseWorldPosition: {x: 0, y: 0, z: 0}
   hp: 100
@@ -17760,6 +17762,7 @@ MonoBehaviour:
     m_Bits: 0
   state: 0
   pauseMenu: {fileID: 1701881807}
+  deathScreen: {fileID: 0}
 --- !u!1 &1622327813
 GameObject:
   m_ObjectHideFlags: 0
@@ -17870,7 +17873,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -17886,6 +17889,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.9809246, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1643082514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643082504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04976799df50f54ba128eff723155a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshSurface
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 1
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_BuildHeightMesh: 0
+  m_MinRegionArea: 0
+  m_HideEditorLogs: 0
+  m_NavMeshData: {fileID: 23800000, guid: 9bc9b11e0dc4e4f47a5d553ebcc41aaf, type: 2}
 --- !u!1 &1671146041
 GameObject:
   m_ObjectHideFlags: 0
@@ -18896,6 +18930,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a7c81e0fea13b45a14e4dbc3aa8df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::audioManager
+  source: {fileID: 0}
+  mixer: {fileID: 0}
+  masterSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
+  musicSlider: {fileID: 0}
 --- !u!1 &1946500059
 GameObject:
   m_ObjectHideFlags: 0
@@ -18941,6 +18980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd51ca16821701408756974ef3aeede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::electroAura
+  type: 0
   lvl: 0
   lvlMax: 0
   duration: 0
@@ -19166,6 +19206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::menuManager
   pause: {fileID: 1701881807}
   options: {fileID: 73756604}
+  inventory: {fileID: 0}
 --- !u!4 &2041030979
 Transform:
   m_ObjectHideFlags: 0
@@ -19508,6 +19549,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 8698226611947036746, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8698226611947036746, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8698226611947036746, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19515,6 +19568,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8213228483235791034, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1643082509}
+    - targetCorrespondingSourceObject: {fileID: 8213228483235791034, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1643082514}
   m_SourcePrefab: {fileID: 100100000, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
