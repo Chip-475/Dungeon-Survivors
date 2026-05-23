@@ -50,8 +50,10 @@ public class cardManager : MonoBehaviour
             if (entry.effect.lvl == 5)
             {
                 spawnableCards.Remove(entry);
+                if (spawnableCards.Count == 0) return;
                 i--;
                 continue;
+               
             }
 
             spawnedCards.Add(Instantiate(entry.prefab, spawnPoints[i].transform.position, Quaternion.identity, cardPanel.transform));

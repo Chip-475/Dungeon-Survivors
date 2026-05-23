@@ -112,7 +112,6 @@ MonoBehaviour:
   player: {fileID: 0}
   xpBar: {fileID: 0}
   hp: 25
-  spawnCost: 0
   hpMax: 0
   xpGiven: 20
   atk: 10
