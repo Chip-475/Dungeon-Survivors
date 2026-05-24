@@ -15171,10 +15171,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4c786e2a-821b-4224-b768-f8018828a919
     m_ActionName: 'Player/Pause[/Keyboard/escape]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6f516a06-cdd0-4847-9c64-4924fa139627
-    m_ActionName: 'Player/Inventory[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
@@ -16897,17 +16893,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163640996}
   m_CullTransparentMesh: 1
---- !u!114 &1184202355 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 264511570688589328, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
-  m_PrefabInstance: {fileID: 5522418289459618290}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1187735741
 GameObject:
   m_ObjectHideFlags: 0
@@ -19427,45 +19412,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4312413446777736398, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
-      propertyPath: hpFill
-      value: 
-      objectReference: {fileID: 1184202355}
-    - target: {fileID: 4312413446777736398, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 621900516}
     - target: {fileID: 4312413446777736398, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
-      propertyPath: raggio
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312413446777736398, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
       propertyPath: playerObj
       value: 
       objectReference: {fileID: 621900514}
-    - target: {fileID: 4312413446777736398, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
-      propertyPath: playerTransform
-      value: 
-      objectReference: {fileID: 621900516}
-    - target: {fileID: 5020983133659205589, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672682039970388953, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672682039970388953, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672682039970388953, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
-      propertyPath: m_UseGeometry
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6672682039970388953, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
-      propertyPath: m_LayerMask.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 7638394312810408043, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.773
@@ -19510,12 +19463,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 8698226611947036746, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6672682039970388953, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

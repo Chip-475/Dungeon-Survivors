@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.AI;    // si usa quando un gameobject si muove secondo sistema di navigazione diverso
 using UnityEngine.UI;
 
-public class BossController :enemyClass
+public class BossController :enemyClass 
 {
     [Header("riferimenti")]
     public Transform playerTransform;
@@ -66,7 +66,7 @@ public class BossController :enemyClass
     void Start()
     {
         base.Start();
-        if (playerTransform == null)
+        if(playerTransform == null)
         {
             playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
         }
@@ -86,7 +86,7 @@ public class BossController :enemyClass
         }
         else
         {
-            if (sta == stato.inseguimento) sta = stato.inattivo;
+            if(sta == stato.inseguimento) sta = stato.inattivo;
         }
             switch (sta)
             {
@@ -126,11 +126,6 @@ public class BossController :enemyClass
                     float angolo=Mathf.Atan2(dire.y, dire.x)*Mathf.Rad2Deg;
                     transform.rotation=Quaternion.Euler(0,0,angolo);
                     if (dist <= raggio && scattoDisp && Time.time - ultimo >= cooldown) StartCoroutine(esegui());*/
-                    break;
-
-                case stato.avvolgimento:
-                case stato.scatto:
-                case stato.recupero:
                     break;
             }
     }
@@ -197,7 +192,7 @@ public class BossController :enemyClass
         if (prefNemico == null) return;
         GameObject nem=Instantiate(prefNemico, pos,Quaternion.identity);
         var nemAgent = nem.GetComponent<NavMeshAgent>();
-        if (nemAgent != null)
+        if(nemAgent != null)
         {
             nemAgent.updateRotation = false;
             nemAgent.updateUpAxis = false;
@@ -210,7 +205,7 @@ public class BossController :enemyClass
     public void colpito(GameObject play)
     {
         var salute = play.GetComponent<player>();
-        if (salute != null) salute.damage(danno);
+        if(salute != null) salute.damage(danno);
         var rb = play.GetComponent<Rigidbody2D>();
         if(rb!=null)
         {
@@ -220,7 +215,7 @@ public class BossController :enemyClass
     }
     public void OnDrawGizmosSelected()
     {
-        if (!mostraGizmos) return;
+        if(!mostraGizmos) return;
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, raggio);
         Gizmos.color = Color.red;
@@ -232,7 +227,7 @@ public class BossController :enemyClass
     {
         if (other.CompareTag("Player")) other.gameObject.GetComponent<player>()?.damage(danno);
     }
-
+    
     public virtual void damage(float dmg)
     {
         base.damage(dmg);
@@ -241,15 +236,6 @@ public class BossController :enemyClass
     }
     private void morte()
     {
-        morto = true;
-        if(_agent!=null)
-        {
-            _agent.isStopped=false;
-            _agent.enabled=false;
-        }
-        hitBox.SetActive(false);
-        var col = GetComponent<Collider2D>();
-        if (col != null) col.enabled = false;
-        Destroy(gameObject, 1f);
+        Destroy(gameObject,1f);
     }
 }
