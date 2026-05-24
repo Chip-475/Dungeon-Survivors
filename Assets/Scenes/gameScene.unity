@@ -19175,7 +19175,7 @@ MonoBehaviour:
   spawnManager: {fileID: 1127353844}
   hpText: {fileID: 502109687}
   xpText: {fileID: 511048148}
-  player: {fileID: 621900517}
+  player: {fileID: 0}
 --- !u!4 &2057710485
 Transform:
   m_ObjectHideFlags: 0
@@ -19419,6 +19419,10 @@ PrefabInstance:
       propertyPath: playerObj
       value: 
       objectReference: {fileID: 621900514}
+    - target: {fileID: 6672682039970388953, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
+      propertyPath: m_LayerMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7638394312810408043, guid: 107c6116648420f4687da6c1fad9640b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.773

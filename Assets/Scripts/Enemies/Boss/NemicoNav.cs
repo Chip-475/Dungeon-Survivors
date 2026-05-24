@@ -3,7 +3,7 @@ using UnityEngine.AI;
 public class NemicoNav : MonoBehaviour
 {/*
     NavMeshAgent agent;
-    Transform player;
+    Transform playerTransform;
 
     void Awake()
     {
@@ -12,12 +12,12 @@ public class NemicoNav : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindObjectWithTag("Player")?.Transform;
+        playerTransform = GameObject.FindObjectWithTag("Player")?.Transform;
     }
 
     void Update()
     {
-        if (player == null) return;
-        agent.SetDestination(player.position);
+        if (playerTransform == null) return;
+        agent.SetDestination(playerTransform.position);
     }*/
 }

@@ -17,7 +17,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
 
     protected bool inRange;
     protected bool detecting;
-
+    
     [Header("Stats")]
     [SerializeField] public float hp;
     public float hpMax;

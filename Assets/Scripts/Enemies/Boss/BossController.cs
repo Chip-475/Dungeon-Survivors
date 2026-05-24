@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class BossController :enemyClass
 {
     [Header("riferimenti")]
-    public Transform player;
+    public Transform playerTransform;
     public GameObject prefNemico;
     public Transform puntoLeft;
     public Transform puntoRight;      //dove spawn i nemici
     public LayerMask layerPlayer;   //layer per riconoscere il gioc
     public Image hpFill;                                //layer che servono anche per dare la priorita degli oggetti della scena
 
-
+            
     [Header("movimento")]
     public bool usaNav = true;     //false=dritto alt..  si muove bene
-    public NavMeshAgent agent;     //permette di farlo muovere secondo il percorso piu vicino alg A* (paura)
+    //public NavMeshAgent _agent;     //permette di farlo muovere secondo il percorso piu vicino alg A* (paura)
     public float raggio;           //tipo campo visivo
     public float speed;
 
@@ -54,11 +54,11 @@ public class BossController :enemyClass
     {
         if (usaNav)
         {
-            agent = GetComponent<NavMeshAgent>();
-            if (agent != null)
+            _agent = GetComponent<NavMeshAgent>();
+            if (_agent != null)
             {
-                agent.updateRotation = false;
-                agent.updateUpAxis = false;
+                _agent.updateRotation = false;
+                _agent.updateUpAxis = false;
             }
         }
         Debug.Log("Boss in awake");
@@ -66,20 +66,20 @@ public class BossController :enemyClass
     void Start()
     {
         base.Start();
-        if (player == null)
+        if (playerTransform == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+            playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
         }
-        if (agent != null)
+        if (_agent != null)
         {
-            agent.Warp(transform.position);
+            _agent.Warp(transform.position);
         }
         
     }
     void Update()
-    {   //cerco il player
-        if (player == null) return; 
-        float dist = Vector3.Distance(transform.position, player.position);
+    {   //cerco il playerTransform
+        if (playerTransform == null) return; 
+        float dist = Vector3.Distance(transform.position, playerTransform.position);
         if(dist<=raggio)
         {
             if(sta==stato.inattivo)sta=stato.inseguimento;
@@ -96,17 +96,17 @@ public class BossController :enemyClass
                 case stato.inseguimento:
                     //per inseguirlo
 
-                    if (usaNav && agent != null&&agent.isOnNavMesh)
+                    if (usaNav && _agent != null&&_agent.isOnNavMesh)
                     {
-                        //Vector2 dir = (player.position - transform.position).normalized;
+                        //Vector2 dir = (playerTransform.position - transform.position).normalized;
                         //transform.position += (Vector3)dir * speed * Time.deltaTime;
-                        agent.isStopped = false;
-                        agent.speed = speed;
-                        agent.SetDestination(player.position);
+                        _agent.isStopped = false;
+                        _agent.speed = speed;
+                        _agent.SetDestination(playerTransform.position);
                     }
                     else
                     {
-                        Vector3 dire = (player.position - transform.position).normalized;
+                        Vector3 dire = (playerTransform.position - transform.position).normalized;
                         //transform.position += dire * speed * Time.deltaTime;
                         //ora ruota verso il gioc
                         /*if (dire.sqrMagnitude > 0.001f)
@@ -121,7 +121,7 @@ public class BossController :enemyClass
                     }
                     if (dist <= raggio && scattoDisp && Time.time - ultimo >= cooldown) StartCoroutine(esegui());
                     /*
-                    Vector3 dire = (player.position - transform.position).normalized;
+                    Vector3 dire = (playerTransform.position - transform.position).normalized;
                     if (dist > 1f) transform.position += dire * speed * Time.deltaTime;
                     float angolo=Mathf.Atan2(dire.y, dire.x)*Mathf.Rad2Deg;
                     transform.rotation=Quaternion.Euler(0,0,angolo);
@@ -143,9 +143,9 @@ public class BossController :enemyClass
         yield return new WaitForSeconds(windup);
         //scatto
         sta = stato.scatto;
-        if(usaNav&&agent!=null&& agent.isOnNavMesh) agent.isStopped=true;
-        //metto la dire verso il player
-        if (player != null) dir = (player.position - transform.position).normalized;
+        if(usaNav&&_agent!=null&& _agent.isOnNavMesh) _agent.isStopped=true;
+        //metto la dire verso il playerTransform
+        if (playerTransform != null) dir = (playerTransform.position - transform.position).normalized;
         else dir = transform.right;
         float tempo = 0f;
         hitBox.SetActive(true);//la sua hitbox
@@ -162,10 +162,10 @@ public class BossController :enemyClass
         //nemici
         StartCoroutine(nemici());
         sta = stato.recupero;
-        if (usaNav && agent != null && agent.isOnNavMesh)
+        if (usaNav && _agent != null && _agent.isOnNavMesh)
         {
-            agent.isStopped = false;
-            if(player!=null)agent.SetDestination(player.position);
+            _agent.isStopped = false;
+            if(playerTransform!=null)_agent.SetDestination(playerTransform.position);
         }
         yield return new WaitForSeconds(0.4f);
         sta= stato.inseguimento;
@@ -202,8 +202,8 @@ public class BossController :enemyClass
             nemAgent.updateRotation = false;
             nemAgent.updateUpAxis = false;
             nemAgent.Warp(pos);
-            // opzionale: imposta destinazione al player
-            if (player != null) nemAgent.SetDestination(player.position);
+            // opzionale: imposta destinazione al playerTransform
+            if (playerTransform != null) nemAgent.SetDestination(playerTransform.position);
         }
     }
 
@@ -242,10 +242,10 @@ public class BossController :enemyClass
     private void morte()
     {
         morto = true;
-        if(agent!=null)
+        if(_agent!=null)
         {
-            agent.isStopped=false;
-            agent.enabled=false;
+            _agent.isStopped=false;
+            _agent.enabled=false;
         }
         hitBox.SetActive(false);
         var col = GetComponent<Collider2D>();
