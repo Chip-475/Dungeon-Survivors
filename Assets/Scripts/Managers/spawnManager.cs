@@ -9,6 +9,12 @@ public class spawnManager : MonoBehaviour
     public static int enemyCount;
     public bool isSpawning = false;
     public float Offset = 0.1f;
+
+    [Header("corners")]
+    public Transform topRight;
+    public Transform topLeft;
+    public Transform bottomRight;
+    public Transform bottomLeft;
     private void Start()
     {
         waves = 0;
@@ -52,27 +58,34 @@ public class spawnManager : MonoBehaviour
     {
         float x = 0f;
         float y = 0f;
+        float minX= bottomLeft.position.x;
+        float maxX= bottomRight.position.x;
+        float minY= bottomLeft.position.y;
+        float maxY= topLeft.position.y;
+        Debug.Log("minX: " + minX + " maxX: " + maxX + " minY: " + minY + " maxY: " + maxY);
         int side = UnityEngine.Random.Range(0, 4);
         switch (side)
         {
             case 0:
-                x=UnityEngine.Random.Range(0f, 1f);
-                y = -Offset;
+                x=UnityEngine.Random.Range(minX,maxX);
+                y = maxY+Offset;
                 break;
             case 1:
-                x = UnityEngine.Random.Range(0f, 1f);
-                y = -Offset;
+                x = UnityEngine.Random.Range(minX,maxX);
+                y = minY-Offset;
                 break;
             case 2:
-                x = -Offset;
-                y=UnityEngine.Random.Range(0f, 1f);
+                x = minY-Offset;
+                y=UnityEngine.Random.Range(minX, maxX);
                 break;
             case 3:
-                x = 1f + Offset;
-                y = UnityEngine.Random.Range(0f, 1f);
+                x = maxX + Offset;
+                y = UnityEngine.Random.Range(minX, maxX);
                 break;
         }
-        Vector3 spawnPos=Camera.main.ViewportToWorldPoint(new Vector3(x,y,10f));
+        x = UnityEngine.Random.Range(minX, maxX);
+        y = UnityEngine.Random.Range(minY, maxY);
+        Vector3 spawnPos=new Vector3(x,y,10f);
         return spawnPos;
     }
 }
