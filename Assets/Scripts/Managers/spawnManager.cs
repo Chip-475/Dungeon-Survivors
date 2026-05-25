@@ -23,10 +23,10 @@ public class spawnManager : MonoBehaviour
     {
         if (enemyCount <= 0 && !isSpawning)
         {
-            if(!tenacityEffect.instance.tenacity) player.playerInstance.hp += player.playerInstance.hpMax * 0.2f;
+            waves++;
+            if (!tenacityEffect.instance.tenacity) StartCoroutine(player.playerInstance.hpBar.hpBarMovement(player.playerInstance.hp, player.playerInstance.hp + player.playerInstance.hpMax * 0.2f));
             Invoke(nameof(newWave), 2.5f);
             isSpawning = true;
-            waves++;
         }
     }
 

@@ -93,10 +93,9 @@ public class player : MonoBehaviour, IDamageable
     // Player Misc
     public void onDamaged(float damage)
     {
-        hpBar.hpBarCurve = AnimationCurve.EaseInOut(0, hp / hpMax, hpBar.animTime, (hp - damage) / hpMax);
         hp -= damage;
         hp=Mathf.Clamp(hp, 0, hpMax);
-        StartCoroutine(hpBar.hpBarMovement());
+        StartCoroutine(hpBar.hpBarMovement(hp, hp - damage));
         if (hp < hpMax * 0.3f && !onTenacity && tenacityEffect.instance.tenacity)
         {
             onTenacity = true;
