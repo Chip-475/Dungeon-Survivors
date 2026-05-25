@@ -62,7 +62,7 @@ public class spawnManager : MonoBehaviour
         float maxX= bottomRight.position.x;
         float minY= bottomLeft.position.y;
         float maxY= topLeft.position.y;
-        Debug.Log("minX: " + minX + " maxX: " + maxX + " minY: " + minY + " maxY: " + maxY);
+        //Debug.Log("minX: " + minX + " maxX: " + maxX + " minY: " + minY + " maxY: " + maxY);
         int side = UnityEngine.Random.Range(0, 4);
         switch (side)
         {
