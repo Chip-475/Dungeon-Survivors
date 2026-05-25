@@ -56,7 +56,6 @@ public class player : MonoBehaviour, IDamageable
     void FixedUpdate()
     {
         hp = Mathf.Clamp(hp, 0, hpMax);
-
         // Mouse Positions Assignment
         mousePosition = Mouse.current.position.ReadValue();
         mouseWorldPosition = new Vector3(Camera.main.ScreenToWorldPoint(mousePosition).x, Camera.main.ScreenToWorldPoint(mousePosition).y, 0);
@@ -94,12 +93,11 @@ public class player : MonoBehaviour, IDamageable
     // Player Misc
     public void onDamaged(float damage)
     {
-        hpBar.hpBarCurve = AnimationCurve.EaseInOut(0, hp / 100f, hpBar.animTime, (hp - damage) / 100f);
+        hpBar.hpBarCurve = AnimationCurve.EaseInOut(0, hp / hpMax, hpBar.animTime, (hp - damage) / hpMax);
         hp -= damage;
         hp=Mathf.Clamp(hp, 0, hpMax);
         StartCoroutine(hpBar.hpBarMovement());
-
-        if(hp < hpMax * 0.3f && !onTenacity && tenacityEffect.instance.tenacity)
+        if (hp < hpMax * 0.3f && !onTenacity && tenacityEffect.instance.tenacity)
         {
             onTenacity = true;
             atk *= 2;

@@ -6,6 +6,7 @@ public class healthUp : cardClass, ICardEffect
     {
         player.playerInstance.hpMax += player.playerInstance.hpMax * 0.2f;
         player.playerInstance.hp += player.playerInstance.hp * 0.2f;
+        StartCoroutine(player.playerInstance.hpBar.hpBarMovement());
     }
     public void cardEffect()
     {

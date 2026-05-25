@@ -85,7 +85,7 @@ public class spawnManager : MonoBehaviour
         }
         x = UnityEngine.Random.Range(minX, maxX);
         y = UnityEngine.Random.Range(minY, maxY);
-        Vector3 spawnPos=new Vector3(x,y,10f);
+        Vector3 spawnPos=new Vector3(x,y,0f);
         return spawnPos;
     }
 }
