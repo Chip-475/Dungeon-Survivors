@@ -12,9 +12,10 @@ public class xpBar : MonoBehaviour  // ATTACHED TO PLAYER
 
     public bool queueing;
     public float queueTimer;
-    public GameObject cardsLabel;
+
     public void startMedium()
     {
+        if (queueing)return; //evita doppie coroutine
         StartCoroutine(xpBarSetGain());
     }
 
@@ -41,21 +42,26 @@ public class xpBar : MonoBehaviour  // ATTACHED TO PLAYER
     }
     public IEnumerator xpBarMovement(float totGain)
     {
-        float currentXp = xpBarObject.fillAmount * data.xpMax;
-        data.xp = currentXp;
-        float toGain = Mathf.Min(totGain, data.xpMax - currentXp);
+        float startXp = xpBarObject.fillAmount * data.xpMax;
+        data.xp = startXp;
+
+        float toGain = Mathf.Min(totGain, data.xpMax - startXp);
+        float targetXp = startXp + toGain;
+        float targetFill = targetXp / data.xpMax;
         float overflow = totGain - toGain;
 
-        xpBarCurve = AnimationCurve.EaseInOut(0, xpBarObject.fillAmount, animTime, (currentXp + toGain) / data.xpMax);
+        xpBarCurve = AnimationCurve.EaseInOut(0, xpBarObject.fillAmount, animTime, targetFill);
 
         var t = 0f;
         while (t < animTime)
         {
             xpBarObject.fillAmount = xpBarCurve.Evaluate(t);
+            data.xp = xpBarObject.fillAmount * data.xpMax;
             t += Time.deltaTime;
             yield return null;
         }
-        xpBarObject.fillAmount = (currentXp + toGain) / data.xpMax;
+        xpBarObject.fillAmount = targetFill;
+        data.xp = targetXp;
 
         if (xpBarObject.fillAmount >= 1) yield return StartCoroutine(levelUp());
         if (overflow > 0f) yield return StartCoroutine(xpBarMovement(overflow));
@@ -66,11 +72,8 @@ public class xpBar : MonoBehaviour  // ATTACHED TO PLAYER
         xpBarObject.fillAmount = 0;
         data.level++;
         data.xp = 0;
-        cardsLabel.SetActive(true);
         cardManager.instance.spawnCards();
         data.xpMax += data.xpMax * 0.2f;
-
-        // Level up sfx
         yield return null;
     }
 }

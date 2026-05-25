@@ -8,33 +8,33 @@ public class rangedGrunt : enemyClass
     public float shootCD = 0;
     private float sinceShoot;
     private bool canShoot;
-    
+
     private new void Start()
     {
         base.Start();
         canShoot = false;
-        sinceShoot = shootCD;
-
+        sinceShoot = 0;
     }
     private new void FixedUpdate()
     {
         base.FixedUpdate();
-        follow();
+        float dis = Vector2.Distance(transform.position, playerObj.transform.position);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, playerObj.transform.position - transform.position, dis, gameManager.instance.obstacle);
+        if(_agent!=null)_agent.SetDestination(transform.position);
+        if ( dis > 10)
+        {
+            canShoot = false;
+        }
+        else if(dis < 10 && !hit) 
+        {
+            if(_agent!=null)_agent.SetDestination(transform.position);
+            canShoot = true; 
+        }
+
         if (canShoot && sinceShoot >= shootCD) shoot();
         sinceShoot += Time.deltaTime;
     }
 
-    protected void follow()
-    {
-        if (Vector2.Distance(transform.position, playerObj.transform.position) > fovRange)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, playerObj.transform.position, spd * Time.deltaTime);
-            canShoot = false;
-        }
-        else canShoot = true;
-
-        transform.rotation = utilitiesDB.LookAt2D(playerObj.transform.position - transform.position);
-    }
     public void shoot()
     {
         Instantiate(projectile, shootPoint.position, Quaternion.identity, transform);
@@ -43,7 +43,7 @@ public class rangedGrunt : enemyClass
 
     private new void OnCollisionEnter2D(Collision2D collision)
     {
-        base.OnCollisionEnter2D (collision);
+        base.OnCollisionEnter2D(collision);
     }
     private new void OnDestroy()
     {

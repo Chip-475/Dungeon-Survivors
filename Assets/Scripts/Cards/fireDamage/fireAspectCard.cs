@@ -1,10 +1,14 @@
 using UnityEngine;
 
-public class fireAspectCard : cardClass
+public class fireAspectCard : cardClass, ICardEffect
 {
-    private void onClick()
+    private void effect()
     {
         data.fireAspectLvl++;
-        lvl++;
+        print("fireAspect picked");
+    }
+    public void cardEffect()
+    {
+        effect();
     }
 }

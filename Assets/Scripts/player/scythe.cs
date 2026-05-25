@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class scythe : MonoBehaviour
 {
-    IDamageable IDamageable;
     List<IDamageable> toDamage = new List<IDamageable>();
 
     public player player;
@@ -20,49 +19,56 @@ public class scythe : MonoBehaviour
         bc = GetComponent<BoxCollider2D>();
         bc.enabled = false;
 
-        curve = AnimationCurve.EaseInOut(0, 0, player.aspd / 2, 180);
-        curve.preWrapMode = WrapMode.PingPong;
-        curve.postWrapMode = WrapMode.PingPong;
-
-        transform.localEulerAngles = new Vector3(0, 0, 45);
+        transform.localEulerAngles = new Vector3(0, 0, 60);
     }
 
     public IEnumerator swing()
     {
-        player.canAttack = false;
+        Quaternion start = Quaternion.Euler(0, 0, 60);
+        Quaternion end = Quaternion.Euler(0, 0, -60);
 
+        float swingDuration = 1f / player.aspd;
+        float windup = swingDuration * 0.25f;
+        float attackTime = swingDuration * 0.5f;
+        float recovery = swingDuration * 0.25f;
+
+        transform.localRotation = start;
+        player.canAttack = false;
+        toDamage.Clear();
         sr.enabled = true;
 
         bc.enabled = false;
-        yield return new WaitForSeconds(player.aspd / 2);
+        yield return new WaitForSeconds(windup);
 
-        // Swing
-        float time = 0;
         bc.enabled = true;
-        while (time < player.aspd)
-        {
-            var x = curve.Evaluate(time);
-            transform.Rotate(0, 0, -(x / player.aspd) * Time.deltaTime);
+        float elapsed = 0f;
 
+        while (elapsed < attackTime)
+        {
+            float t = elapsed / attackTime;
+            transform.localRotation = Quaternion.Lerp(start, end, t);
+            elapsed += Time.deltaTime;
             yield return null;
-            time += Time.deltaTime;
         }
+
+        transform.localRotation = end;
         bc.enabled = false;
 
-        yield return new WaitForSeconds(player.aspd / 2);   
-        
-        sr.enabled = false;
-        transform.localEulerAngles = new Vector3(0, 0, 45);
+        yield return new WaitForSeconds(recovery);
 
+        sr.enabled = false;
+        transform.localRotation = start;
         player.canAttack = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<IDamageable>(out IDamageable))
+        if (other.TryGetComponent<IDamageable>(out IDamageable damageable) && !toDamage.Contains(damageable))
         {
-            other.GetComponent<IDamageable>().damage(player.atk);
-            if(data.fireAspectLvl > 0)
+            toDamage.Add(damageable);
+            damageable.damage(player.atk);
+
+            if (data.fireAspectLvl > 0 && !other.gameObject.TryGetComponent<DoT>(out _))
             {
                 var dot = other.gameObject.AddComponent<DoT>();
                 dot.damage = (player.atk * 0.2f) * data.fireAspectLvl;

@@ -7,6 +7,7 @@ public class electroAura : cardClass
 {
     
     private List<GameObject> list = new List<GameObject>();
+    public int radius;
 
     private void OnEnable()
     {
@@ -16,7 +17,6 @@ public class electroAura : cardClass
 
         StartCoroutine(damage());
     }
-
     IEnumerator damage()
     {
         while (true)

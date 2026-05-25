@@ -6,21 +6,21 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
 {
     [Header("Meta Data")]
 
-    IDamageable IDamageable;
+    public IDamageable IDamageable;
     public GameObject playerObj;
     public player player;
     public xpBar xpBar;
     protected Rigidbody2D prb;
+    protected Rigidbody2D rb;
     protected Collider2D _collider;
     protected NavMeshAgent _agent;
 
     protected bool inRange;
     protected bool detecting;
-
+    
     [Header("Stats")]
     [SerializeField] public float hp;
-    [SerializeField ] public int spawnCost;
-    protected float hpMax;
+    public float hpMax;
     public float xpGiven;
     [SerializeField] public float atk;
     [SerializeField] public float spd;
@@ -32,27 +32,39 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
     // Virtuals
     protected virtual void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         playerObj = GameObject.FindGameObjectWithTag("Player");
         player = playerObj.GetComponent<player>();
         xpBar = playerObj.GetComponent<xpBar>();
         prb = playerObj.GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         _agent = GetComponent<NavMeshAgent>();
+        if(_agent!=null)
+        {
+            _agent.updateRotation = false;
+            _agent.updateUpAxis = false;
+        }
+        
 
+        if (swarmEffect.swarm)
+        {
+            hp /= 2;
+        }
         hpMax = hp;
     }
     protected virtual void FixedUpdate()
     {
-        _agent.SetDestination(playerObj.transform.position);
-        _agent.updateRotation = false;
-        _agent.updateUpAxis = false;
-        transform.rotation = utilitiesDB.LookAt2D(playerObj.transform.position - transform.position);
+        if (playerObj.transform.position.x < transform.position.x) transform.localScale = new Vector3(-1, 1, 1);
+        else transform.localScale = new Vector3(1, 1, 1);
+
+        _agent.speed = spd;
+        if (_agent==null) seguiPlayer();
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Player") return;
+        if (!collision.gameObject.CompareTag("Player")) return;
 
-        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable))
+        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable)) 
         {
             collision.gameObject.GetComponent<IDamageable>().damage(atk);
         }
@@ -61,11 +73,21 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
     protected virtual void OnDestroy()
     {
         data.killCount++;
+        print(data.killCount);
         spawnManager.enemyCount--;
         data.xpQueue.Enqueue(xpGiven);
-        if(!xpBar.queueing) xpBar.startMedium();
+        if(xpBar!=null&&!xpBar.queueing) xpBar.startMedium();
+        Debug.Log("XP QUEUE COUNT = " + data.xpQueue.Count);
     }
 
+    protected void seguiPlayer()
+    {
+        if (playerObj == null) return;
+        Vector2 dir=(playerObj.transform.position-transform.position).normalized;
+        rb.MovePosition(rb.position + dir * spd * Time.fixedDeltaTime);
+        float ang=Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg;
+        transform.rotation=Quaternion.Euler(0,0,ang);
+    }
 
     // Misc
     protected void onDamaged(float damage)

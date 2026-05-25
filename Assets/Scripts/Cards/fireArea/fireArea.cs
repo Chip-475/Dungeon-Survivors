@@ -5,32 +5,22 @@ public class fireArea : cardClass
 {
     public CircleCollider2D circleCollider;
 
-    protected override void Start()
+    protected new void Start()
     {
-        base.Start();
-        active = true;
-
         circleCollider = GetComponent<CircleCollider2D>();
         Destroy(gameObject, duration);
 
-        circleCollider.radius = radius;
-        transform.localScale = new Vector3(radius * 2, radius * 2, 0);
+        transform.localScale = new Vector2(player.playerInstance.range * 5, player.playerInstance.range * 5);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.CompareTag("Enemy") && !collision.gameObject.TryGetComponent<DoT>(out _))
+        if(collision.gameObject.CompareTag("Enemy") && !collision.gameObject.TryGetComponent<DoT>(out _))
         {
             DoT dot = collision.gameObject.AddComponent<DoT>();
-            dot.damage = player.atk*lvl / 5;
+            dot.damage = player.playerInstance.atk * data.fireAreaLvl / 5;
             dot.duration = 5f;
             dot.tick = 1 / 3f;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.orange;
-        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

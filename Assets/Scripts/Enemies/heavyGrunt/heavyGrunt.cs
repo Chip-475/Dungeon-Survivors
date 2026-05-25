@@ -10,14 +10,9 @@ public class heavyGrunt : enemyClass
     private new void FixedUpdate()
     {
         base.FixedUpdate();
-        //follow();
-    }
 
-    //public void follow()
-    //{
-    //    transform.position = Vector2.MoveTowards(transform.position, playerObj.transform.position, spd * Time.deltaTime);
-    //    transform.rotation = utilitiesDB.LookAt2D(transform.position - playerObj.transform.position);
-    //}
+        _agent.SetDestination(playerObj.transform.position);
+    }
 
     private new void OnCollisionEnter2D(Collision2D collision)
     {

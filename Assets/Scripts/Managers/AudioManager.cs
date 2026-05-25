@@ -1,0 +1,113 @@
+using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
+
+public class audioManager : MonoBehaviour
+{
+    public static audioManager manager;
+    public AudioSource source;
+    public AudioMixer mixer;
+    [SerializeField] private Slider masterSlider;
+    [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Slider musicSlider;
+
+    void Awake()
+    {
+        if (manager == null)
+        {
+            manager = this;
+        }
+    }
+
+    public void playSFX(AudioClip clip, Transform spawn, float volume)
+    {
+        AudioSource audioSource = Instantiate(source, spawn.position, Quaternion.identity); ;
+        audioSource.clip = clip;
+        audioSource.volume = volume;
+        audioSource.Play();
+        Destroy(audioSource.gameObject, audioSource.clip.length);
+    }
+
+    public void setMaster(float volume)
+    {
+        data.master = volume;
+        ApplyMixerVolume("master", volume);
+    }
+    public void setSFX(float volume)
+    {
+        data.sfx = volume;
+        ApplyMixerVolume("sfx", volume);
+    }
+    public void setBGM(float volume)
+    {
+        data.music = volume;
+        ApplyMixerVolume("music", volume);
+    }
+    public void Start()
+    {
+        EnsureSliderReferences();
+        SyncSlidersWithSavedValues();
+        ApplyMixerVolume("master", data.master);
+        ApplyMixerVolume("sfx", data.sfx);
+        ApplyMixerVolume("music", data.music);
+    }
+
+    private void EnsureSliderReferences()
+    {
+        if (masterSlider == null)
+        {
+            GameObject masterObject = GameObject.Find("master");
+            if (masterObject != null)
+            {
+                masterSlider = masterObject.GetComponent<Slider>();
+            }
+        }
+
+        if (sfxSlider == null)
+        {
+            GameObject sfxObject = GameObject.Find("sfx");
+            if (sfxObject != null)
+            {
+                sfxSlider = sfxObject.GetComponent<Slider>();
+            }
+        }
+
+        if (musicSlider == null)
+        {
+            GameObject musicObject = GameObject.Find("music");
+            if (musicObject != null)
+            {
+                musicSlider = musicObject.GetComponent<Slider>();
+            }
+        }
+    }
+
+    private void SyncSlidersWithSavedValues()
+    {
+        if (masterSlider != null)
+        {
+            masterSlider.SetValueWithoutNotify(data.master);
+        }
+
+        if (sfxSlider != null)
+        {
+            sfxSlider.SetValueWithoutNotify(data.sfx);
+        }
+
+        if (musicSlider != null)
+        {
+            musicSlider.SetValueWithoutNotify(data.music);
+        }
+    }
+
+    private void ApplyMixerVolume(string parameter, float volume)
+    {
+        if (volume <= 0f)
+        {
+            mixer.SetFloat(parameter, -80f);
+            return;
+        }
+
+        mixer.SetFloat(parameter, Mathf.Log10(volume) * 20);
+    }
+}
