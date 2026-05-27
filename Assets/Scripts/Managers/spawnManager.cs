@@ -86,6 +86,11 @@ public class spawnManager : MonoBehaviour
         x = UnityEngine.Random.Range(minX, maxX);
         y = UnityEngine.Random.Range(minY, maxY);
         Vector3 spawnPos=new Vector3(x,y,0f);
+        Vector2 spawnPos2D = new Vector2(x, y);
+        if (Vector2.Distance(player.playerInstance.transform.position,spawnPos2D)>30f && Vector2.Distance(player.playerInstance.transform.position, spawnPos2D) < 15f)
+        { 
+            return getPosition();
+        }
         return spawnPos;
     }
 }
