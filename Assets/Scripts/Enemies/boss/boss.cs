@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 
 public class boss : enemyClass
 {
+    public AudioClip spawnSound;
     public List<Transform> points = new();
     public GameObject enemyToSpawn;
 
@@ -57,6 +58,7 @@ public class boss : enemyClass
         {
             Instantiate(enemyToSpawn, point.position, Quaternion.identity);
         }
+        audioManager.manager.playSFX(spawnSound, transform, data.sfx);
 
         yield return null;
         timerLockout = false;

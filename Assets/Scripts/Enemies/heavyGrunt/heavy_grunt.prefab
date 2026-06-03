@@ -111,6 +111,8 @@ MonoBehaviour:
   playerObj: {fileID: 0}
   player: {fileID: 0}
   xpBar: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: caf5b354972c21b4ebfe3bcd6e45f228, type: 3}
+  bossDeathSound: {fileID: 8300000, guid: fb0b3882571a4c84e8e582b63a83cdd8, type: 3}
   hp: 25
   hpMax: 0
   xpGiven: 20
@@ -293,6 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::enemyHP
   enemyClass: {fileID: 7524635075122077216}
   hpBar: {fileID: 1249578957566960002}
+  rot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &5990103839975657836
 GameObject:
   m_ObjectHideFlags: 0

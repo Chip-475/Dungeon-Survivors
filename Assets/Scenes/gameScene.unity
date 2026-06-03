@@ -749969,7 +749969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397d6ddafe46f2b4997f073acc701fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::audioManager
-  source: {fileID: 0}
+  source: {fileID: 1297307964391894973, guid: 2befd521e2325cf4caecfbd3e278b2c2, type: 3}
   mixer: {fileID: 24100000, guid: 9cbbf1309c0f58142aa9c2aade69aa10, type: 2}
   masterSlider: {fileID: 113769928}
   sfxSlider: {fileID: 517499967}

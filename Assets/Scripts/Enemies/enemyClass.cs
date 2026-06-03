@@ -10,6 +10,8 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
     public GameObject playerObj;
     public player player;
     public xpBar xpBar;
+    public AudioClip deathSound;
+    public AudioClip bossDeathSound;
     protected Rigidbody2D prb;
     protected Rigidbody2D rb;
     protected Collider2D _collider;
@@ -73,6 +75,15 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         spawnManager.enemyCount--;
         data.xpQueue.Enqueue(xpGiven);
         if(!xpBar.queueing) xpBar.startMedium();
+
+        if(TryGetComponent(out boss _))
+        {
+            audioManager.manager.playSFX(bossDeathSound, transform, data.sfx);
+        }
+        else
+        {
+            audioManager.manager.playSFX(deathSound, transform, data.sfx);
+        }
     }
 
 

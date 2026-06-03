@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 4516386599610590319}
   m_Layer: 0
   m_Name: boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,6 +144,8 @@ MonoBehaviour:
   playerObj: {fileID: 0}
   player: {fileID: 0}
   xpBar: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: caf5b354972c21b4ebfe3bcd6e45f228, type: 3}
+  bossDeathSound: {fileID: 8300000, guid: fb0b3882571a4c84e8e582b63a83cdd8, type: 3}
   hp: 50
   hpMax: 50
   xpGiven: 300
@@ -151,6 +153,7 @@ MonoBehaviour:
   spd: 2
   fovRange: 10
   fovAngle: 180
+  spawnSound: {fileID: 8300000, guid: 8d0f77ae8f787624d93dee39b3720fb4, type: 3}
   points:
   - {fileID: 822463542783515618}
   - {fileID: 5002462365224914752}
