@@ -83,8 +83,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ac8b16319c3df8540bf69ee033c75b49, type: 3}
-  m_Color: {r: 0.9137255, g: 0.4862745, b: 0.25490198, a: 0.39215687}
+  m_Sprite: {fileID: -170652927418496176, guid: 8c7acf5135cd2c04f97c44f1312510eb, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -141,9 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db046db22631b294eb939df19b511f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::fireArea
-  perk: 2
+  type: 0
   lvl: 0
   lvlMax: 5
-  radius: 5
   duration: 7.5
   circleCollider: {fileID: 0}

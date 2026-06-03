@@ -1,0 +1,780 @@
+fileFormatVersion: 2
+guid: f3662fd89eefdc64fbaf4af65010a1da
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4753265643290278373
+    second: hp_bar_player_overlay_0
+  - first:
+      213: 1114522001126281312
+    second: hp_bar_player_overlay_1
+  - first:
+      213: 7955683401583138187
+    second: hp_bar_player_overlay_2
+  - first:
+      213: -2926520947818420271
+    second: hp_bar_player_overlay_3
+  - first:
+      213: 6832719021002740088
+    second: hp_bar_player_overlay_4
+  - first:
+      213: 6650928196458841026
+    second: hp_bar_player_overlay_5
+  - first:
+      213: 3589662841287211865
+    second: hp_bar_player_overlay_6
+  - first:
+      213: 7881826874896024267
+    second: hp_bar_player_overlay_7
+  - first:
+      213: 5898367356243189904
+    second: hp_bar_player_overlay_8
+  - first:
+      213: 5627074690623525856
+    second: hp_bar_player_overlay_9
+  - first:
+      213: -8410716463154925963
+    second: hp_bar_player_overlay_10
+  - first:
+      213: -1068999118563795612
+    second: hp_bar_player_overlay_11
+  - first:
+      213: -5776339602376819708
+    second: hp_bar_player_overlay_12
+  - first:
+      213: -4653109944867271400
+    second: hp_bar_player_overlay_13
+  - first:
+      213: 2480675050608957606
+    second: hp_bar_player_overlay_14
+  - first:
+      213: 3827994509742734108
+    second: hp_bar_player_overlay_15
+  - first:
+      213: -4592413473248299973
+    second: hp_bar_player_overlay_16
+  - first:
+      213: 3629689578444019
+    second: hp_bar_player_overlay_17
+  - first:
+      213: -8801024468350569002
+    second: hp_bar_player_overlay_18
+  - first:
+      213: 865744513978930481
+    second: hp_bar_player_overlay_19
+  - first:
+      213: 1124412042961668742
+    second: hp_bar_player_overlay_20
+  - first:
+      213: -4233617967530337097
+    second: hp_bar_player_overlay_21
+  - first:
+      213: 577809458978820987
+    second: hp_bar_player_overlay_22
+  - first:
+      213: -8771364443235601441
+    second: hp_bar_player_overlay_23
+  - first:
+      213: -5281386988838561299
+    second: hp_bar_player_overlay_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_0
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 55
+        width: 10
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e9b26f2bedf6f140800000000000000
+      internalID: 4753265643290278373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_1
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0605d73ead3977f00800000000000000
+      internalID: 1114522001126281312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_2
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8595d817e3486e60800000000000000
+      internalID: 7955683401583138187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_3
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 55
+        width: 10
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d72b8d04b8e267d0800000000000000
+      internalID: -2926520947818420271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_4
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8715ce09fb1b2de50800000000000000
+      internalID: 6832719021002740088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_5
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c30f80e4f7dc4c50800000000000000
+      internalID: 6650928196458841026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_6
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 55
+        width: 10
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95bf756d55b01d130800000000000000
+      internalID: 3589662841287211865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_7
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc20e4378cfd16d60800000000000000
+      internalID: 7881826874896024267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_8
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 090a2af0cd53bd150800000000000000
+      internalID: 5898367356243189904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_9
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 55
+        width: 10
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e3d43b1e92671e40800000000000000
+      internalID: 5627074690623525856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_10
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57eee1b40f1274b80800000000000000
+      internalID: -8410716463154925963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_11
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46d9cc827f62a21f0800000000000000
+      internalID: -1068999118563795612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_12
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 55
+        width: 10
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40cfe4a6cb156dfa0800000000000000
+      internalID: -5776339602376819708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_13
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81d495b8825dc6fb0800000000000000
+      internalID: -4653109944867271400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_14
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a898bab0d02d6220800000000000000
+      internalID: 2480675050608957606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_15
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 55
+        width: 10
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1b7c5b99b4cf1530800000000000000
+      internalID: 3827994509742734108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_16
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b34315917487440c0800000000000000
+      internalID: -4592413473248299973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_17
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f4d7f5fe25ec0000800000000000000
+      internalID: 3629689578444019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_18
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 55
+        width: 10
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d5717830ea7cd580800000000000000
+      internalID: -8801024468350569002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_19
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13515fd6c0eb30c00800000000000000
+      internalID: 865744513978930481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_20
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68ac6e1bbc6ba9f00800000000000000
+      internalID: 1124412042961668742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_21
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 55
+        width: 10
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bc94a2a3ea2f35c0800000000000000
+      internalID: -4233617967530337097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_22
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b731b4e34aac40800800000000000000
+      internalID: 577809458978820987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_23
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd33375f28ad54680800000000000000
+      internalID: -8771364443235601441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hp_bar_player_overlay_24
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 55
+        width: 10
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de958e0048eb4b6b0800000000000000
+      internalID: -5281386988838561299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      hp_bar_player_overlay_0: 4753265643290278373
+      hp_bar_player_overlay_1: 1114522001126281312
+      hp_bar_player_overlay_10: -8410716463154925963
+      hp_bar_player_overlay_11: -1068999118563795612
+      hp_bar_player_overlay_12: -5776339602376819708
+      hp_bar_player_overlay_13: -4653109944867271400
+      hp_bar_player_overlay_14: 2480675050608957606
+      hp_bar_player_overlay_15: 3827994509742734108
+      hp_bar_player_overlay_16: -4592413473248299973
+      hp_bar_player_overlay_17: 3629689578444019
+      hp_bar_player_overlay_18: -8801024468350569002
+      hp_bar_player_overlay_19: 865744513978930481
+      hp_bar_player_overlay_2: 7955683401583138187
+      hp_bar_player_overlay_20: 1124412042961668742
+      hp_bar_player_overlay_21: -4233617967530337097
+      hp_bar_player_overlay_22: 577809458978820987
+      hp_bar_player_overlay_23: -8771364443235601441
+      hp_bar_player_overlay_24: -5281386988838561299
+      hp_bar_player_overlay_3: -2926520947818420271
+      hp_bar_player_overlay_4: 6832719021002740088
+      hp_bar_player_overlay_5: 6650928196458841026
+      hp_bar_player_overlay_6: 3589662841287211865
+      hp_bar_player_overlay_7: 7881826874896024267
+      hp_bar_player_overlay_8: 5898367356243189904
+      hp_bar_player_overlay_9: 5627074690623525856
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
