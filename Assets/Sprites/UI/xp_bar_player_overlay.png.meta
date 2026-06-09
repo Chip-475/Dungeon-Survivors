@@ -1,0 +1,780 @@
+fileFormatVersion: 2
+guid: e8e5dd7834e987f48850fe3cfaab33ac
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3755209809826406044
+    second: xp_bar_player_overlay_0
+  - first:
+      213: -4480511477248302718
+    second: xp_bar_player_overlay_1
+  - first:
+      213: -2805014499027862780
+    second: xp_bar_player_overlay_2
+  - first:
+      213: 4792637513795897488
+    second: xp_bar_player_overlay_3
+  - first:
+      213: 1946390975892511270
+    second: xp_bar_player_overlay_4
+  - first:
+      213: 8200918447712196037
+    second: xp_bar_player_overlay_5
+  - first:
+      213: 8690468265076875691
+    second: xp_bar_player_overlay_6
+  - first:
+      213: -1773824448035784865
+    second: xp_bar_player_overlay_7
+  - first:
+      213: -4946494243738671452
+    second: xp_bar_player_overlay_8
+  - first:
+      213: -8579664608448741385
+    second: xp_bar_player_overlay_9
+  - first:
+      213: 539825920883228912
+    second: xp_bar_player_overlay_10
+  - first:
+      213: 361907812757565477
+    second: xp_bar_player_overlay_11
+  - first:
+      213: 4732379387410852531
+    second: xp_bar_player_overlay_12
+  - first:
+      213: -5242798402617473088
+    second: xp_bar_player_overlay_13
+  - first:
+      213: 4382276122042982920
+    second: xp_bar_player_overlay_14
+  - first:
+      213: -9118985455127895193
+    second: xp_bar_player_overlay_15
+  - first:
+      213: 8124376495394354929
+    second: xp_bar_player_overlay_16
+  - first:
+      213: -877007660671260891
+    second: xp_bar_player_overlay_17
+  - first:
+      213: 1907541827431753899
+    second: xp_bar_player_overlay_18
+  - first:
+      213: -8937397582474698878
+    second: xp_bar_player_overlay_19
+  - first:
+      213: 3314942376339450879
+    second: xp_bar_player_overlay_20
+  - first:
+      213: -4002949594650932275
+    second: xp_bar_player_overlay_21
+  - first:
+      213: -5613276348991710074
+    second: xp_bar_player_overlay_22
+  - first:
+      213: -587354955887946513
+    second: xp_bar_player_overlay_23
+  - first:
+      213: -1037823198304126731
+    second: xp_bar_player_overlay_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_0
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 55
+        width: 10
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4612c3ce290d2ebc0800000000000000
+      internalID: -3755209809826406044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_1
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 281ed8adc8602d1c0800000000000000
+      internalID: -4480511477248302718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_2
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40bbf9bbc269219d0800000000000000
+      internalID: -2805014499027862780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_3
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 55
+        width: 10
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09804032d6ed28240800000000000000
+      internalID: 4792637513795897488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_4
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62a5918b748f20b10800000000000000
+      internalID: 1946390975892511270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_5
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c555dbb0e38fc170800000000000000
+      internalID: 8200918447712196037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_6
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 55
+        width: 10
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba166bfc7deba9870800000000000000
+      internalID: 8690468265076875691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_7
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f577ce8001c1267e0800000000000000
+      internalID: -1773824448035784865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_8
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a6217661b58a5bb0800000000000000
+      internalID: -4946494243738671452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_9
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 55
+        width: 10
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fffb61ee78eee880800000000000000
+      internalID: -8579664608448741385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_10
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f00bce90d8dd7700800000000000000
+      internalID: 539825920883228912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_11
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5207adcfc31c50500800000000000000
+      internalID: 361907812757565477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_12
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 55
+        width: 10
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ba2109caf9cca140800000000000000
+      internalID: 4732379387410852531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_13
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c7000f51a6dd37b0800000000000000
+      internalID: -5242798402617473088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_14
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8026c0a2ae8f0dc30800000000000000
+      internalID: 4382276122042982920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_15
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 55
+        width: 10
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 763e5230b0bd27180800000000000000
+      internalID: -9118985455127895193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_16
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f67385b0659fb070800000000000000
+      internalID: 8124376495394354929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_17
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 527a460ed2e34d3f0800000000000000
+      internalID: -877007660671260891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_18
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 55
+        width: 10
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba8e44a7f23f87a10800000000000000
+      internalID: 1907541827431753899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_19
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28f1928404cf7f380800000000000000
+      internalID: -8937397582474698878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_20
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffb2a98278a010e20800000000000000
+      internalID: 3314942376339450879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_21
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 55
+        width: 10
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcb890d5d8aa278c0800000000000000
+      internalID: -4002949594650932275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_22
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68c5f38a6e2a912b0800000000000000
+      internalID: -5613276348991710074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_23
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 55
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe4db3197cb49d7f0800000000000000
+      internalID: -587354955887946513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xp_bar_player_overlay_24
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 55
+        width: 10
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f83c6dbc49e891f0800000000000000
+      internalID: -1037823198304126731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      xp_bar_player_overlay_0: -3755209809826406044
+      xp_bar_player_overlay_1: -4480511477248302718
+      xp_bar_player_overlay_10: 539825920883228912
+      xp_bar_player_overlay_11: 361907812757565477
+      xp_bar_player_overlay_12: 4732379387410852531
+      xp_bar_player_overlay_13: -5242798402617473088
+      xp_bar_player_overlay_14: 4382276122042982920
+      xp_bar_player_overlay_15: -9118985455127895193
+      xp_bar_player_overlay_16: 8124376495394354929
+      xp_bar_player_overlay_17: -877007660671260891
+      xp_bar_player_overlay_18: 1907541827431753899
+      xp_bar_player_overlay_19: -8937397582474698878
+      xp_bar_player_overlay_2: -2805014499027862780
+      xp_bar_player_overlay_20: 3314942376339450879
+      xp_bar_player_overlay_21: -4002949594650932275
+      xp_bar_player_overlay_22: -5613276348991710074
+      xp_bar_player_overlay_23: -587354955887946513
+      xp_bar_player_overlay_24: -1037823198304126731
+      xp_bar_player_overlay_3: 4792637513795897488
+      xp_bar_player_overlay_4: 1946390975892511270
+      xp_bar_player_overlay_5: 8200918447712196037
+      xp_bar_player_overlay_6: 8690468265076875691
+      xp_bar_player_overlay_7: -1773824448035784865
+      xp_bar_player_overlay_8: -4946494243738671452
+      xp_bar_player_overlay_9: -8579664608448741385
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

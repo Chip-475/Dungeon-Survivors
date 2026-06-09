@@ -6,10 +6,12 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
 {
     [Header("Meta Data")]
 
-    public IDamageable IDamageable;
+    IDamageable IDamageable;
     public GameObject playerObj;
     public player player;
     public xpBar xpBar;
+    public AudioClip deathSound;
+    public AudioClip bossDeathSound;
     protected Rigidbody2D prb;
     protected Rigidbody2D rb;
     protected Collider2D _collider;
@@ -17,7 +19,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
 
     protected bool inRange;
     protected bool detecting;
-    
+
     [Header("Stats")]
     [SerializeField] public float hp;
     public float hpMax;
@@ -39,12 +41,9 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         prb = playerObj.GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         _agent = GetComponent<NavMeshAgent>();
-        if(_agent!=null)
-        {
-            _agent.updateRotation = false;
-            _agent.updateUpAxis = false;
-        }
-        
+
+        _agent.updateRotation = false;
+        _agent.updateUpAxis = false;
 
         if (swarmEffect.swarm)
         {
@@ -58,13 +57,12 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         else transform.localScale = new Vector3(1, 1, 1);
 
         _agent.speed = spd;
-        if (_agent==null) seguiPlayer();
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Player")) return;
 
-        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable)) 
+        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable))
         {
             collision.gameObject.GetComponent<IDamageable>().damage(atk);
         }
@@ -76,18 +74,18 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         print(data.killCount);
         spawnManager.enemyCount--;
         data.xpQueue.Enqueue(xpGiven);
-        if(xpBar!=null&&!xpBar.queueing) xpBar.startMedium();
-        Debug.Log("XP QUEUE COUNT = " + data.xpQueue.Count);
+        if(!xpBar.queueing) xpBar.startMedium();
+
+        if(TryGetComponent(out boss _))
+        {
+            audioManager.manager.playSFX(bossDeathSound, transform, data.sfx);
+        }
+        else
+        {
+            audioManager.manager.playSFX(deathSound, transform, data.sfx);
+        }
     }
 
-    protected void seguiPlayer()
-    {
-        if (playerObj == null) return;
-        Vector2 dir=(playerObj.transform.position-transform.position).normalized;
-        rb.MovePosition(rb.position + dir * spd * Time.fixedDeltaTime);
-        float ang=Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg;
-        transform.rotation=Quaternion.Euler(0,0,ang);
-    }
 
     // Misc
     protected void onDamaged(float damage)
