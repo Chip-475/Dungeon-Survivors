@@ -3,19 +3,20 @@ using UnityEngine;
 public class cardClass : MonoBehaviour
 {
     protected player player;
-    public enum type
+    public enum cardType
     {
-        electroAuraPerk,
-        iceAuraPerk,
-        fireAreaPerk
+        damageUp,
+        electroAura,
+        iceAura,
+        orbitingBlades
     }
-    public type perk;
-    
+    public cardType type;
+
+
     public int lvl;
     public int lvlMax;
     protected bool active = false;
 
-    public float radius;
     public float duration;
 
     protected void Start()

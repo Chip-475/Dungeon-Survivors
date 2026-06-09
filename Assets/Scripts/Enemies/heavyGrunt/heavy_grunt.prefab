@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5446788030791871121}
   - component: {fileID: 12804824534686288}
   - component: {fileID: 4015951527593247070}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: heavy_grunt
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -111,12 +111,13 @@ MonoBehaviour:
   playerObj: {fileID: 0}
   player: {fileID: 0}
   xpBar: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: caf5b354972c21b4ebfe3bcd6e45f228, type: 3}
+  bossDeathSound: {fileID: 8300000, guid: fb0b3882571a4c84e8e582b63a83cdd8, type: 3}
   hp: 25
-  spawnCost: 0
   hpMax: 0
   xpGiven: 20
   atk: 10
-  spd: 1
+  spd: 2
   fovRange: 5
   fovAngle: 120
 --- !u!50 &5446788030791871121
@@ -145,7 +146,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &12804824534686288
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -294,6 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::enemyHP
   enemyClass: {fileID: 7524635075122077216}
   hpBar: {fileID: 1249578957566960002}
+  rot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &5990103839975657836
 GameObject:
   m_ObjectHideFlags: 0

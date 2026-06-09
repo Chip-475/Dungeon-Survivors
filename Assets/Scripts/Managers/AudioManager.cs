@@ -1,111 +1,113 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-public class AudioManager : MonoBehaviour
+
+public class audioManager : MonoBehaviour
 {
-    private static AudioManager inst;
-    private AudioMixer mix;
-
-    [Header("sorgenti")]
-    public AudioSource bckAudio;  //musica sottofondo
-    public AudioSource audioPrefab;  //effetti sonor
-
-    [Header("slider")]
+    public static audioManager manager;
+    public AudioSource source;
+    public AudioMixer mixer;
     [SerializeField] private Slider masterSlider;
-    [SerializeField] private Slider prefabSlider;
-    [SerializeField] private Slider bckSlider;
-    /*
-     * master tutto
-     * effetti sonori
-     * music (background)
-     */
+    [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Slider musicSlider;
 
     void Awake()
     {
-        if(inst == null) inst = this;
-        /*
-        inst = this;
-        sor = GetComponent<AudioSource>();*/
-    }
-
-    void Start()
-    {
-        rife(); // controlla se gli slider sono assegnati se no l cerca per nome nella scena
-        valoriSalvati(); // imposta i valori salvati 
-        volume(100,"master");
-        volume(100,"sfx");
-        volume(100,"music");
-    }
-
-    public void playSFX(AudioClip clip, Transform spawn, float volume = 1f) //passiamo il trasform perche deve essere fatto in un punto della mappa(dove si trova il nemico)
-    {
-        AudioSource a = Instantiate(audioPrefab, spawn.position, Quaternion.identity);
-        a.clip = clip;
-        a.volume = volume;
-        a.Play();
-        Destroy(a.gameObject, clip.length);
-    }
-
-    /*
-    public void play(AudioClip clip)
-    {
-        sor.PlayOneShot(clip);
-    }*/
-
-    public void playMusic(AudioClip clip,float volume=1f)
-    {
-        bckAudio.clip = clip;
-        bckAudio.volume = volume;
-        bckAudio.loop = true;
-        bckAudio.Play();
-    }
-
-    public void setMaster(float vol)
-    {
-        //assseganre il volume con quella statica
-        volume(vol,"master");
-    }
-
-    public void setSfx(float vol)
-    {
-        volume(vol,"sfx");
-    }
-
-    public void setMusic(float vol)
-    {
-        volume(vol,"music");
-    }
-
-    private void volume(float vol,string funz)
-    {
-        if(vol<=0f)return;
-        mix.SetFloat(funz,Mathf.Log10(vol)*20);
-    }
-
-    private void rife()
-    {
-        if(masterSlider==null)
+        if (manager == null)
         {
-            GameObject ob=GameObject.Find("master");
-            if(ob!=null)masterSlider=ob.GetComponent<Slider>();
-        }
-        if(prefabSlider==null)
-        {
-            GameObject ob=GameObject.Find("sfx");
-            if (ob != null) prefabSlider=ob.GetComponent<Slider>();
-        }
-        if (bckSlider == null)
-        {
-            GameObject ob = GameObject.Find("music");
-            if (ob != null) bckSlider = ob.GetComponent<Slider>();
+            manager = this;
         }
     }
 
-    private void valoriSalvati()
+    public void playSFX(AudioClip clip, Transform spawn, float volume)
     {
-        //quando ci sara il file con i dati fissi
-        if(masterSlider!=null) masterSlider.SetValueWithoutNotify(50f);
-        if(prefabSlider!=null) prefabSlider.SetValueWithoutNotify(50f);
-        if (bckSlider != null) bckSlider.SetValueWithoutNotify(50f);
+        AudioSource audioSource = Instantiate(source, spawn.position, Quaternion.identity); ;
+        audioSource.clip = clip;
+        audioSource.volume = volume;
+        audioSource.Play();
+        Destroy(audioSource.gameObject, audioSource.clip.length);
+    }
+
+    public void setMaster(float volume)
+    {
+        data.master = volume;
+        ApplyMixerVolume("Master", volume);
+    }
+    public void setSFX(float volume)
+    {
+        data.sfx = volume;
+        ApplyMixerVolume("SFX", volume);
+    }
+    public void setBGM(float volume)
+    {
+        data.music = volume;
+        ApplyMixerVolume("BGM", volume);
+    }
+    public void Start()
+    {
+        EnsureSliderReferences();
+        SyncSlidersWithSavedValues();
+        ApplyMixerVolume("Master", data.master);
+        ApplyMixerVolume("SFX", data.sfx);
+        ApplyMixerVolume("BGM", data.music);
+    }
+
+    private void EnsureSliderReferences()
+    {
+        if (masterSlider == null)
+        {
+            GameObject masterObject = GameObject.Find("master");
+            if (masterObject != null)
+            {
+                masterSlider = masterObject.GetComponent<Slider>();
+            }
+        }
+
+        if (sfxSlider == null)
+        {
+            GameObject sfxObject = GameObject.Find("sfx");
+            if (sfxObject != null)
+            {
+                sfxSlider = sfxObject.GetComponent<Slider>();
+            }
+        }
+
+        if (musicSlider == null)
+        {
+            GameObject musicObject = GameObject.Find("music");
+            if (musicObject != null)
+            {
+                musicSlider = musicObject.GetComponent<Slider>();
+            }
+        }
+    }
+
+    private void SyncSlidersWithSavedValues()
+    {
+        if (masterSlider != null)
+        {
+            masterSlider.SetValueWithoutNotify(data.master);
+        }
+
+        if (sfxSlider != null)
+        {
+            sfxSlider.SetValueWithoutNotify(data.sfx);
+        }
+
+        if (musicSlider != null)
+        {
+            musicSlider.SetValueWithoutNotify(data.music);
+        }
+    }
+
+    private void ApplyMixerVolume(string parameter, float volume)
+    {
+        if (volume <= 0f)
+        {
+            mixer.SetFloat(parameter, -80f);
+            return;
+        }
+
+        mixer.SetFloat(parameter, Mathf.Log10(volume) * 20);
     }
 }

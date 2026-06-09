@@ -8,7 +8,6 @@ public class player : MonoBehaviour, IDamageable
     [Header("Misc")]
     public static player playerInstance;
 
-    public GameObject self;
     public Rigidbody2D rb;
     public SpriteRenderer sr;
 
@@ -24,6 +23,7 @@ public class player : MonoBehaviour, IDamageable
     public bool isDead;
     public bool canAttack = true;
     public bool canLaunch = true;
+    public bool onTenacity = false;
 
     public Vector3 mousePosition;
     public Vector3 mouseWorldPosition;
@@ -34,6 +34,7 @@ public class player : MonoBehaviour, IDamageable
     public float atk;
     public float spd;
     public float aspd;
+    public float range;
 
     private Vector2 moveInput;
 
@@ -41,7 +42,6 @@ public class player : MonoBehaviour, IDamageable
     {
         playerInstance = this;
 
-        self = GetComponent<GameObject>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 
@@ -51,19 +51,17 @@ public class player : MonoBehaviour, IDamageable
         hpBar = GetComponent<hpBar>();
         xpBar = GetComponent<xpBar>();
 
-        StartCoroutine(spawnFireArea());
+        hpMax = hp;
     }
     void FixedUpdate()
     {
-        hpMax = hp;
-
+        hp = Mathf.Clamp(hp, 0, hpMax);
         // Mouse Positions Assignment
         mousePosition = Mouse.current.position.ReadValue();
         mouseWorldPosition = new Vector3(Camera.main.ScreenToWorldPoint(mousePosition).x, Camera.main.ScreenToWorldPoint(mousePosition).y, 0);
 
         // Player Rotation
-        transform.rotation = utilitiesDB.LookAt2D(mouseWorldPosition - transform.position);
-        var x = mouseWorldPosition.x >= transform.position.x ? transform.localScale = new Vector3(1, 1, 1) : transform.localScale = new Vector3(1, -1, 1);
+        var x = mouseWorldPosition.x >= transform.position.x ? transform.localScale = new Vector3(1, 1, 1) : transform.localScale = new Vector3(-1, 1, 1);
 
         // Player Movement
         rb.linearVelocity = moveInput * spd;
@@ -99,19 +97,25 @@ public class player : MonoBehaviour, IDamageable
     // Player Misc
     public void onDamaged(float damage)
     {
-        hpBar.hpBarCurve = AnimationCurve.EaseInOut(0, hp / 100f, hpBar.animTime, (hp - damage) / 100f);
         hp -= damage;
         hp=Mathf.Clamp(hp, 0, hpMax);
-        StartCoroutine(hpBar.hpBarMovement());
-        if (hp == 0) { sr.enabled = false; isDead = true; }
-        print("Damaged for: " + damage + "\n" + "Remaining HP: " + hp + "\n");
-    }
-    IEnumerator spawnFireArea()
-    {
-        while (true)
+        StartCoroutine(hpBar.hpBarMovement(hp, hp - damage));
+        if (hp < hpMax * 0.3f && !onTenacity && tenacityEffect.instance.tenacity)
         {
-            yield return new WaitForSeconds(10);
-            if (data.fireArea) Instantiate(fireArea, transform.position, Quaternion.identity);
+            onTenacity = true;
+            atk *= 2;
+        }
+        else if(onTenacity && tenacityEffect.instance.tenacity)
+        {
+            onTenacity = false;
+            atk /= 2;
+        }
+
+        if (hp == 0)
+        { 
+            sr.enabled = false;
+            isDead = true;
+            gameManager.instance.startDeath();
         }
     }
 

@@ -10,7 +10,10 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
     public GameObject playerObj;
     public player player;
     public xpBar xpBar;
+    public AudioClip deathSound;
+    public AudioClip bossDeathSound;
     protected Rigidbody2D prb;
+    protected Rigidbody2D rb;
     protected Collider2D _collider;
     protected NavMeshAgent _agent;
 
@@ -19,7 +22,6 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
 
     [Header("Stats")]
     [SerializeField] public float hp;
-    [SerializeField ] public int spawnCost;
     public float hpMax;
     public float xpGiven;
     [SerializeField] public float atk;
@@ -32,6 +34,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
     // Virtuals
     protected virtual void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         playerObj = GameObject.FindGameObjectWithTag("Player");
         player = playerObj.GetComponent<player>();
         xpBar = playerObj.GetComponent<xpBar>();
@@ -39,18 +42,25 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         _collider = GetComponent<Collider2D>();
         _agent = GetComponent<NavMeshAgent>();
 
+        _agent.updateRotation = false;
+        _agent.updateUpAxis = false;
+
+        if (swarmEffect.swarm)
+        {
+            hp /= 2;
+        }
         hpMax = hp;
     }
     protected virtual void FixedUpdate()
     {
-        _agent.SetDestination(playerObj.transform.position);
-        _agent.updateRotation = false;
-        _agent.updateUpAxis = false;
-        transform.rotation = utilitiesDB.LookAt2D(playerObj.transform.position - transform.position);
+        if (playerObj.transform.position.x < transform.position.x) transform.localScale = new Vector3(-1, 1, 1);
+        else transform.localScale = new Vector3(1, 1, 1);
+
+        _agent.speed = spd;
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Player") return;
+        if (!collision.gameObject.CompareTag("Player")) return;
 
         if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable))
         {
@@ -61,9 +71,19 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
     protected virtual void OnDestroy()
     {
         data.killCount++;
+        print(data.killCount);
         spawnManager.enemyCount--;
         data.xpQueue.Enqueue(xpGiven);
         if(!xpBar.queueing) xpBar.startMedium();
+
+        if(TryGetComponent(out boss _))
+        {
+            audioManager.manager.playSFX(bossDeathSound, transform, data.sfx);
+        }
+        else
+        {
+            audioManager.manager.playSFX(deathSound, transform, data.sfx);
+        }
     }
 
 

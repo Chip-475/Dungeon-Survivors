@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class moveSpeedUp : MonoBehaviour, ICardEffect
+public class moveSpeedUp : cardClass, ICardEffect
 {
     public void effect()
     {

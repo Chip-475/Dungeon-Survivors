@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
+using static cardManager;
 
 public class utilitiesDB : MonoBehaviour
 {
@@ -23,5 +26,15 @@ public class utilitiesDB : MonoBehaviour
         await SceneManager.LoadSceneAsync(toLoad, LoadSceneMode.Single);
      
      
+    }
+
+    public static List<CardEntry> DeepClone(List<CardEntry> original)
+    {
+        return original.Select(card => new CardEntry
+        {
+            prefab = card.prefab,
+            effect = card.effect,
+            levelable = card.levelable
+        }).ToList();
     }
 }
