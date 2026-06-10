@@ -15,7 +15,7 @@ public class cardScript : MonoBehaviour
         this.manager = manager;
         this.entry = entry;
 
-        if(!entry.levelable)    
+        if(!entry.levelable)
         {
             image.sprite = sprites[5];
         }

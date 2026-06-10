@@ -3,63 +3,73 @@ using UnityEngine;
 
 public class cardManager : MonoBehaviour
 {
+    public static cardManager instance;
+
     [System.Serializable]
     public class CardEntry
     {
         public GameObject prefab;
         public cardClass effect;
-        public int level = 1;
         public bool levelable;
     }
 
-    public static cardManager instance;
     public List<CardEntry> cards = new List<CardEntry>();
+    [Space]
+    private List<CardEntry> spawnableCards = new List<CardEntry>();
+    public List<Transform> spawnPoints = new List<Transform>();
+    [Space]
+    private List<GameObject> spawnedCards = new List<GameObject>();
     public List<CardEntry> pickedCards = new List<CardEntry>();
-    public Transform cardParent;
-    public int choices = 3;
-    public GameObject cardLabel;
-    public bool levelable;
+
+    public GameObject cardPanel;
 
     void Awake()
     {
         instance = this;
+        spawnableCards = utilitiesDB.DeepClone(cards);
     }
 
+    [ContextMenu("Run spawnCards")]
     public void spawnCards()
     {
-        if (cardParent == null)
+        if(spawnableCards.Count == 0) { Debug.LogWarning("out of cards"); return; }
+
+        Time.timeScale = 0;
+        cardPanel.SetActive(true);
+        int cardsToSpawn = Mathf.Min(3, spawnableCards.Count);
+
+        List<int> index = new List<int>();
+        for (int i = 0; i < cardsToSpawn; i++)
         {
-            Debug.LogError("cardManager: cardParent is not assigned.");
-            return;
-        }
+            int x = Random.Range(0, spawnableCards.Count);
+            if (index.Contains(x)) { i--; continue; }
+            index.Add(x);
+            print($"index {x}");
 
-        List<CardEntry> availableCards = getAvailableCards();
-        int cardsToSpawn = Mathf.Min(choices, availableCards.Count);
-        Debug.Log($"cardManager: {availableCards.Count} available cards out of {cards.Count} total.");
+            CardEntry entry = spawnableCards[x];
+            if (entry.effect.lvl == 5)
+            {
+                spawnableCards.Remove(entry);
+                if (spawnableCards.Count == 0) return;
+                i--;
+                continue;
+               
+            }
 
-        if (cardsToSpawn == 0)
-        {
-            Debug.LogWarning("cardManager: no valid cards to spawn.");
-            return;
-        }
+            spawnedCards.Add(Instantiate(entry.prefab, spawnPoints[i].transform.position, Quaternion.identity, cardPanel.transform));
+            print("card spawned");
 
-        for(int i = 0; i < cardsToSpawn; i++)
-        {
-            int index = Random.Range(0, availableCards.Count);
-            CardEntry entry = availableCards[index];
-            GameObject spawnedCard = Instantiate(entry.prefab, cardParent);
-            spawnedCard.name = $"{entry.prefab.name} lvl {entry.level}";
-
-            cardChoice choice = spawnedCard.GetComponent<cardChoice>();
+            spawnedCards[i].TryGetComponent(out cardScript choice);
             if (choice != null)
             {
-                choice.setup(this, entry);
+                choice.setup(instance, entry);
             }
             else
             {
-                spawnedCard.AddComponent<cardChoice>().setup(this, entry);
+                print($"card {spawnedCards[i]} doesnt contain cardChoice");
+                i--;
+                continue;
             }
-            availableCards.RemoveAt(index);
         }
     }
 
@@ -67,72 +77,35 @@ public class cardManager : MonoBehaviour
     {
         if (!canSpawn(entry)) return;
 
-        entry.effect.lvl = entry.level;
         pickedCards.Add(entry);
-        clearSpawnedCards();
-        cardLabel.SetActive(false);
-    }
-
-    private List<CardEntry> getAvailableCards()
-    {
-        List<CardEntry> availableCards = new List<CardEntry>();
-
-        foreach (CardEntry entry in cards)
+        entry.effect.GetComponent<ICardEffect>().cardEffect();
+        if (!entry.levelable)
         {
-            if (canSpawn(entry))
-            {
-                availableCards.Add(entry);
-            }
+            spawnableCards.Remove(entry);
         }
-
-        return availableCards;
+        else entry.effect.lvl++;
+        clearSpawnedCards();
+        cardPanel.SetActive(false);
+        Time.timeScale = 1;
     }
 
     private bool canSpawn(CardEntry entry)
     {
-        if (entry == null)
+        if (entry.levelable && entry.effect.lvl == 5)
         {
-            Debug.LogWarning("cardManager: skipped null card entry.");
-            return false;
-        }
-        if (entry.prefab == null)
-        {
-            Debug.LogWarning("cardManager: skipped card entry with missing prefab.");
-            return false;
-        }
-        if (entry.effect == null)
-        {
-            Debug.LogWarning($"cardManager: skipped {entry.prefab.name} lvl {entry.level} because effect is missing.");
+            Debug.Log($"cardManager: skipped {entry.prefab.name} lvl {entry.effect.lvl}; effect is already maxed at {entry.effect.lvl}/{5}.");
             return false;
         }
 
-        int maxLevel = entry.effect.lvlMax > 0 ? entry.effect.lvlMax : 5;
-        if (entry.effect.lvl >= maxLevel)
-        {
-            Debug.Log($"cardManager: skipped {entry.prefab.name} lvl {entry.level}; effect is already maxed at {entry.effect.lvl}/{maxLevel}.");
-            return false;
-        }
-        if (entry.level > maxLevel)
-        {
-            Debug.Log($"cardManager: skipped {entry.prefab.name} lvl {entry.level}; card level is above max {maxLevel}.");
-            return false;
-        }
-
-        bool isNextLevel = entry.level == entry.effect.lvl + 1;
-        if (!isNextLevel)
-        {
-            Debug.Log($"cardManager: skipped {entry.prefab.name} lvl {entry.level}; effect level is {entry.effect.lvl}, next valid level is {entry.effect.lvl + 1}.");
-        }
-
-        return isNextLevel;
+        return true;
     }
 
     private void clearSpawnedCards()
     {
-
-        foreach (Transform child in cardParent)
+        foreach (GameObject x in spawnedCards)
         {
-            Destroy(child.gameObject);
+            Destroy(x);
         }
+        spawnedCards.Clear();
     }
 }

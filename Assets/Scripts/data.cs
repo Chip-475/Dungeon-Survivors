@@ -17,7 +17,6 @@ public class data : MonoBehaviour
 
     // Cards
     public static bool electroAura;
-    public static bool fireArea;
     public static bool iceAura;
     public static int fireAspectLvl;
     public static int fireAreaLvl;

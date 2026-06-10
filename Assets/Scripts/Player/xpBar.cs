@@ -13,19 +13,11 @@ public class xpBar : MonoBehaviour  // ATTACHED TO PLAYER
     public bool queueing;
     public float queueTimer;
 
-    public AudioSource audioSource;
-    public AudioClip sfxLevelUp;
-    public AudioClip sfxCard;
-
     public void startMedium()
     {
-        if (queueing)return; //evita doppie coroutine
         StartCoroutine(xpBarSetGain());
     }
-    void Start()
-    {
-        audioSource=GetComponent<AudioSource>();
-    }
+
     public IEnumerator xpBarSetGain()
     {
         queueing = true;
@@ -79,12 +71,7 @@ public class xpBar : MonoBehaviour  // ATTACHED TO PLAYER
         xpBarObject.fillAmount = 0;
         data.level++;
         data.xp = 0;
-        // nel levelUp():
-        audioSource.clip = sfxLevelUp;
-        audioSource.Play();
         cardManager.instance.spawnCards();
-        audioSource.clip = sfxCard;
-        audioSource.Play();
         data.xpMax += data.xpMax * 0.2f;
         yield return null;
     }

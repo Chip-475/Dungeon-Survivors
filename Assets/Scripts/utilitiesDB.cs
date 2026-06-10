@@ -32,7 +32,7 @@ public class utilitiesDB : MonoBehaviour
         {
             prefab = card.prefab,
             effect = card.effect,
-            levelable = card.levelable  
+            levelable = card.levelable
         }).ToList();
     }
 }
