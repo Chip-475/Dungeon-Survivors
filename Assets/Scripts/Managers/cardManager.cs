@@ -9,13 +9,16 @@ public class cardManager : MonoBehaviour
         public GameObject prefab;
         public cardClass effect;
         public int level = 1;
+        public bool levelable;
     }
 
     public static cardManager instance;
     public List<CardEntry> cards = new List<CardEntry>();
+    public List<CardEntry> pickedCards = new List<CardEntry>();
     public Transform cardParent;
     public int choices = 3;
     public GameObject cardLabel;
+    public bool levelable;
 
     void Awake()
     {
@@ -65,6 +68,7 @@ public class cardManager : MonoBehaviour
         if (!canSpawn(entry)) return;
 
         entry.effect.lvl = entry.level;
+        pickedCards.Add(entry);
         clearSpawnedCards();
         cardLabel.SetActive(false);
     }
