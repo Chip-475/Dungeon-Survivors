@@ -9,6 +9,7 @@ public class cardScript : MonoBehaviour
 
     public Image image;
     public List<Sprite> sprites = new List<Sprite>();
+    public AudioClip pickCard;
 
     public void setup(cardManager manager, cardManager.CardEntry entry)
     {
@@ -46,6 +47,7 @@ public class cardScript : MonoBehaviour
     {
         if (manager != null && entry != null)
         {
+            audioManager.manager.playSFX(pickCard, player.playerInstance.transform, data.sfx);
             manager.pickCard(entry);
         }
     }

@@ -9,6 +9,7 @@ public class xpBar : MonoBehaviour  // ATTACHED TO PLAYER
     public Image xpBarObject;
     public AnimationCurve xpBarCurve;
     public float animTime;
+    public AudioClip lvlUP;
 
     public bool queueing;
     public float queueTimer;
@@ -72,6 +73,7 @@ public class xpBar : MonoBehaviour  // ATTACHED TO PLAYER
         data.level++;
         data.xp = 0;
         cardManager.instance.spawnCards();
+        audioManager.manager.playSFX(lvlUP,player.playerInstance.transform,data.sfx);
         data.xpMax += data.xpMax * 0.2f;
         yield return null;
     }
