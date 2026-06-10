@@ -24,6 +24,7 @@ public class player : MonoBehaviour, IDamageable
     public bool canAttack = true;
     public bool canLaunch = true;
     public bool onTenacity = false;
+    bool lowHpPlayed = false;
 
     public Vector3 mousePosition;
     public Vector3 mouseWorldPosition;
@@ -38,6 +39,13 @@ public class player : MonoBehaviour, IDamageable
 
     private Vector2 moveInput;
 
+    public AudioSource audioSource;
+    public AudioClip colpoBase;
+    public AudioClip vitaBassa;
+    public AudioClip morte;
+    public AudioClip levelUp;
+    public AudioClip card;
+
     private void Start()
     {
         playerInstance = this;
@@ -50,6 +58,8 @@ public class player : MonoBehaviour, IDamageable
 
         hpBar = GetComponent<hpBar>();
         xpBar = GetComponent<xpBar>();
+        
+        audioSource=GetComponent<AudioSource>();
 
         hpMax = hp;
     }
@@ -106,9 +116,17 @@ public class player : MonoBehaviour, IDamageable
             onTenacity = false;
             atk /= 2;
         }
-
+        
+        if (hp < hpMax * 0.3f && !lowHpPlayed)
+        {
+            lowHpPlayed = true;
+            audioSource.clip = vitaBassa;
+            audioSource.Play();
+        }
         if (hp == 0)
-        { 
+        {
+            audioSource.clip = morte;
+            audioSource.Play();
             sr.enabled = false;
             isDead = true;
             gameManager.instance.startDeath();

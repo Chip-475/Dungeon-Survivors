@@ -10,7 +10,9 @@ public class scythe : MonoBehaviour
     public SpriteRenderer sr;
     public BoxCollider2D bc;
     public AnimationCurve curve;
-    
+    public AudioSource audioSource;
+    public AudioClip sfxSwing;      
+
     void Start()
     {
         player = GetComponentInParent<player>();
@@ -18,7 +20,7 @@ public class scythe : MonoBehaviour
         sr.enabled = false;
         bc = GetComponent<BoxCollider2D>();
         bc.enabled = false;
-
+        audioSource=GetComponent<AudioSource>();
         transform.localEulerAngles = new Vector3(0, 0, 60);
     }
 
@@ -41,6 +43,8 @@ public class scythe : MonoBehaviour
         yield return new WaitForSeconds(windup);
 
         bc.enabled = true;
+        audioSource.clip= sfxSwing;
+        audioSource.Play();
         float elapsed = 0f;
 
         while (elapsed < attackTime)

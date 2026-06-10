@@ -29,7 +29,7 @@ public class spawnManager : MonoBehaviour
             isSpawning = true;
         }
     }
-
+    
     [ContextMenu("Run Function")]
     public void newWave()
     {

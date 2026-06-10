@@ -1,2 +1,25 @@
 fileFormatVersion: 2
 guid: 8cf911946f7b31349b2b5107f648d77f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rb: {instanceID: 0}
+  - sr: {instanceID: 0}
+  - scytheTrf: {instanceID: 0}
+  - scythe: {instanceID: 0}
+  - fireArea: {instanceID: 0}
+  - gameManager: {instanceID: 0}
+  - hpBar: {instanceID: 0}
+  - xpBar: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - colpoBase: {fileID: 8300000, guid: 0e229f3fc9c7e86459b1daebe2585984, type: 3}
+  - vitaBassa: {instanceID: 0}
+  - morte: {instanceID: 0}
+  - levelUp: {instanceID: 0}
+  - card: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
