@@ -745180,7 +745180,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 2272741551829b34992a33347f78fe0a, type: 3}
+  m_Sprite: {fileID: -7760524718537194871, guid: 52c6a709ba4876f49a045e720e230334, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -745237,7 +745237,7 @@ MonoBehaviour:
   mouseWorldPosition: {x: 0, y: 0, z: 0}
   hp: 100
   hpMax: 0
-  atk: 30
+  atk: 3
   spd: 7.5
   aspd: 1.2
   range: 1
@@ -747020,6 +747020,7 @@ MonoBehaviour:
   - {fileID: 5410895742141266955, guid: caa123e8bb926774f902c1209e6aa04a, type: 3}
   - {fileID: 2011521419539905806, guid: d0941ae16d368224593c3e3ed522b255, type: 3}
   - {fileID: 3381548320089685549, guid: 804865bfc06b62243ac2136c6d8bc5c2, type: 3}
+  boss: {fileID: 5150948367337922774, guid: 8f2a4a26a56153f4db359b3122cb4d4a, type: 3}
   enemyCost: 010000000200000003000000
   waves: 1
   spawnLimit: 0
@@ -749531,7 +749532,7 @@ Transform:
   m_GameObject: {fileID: 1806906692}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.35747153, w: 0.933924}
-  m_LocalPosition: {x: 2.32, y: 1.37, z: -0.1}
+  m_LocalPosition: {x: 1.8, y: 0.59, z: -0.1}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
