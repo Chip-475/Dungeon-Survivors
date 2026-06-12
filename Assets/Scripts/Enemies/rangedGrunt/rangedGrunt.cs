@@ -38,6 +38,7 @@ public class rangedGrunt : enemyClass
 
     public void shoot()
     {
+        spriteAnimator?.PlayAttack();
         Instantiate(projectile, shootPoint.position, Quaternion.identity, transform);
         sinceShoot = 0;
     }

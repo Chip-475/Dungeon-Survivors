@@ -16,6 +16,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
     protected Rigidbody2D rb;
     protected Collider2D _collider;
     protected NavMeshAgent _agent;
+    protected EnemySpriteAnimator spriteAnimator;
 
     protected bool inRange;
     protected bool detecting;
@@ -41,6 +42,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         prb = playerObj.GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         _agent = GetComponent<NavMeshAgent>();
+        spriteAnimator = GetComponent<EnemySpriteAnimator>();
 
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;

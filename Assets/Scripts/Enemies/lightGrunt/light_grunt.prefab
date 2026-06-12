@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 7260030501650166530}
   - component: {fileID: 6112886518514256851}
   - component: {fileID: 5911353155923243712}
+  - component: {fileID: 6875082948372615043}
   - component: {fileID: 6247733299205373635}
   - component: {fileID: 8525702410622745427}
   - component: {fileID: 655929324002625013}
@@ -265,7 +266,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a78596350d9b5564fa114eca06130df7, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -298,6 +299,28 @@ MonoBehaviour:
   spd: 3
   fovRange: 5
   fovAngle: 120
+--- !u!114 &6875082948372615043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5410895742141266955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e4f1933a9a4a4ba4e2a6204e1af0a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpriteAnimator
+  targetRenderer: {fileID: 6112886518514256851}
+  walkSprites:
+  - {fileID: -7583416908072528886, guid: 14957b2e12501b24f8623e06b346cffe, type: 3}
+  - {fileID: 8589779750265094907, guid: 14957b2e12501b24f8623e06b346cffe, type: 3}
+  - {fileID: -6326245221593154776, guid: 14957b2e12501b24f8623e06b346cffe, type: 3}
+  - {fileID: 8481294308314481192, guid: 14957b2e12501b24f8623e06b346cffe, type: 3}
+  attackSprites: []
+  dashSprites: []
+  summonSprites: []
+  framesPerSecond: 8
 --- !u!50 &6247733299205373635
 Rigidbody2D:
   serializedVersion: 5

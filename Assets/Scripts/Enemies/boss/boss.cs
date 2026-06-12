@@ -10,6 +10,9 @@ public class boss : enemyClass
     public AudioClip spawnSound;
     public List<Transform> points = new();
     public GameObject enemyToSpawn;
+    public Sprite[] spawnAnimationSprites;
+    public float spawnAnimationFPS = 8f;
+    public float spawnAnimationScale = 1f;
 
     public float skillTimer;
     public float skillCD;
@@ -45,6 +48,7 @@ public class boss : enemyClass
     public IEnumerator dash()
     {
         float duration = 1f;
+        spriteAnimator?.PlayDash();
         _agent.enabled = false;
         transform.DOMove(player.transform.position, duration);
         yield return new WaitForSeconds(duration);
@@ -54,13 +58,48 @@ public class boss : enemyClass
     }
     public IEnumerator spawn()
     {
+        spriteAnimator?.PlaySummon();
+        foreach (var point in points)
+        {
+            StartCoroutine(playSpawnAnimation(point.position));
+        }
+
+        if (spawnAnimationSprites != null && spawnAnimationSprites.Length > 0)
+        {
+            float frameDuration = 1f / Mathf.Max(1f, spawnAnimationFPS);
+            yield return new WaitForSeconds(frameDuration * spawnAnimationSprites.Length);
+        }
+
         foreach(var point in points)
         {
             Instantiate(enemyToSpawn, point.position, Quaternion.identity);
         }
         audioManager.manager.playSFX(spawnSound, transform, data.sfx);
 
-        yield return null;
         timerLockout = false;
+    }
+
+    private IEnumerator playSpawnAnimation(Vector3 position)
+    {
+        if (spawnAnimationSprites == null || spawnAnimationSprites.Length == 0)
+        {
+            yield break;
+        }
+
+        GameObject spawnEffect = new("Spawn Ranged Skeleton Animation");
+        spawnEffect.transform.position = position;
+        spawnEffect.transform.localScale = Vector3.one * spawnAnimationScale;
+
+        SpriteRenderer spriteRenderer = spawnEffect.AddComponent<SpriteRenderer>();
+        spriteRenderer.sortingOrder = 1;
+
+        float frameDuration = 1f / Mathf.Max(1f, spawnAnimationFPS);
+        foreach (Sprite sprite in spawnAnimationSprites)
+        {
+            spriteRenderer.sprite = sprite;
+            yield return new WaitForSeconds(frameDuration);
+        }
+
+        Destroy(spawnEffect);
     }
 }

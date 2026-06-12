@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 3046960012904061860}
   - component: {fileID: 3761775371361788609}
   - component: {fileID: 1423036320012496982}
+  - component: {fileID: 8240715334079246813}
   - component: {fileID: 4927072865388628941}
   - component: {fileID: 9059670280681125311}
   - component: {fileID: 3560721098824798695}
@@ -255,7 +256,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 51d087e63db114a4d95892f635604e30, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -291,6 +292,30 @@ MonoBehaviour:
   projectile: {fileID: 8704171582976729676, guid: a238a5f6976ced94282a5286da0389e0, type: 3}
   shootPoint: {fileID: 3738353728374374440}
   shootCD: 5
+--- !u!114 &8240715334079246813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011521419539905806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e4f1933a9a4a4ba4e2a6204e1af0a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpriteAnimator
+  targetRenderer: {fileID: 3761775371361788609}
+  walkSprites:
+  - {fileID: 8699277439296231392, guid: 9e061b46334f01d439ca52751303e08a, type: 3}
+  - {fileID: -3904557147998202470, guid: 9e061b46334f01d439ca52751303e08a, type: 3}
+  - {fileID: 169843403230238763, guid: 9e061b46334f01d439ca52751303e08a, type: 3}
+  - {fileID: 3143830116963682318, guid: 9e061b46334f01d439ca52751303e08a, type: 3}
+  attackSprites:
+  - {fileID: 1327118222383176970, guid: 3dfee55bfeacb6a45851b582790a15f1, type: 3}
+  - {fileID: -3186695231671734423, guid: 3dfee55bfeacb6a45851b582790a15f1, type: 3}
+  dashSprites: []
+  summonSprites: []
+  framesPerSecond: 8
 --- !u!50 &4927072865388628941
 Rigidbody2D:
   serializedVersion: 5

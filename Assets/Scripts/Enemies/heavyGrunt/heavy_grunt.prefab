@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5446788030791871121}
   - component: {fileID: 12804824534686288}
   - component: {fileID: 4015951527593247070}
+  - component: {fileID: 7164928316407305268}
   m_Layer: 7
   m_Name: heavy_grunt
   m_TagString: Enemy
@@ -86,8 +87,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 27802fb0f3323c247b5c328d9408b97d, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -4370397927238718943, guid: 1cd7f90c865d76242a40164b9fd7e2ab, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -205,6 +206,26 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7164928316407305268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3381548320089685549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e4f1933a9a4a4ba4e2a6204e1af0a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpriteAnimator
+  targetRenderer: {fileID: 626518458640052954}
+  walkSprites:
+  - {fileID: -4370397927238718943, guid: 1cd7f90c865d76242a40164b9fd7e2ab, type: 3}
+  - {fileID: 5103298096681036769, guid: 1cd7f90c865d76242a40164b9fd7e2ab, type: 3}
+  attackSprites: []
+  dashSprites: []
+  summonSprites: []
+  framesPerSecond: 8
 --- !u!1 &4665792279524381431
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 1744732686410050873}
   - component: {fileID: 8671816362201087044}
   - component: {fileID: 7942540714545883241}
+  - component: {fileID: 7119346502873984125}
   - component: {fileID: 7723111793877829692}
   - component: {fileID: 6393275123860915268}
   - component: {fileID: 4516386599610590319}
@@ -62,8 +63,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.9799, y: 0.9799, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 13, y: 13, z: 13}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 822463542783515618}
   - {fileID: 5002462365224914752}
@@ -159,9 +160,38 @@ MonoBehaviour:
   - {fileID: 5002462365224914752}
   - {fileID: 5476438807508216091}
   enemyToSpawn: {fileID: 2011521419539905806, guid: d0941ae16d368224593c3e3ed522b255, type: 3}
+  spawnAnimationSprites:
+  - {fileID: 139553092349484961, guid: ca54d44fa3a521544bbf20723242db05, type: 3}
+  - {fileID: -1018568637893639550, guid: 33e2d9555b0c13f4b8b5792aace024d7, type: 3}
+  spawnAnimationFPS: 8
+  spawnAnimationScale: 1
   skillTimer: 0
   skillCD: 7.5
   timerLockout: 0
+--- !u!114 &7119346502873984125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5150948367337922774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e4f1933a9a4a4ba4e2a6204e1af0a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpriteAnimator
+  targetRenderer: {fileID: 8671816362201087044}
+  walkSprites:
+  - {fileID: -41172112268634855, guid: c084d46b9262f8947b2d4cfeb0f682bd, type: 3}
+  - {fileID: -4309842487375381624, guid: c084d46b9262f8947b2d4cfeb0f682bd, type: 3}
+  attackSprites: []
+  dashSprites:
+  - {fileID: -6938296465599793511, guid: 2fc9f507a0ef44140af3e7b7297e5ad1, type: 3}
+  - {fileID: -5327624826848274841, guid: 2fc9f507a0ef44140af3e7b7297e5ad1, type: 3}
+  summonSprites:
+  - {fileID: -8315136618505729660, guid: 0fe556e902154b446a7ff1d890a6f854, type: 3}
+  - {fileID: -3863477895518756379, guid: 0fe556e902154b446a7ff1d890a6f854, type: 3}
+  framesPerSecond: 8
 --- !u!50 &7723111793877829692
 Rigidbody2D:
   serializedVersion: 5
