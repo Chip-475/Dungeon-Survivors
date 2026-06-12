@@ -127,7 +127,8 @@ Download the executable file or visit the itch.io page.
 
 ## Assets
 
-NavMesh package.
+NavMesh package 
+Main character sprites modified from Ozzbit Games
 
 ## AI Usage Disclosure
 

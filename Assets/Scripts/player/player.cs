@@ -20,6 +20,10 @@ public class player : MonoBehaviour, IDamageable
     public hpBar hpBar;
     public xpBar xpBar;
 
+    public AudioSource lowHp;
+    public AudioClip deathSound;
+
+
     public bool isDead;
     public bool canAttack = true;
     public bool canLaunch = true;
@@ -65,10 +69,11 @@ public class player : MonoBehaviour, IDamageable
 
         // Player Movement
         rb.linearVelocity = moveInput * spd;
-         //<3| >--------<| <3
-        {
-            
-        }
+
+        //sounds
+        if (hp <= hpMax / 5) lowHp.volume = data.sfx;
+        else lowHp.volume = 0;
+        if (isDead) audioManager.manager.playSFX(deathSound, player.playerInstance.transform, data.sfx);
     }
 
     // Player Controls

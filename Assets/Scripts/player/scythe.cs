@@ -10,7 +10,7 @@ public class scythe : MonoBehaviour
     public SpriteRenderer sr;
     public BoxCollider2D bc;
     public AnimationCurve curve;
-    
+    public AudioClip attack;
     void Start()
     {
         player = GetComponentInParent<player>();
@@ -24,6 +24,7 @@ public class scythe : MonoBehaviour
 
     public IEnumerator swing()
     {
+        audioManager.manager.playSFX(attack,player.transform,data.sfx);
         Quaternion start = Quaternion.Euler(0, 0, 60);
         Quaternion end = Quaternion.Euler(0, 0, -60);
 

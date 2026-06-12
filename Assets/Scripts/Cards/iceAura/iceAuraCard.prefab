@@ -449,6 +449,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 85f3d6578547b4d438e5291916405196, type: 3}
   - {fileID: 21300000, guid: 2a59d1c34259bbf45bd25ccce3468a1b, type: 3}
   - {fileID: 21300000, guid: fcbf0ede53c146241bdfaa765d441cc6, type: 3}
+  pickCard: {fileID: 8300000, guid: 9e35c06e71152674e86bb19bc114bcfd, type: 3}
 --- !u!114 &2375350188649534428
 MonoBehaviour:
   m_ObjectHideFlags: 0

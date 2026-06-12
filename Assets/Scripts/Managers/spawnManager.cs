@@ -3,6 +3,7 @@ using UnityEngine;
 public class spawnManager : MonoBehaviour
 {
     public GameObject[] enemyList;
+    public GameObject boss;
     public int[] enemyCost;
     public int waves = 0;
     public int spawnLimit;
@@ -33,6 +34,17 @@ public class spawnManager : MonoBehaviour
     [ContextMenu("Run Function")]
     public void newWave()
     {
+        if (waves % 10 == 0)
+        {
+            enemyCount = 0;
+            for (int i = 0; i < waves / 10; i++)
+            {
+                Instantiate(boss, getPosition(), Quaternion.identity);
+                enemyCount++;
+            }
+            isSpawning = false;
+            return;
+        }
         spawnLimit = waves * 10;
         if (swarmEffect.swarm)
         {
