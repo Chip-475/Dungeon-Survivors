@@ -5,7 +5,7 @@ public class spawnManager : MonoBehaviour
     public GameObject[] enemyList;
     public GameObject boss;
     public int[] enemyCost;
-    public int waves = 0;
+    public int waves = 30;
     public int spawnLimit;
     public static int enemyCount;
     public bool isSpawning = false;
@@ -18,7 +18,7 @@ public class spawnManager : MonoBehaviour
     public Transform bottomLeft;
     private void Start()
     {
-        waves = 0;
+        waves = 30;
     }
     private void Update()
     {
