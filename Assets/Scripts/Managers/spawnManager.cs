@@ -10,6 +10,7 @@ public class spawnManager : MonoBehaviour
     public static int enemyCount;
     public bool isSpawning = false;
     public float Offset = 0.1f;
+    public GameObject victoryScreen;
 
     [Header("corners")]
     public Transform topRight;
@@ -18,7 +19,8 @@ public class spawnManager : MonoBehaviour
     public Transform bottomLeft;
     private void Start()
     {
-        waves = 30;
+        waves = 0;
+        victoryScreen.active = false;
     }
     private void Update()
     {
@@ -34,6 +36,11 @@ public class spawnManager : MonoBehaviour
     [ContextMenu("Run Function")]
     public void newWave()
     {
+        if(waves == 31)
+        {
+            victoryScreen.active = true;
+            Time.timeScale = 0f;
+        }
         if (waves % 10 == 0)
         {
             enemyCount = 0;

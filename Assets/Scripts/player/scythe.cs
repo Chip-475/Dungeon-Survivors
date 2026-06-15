@@ -8,19 +8,20 @@ public class scythe : MonoBehaviour
 
     public player player;
     public SpriteRenderer sr;
-    public BoxCollider2D bc;
+    public PolygonCollider2D bc;
     public AnimationCurve curve;
     public AudioClip attack;
-    void Start()
-    {
-        player = GetComponentInParent<player>();
-        sr = GetComponent<SpriteRenderer>();
-        sr.enabled = false;
-        bc = GetComponent<BoxCollider2D>();
-        bc.enabled = false;
+   void Start()
+{
+    player = GetComponentInParent<player>();
+    sr = GetComponent<SpriteRenderer>();
+    sr.enabled = false;
 
-        transform.localEulerAngles = new Vector3(0, 0, 60);
-    }
+    bc = GetComponent<PolygonCollider2D>();
+    bc.enabled = false;
+
+    transform.localEulerAngles = new Vector3(0, 0, 60);
+}
 
     public IEnumerator swing()
     {
@@ -64,6 +65,7 @@ public class scythe : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if(other.CompareTag("Player")) return;
         if (other.TryGetComponent<IDamageable>(out IDamageable damageable) && !toDamage.Contains(damageable))
         {
             toDamage.Add(damageable);
