@@ -80,4 +80,12 @@ public class scythe : MonoBehaviour
             }
         }
     }
+
+
+    void Update()
+    {
+        {
+            transform.localPosition = new Vector3(2.3f, 1.01f, 0f);
+        }
+    }
 }
