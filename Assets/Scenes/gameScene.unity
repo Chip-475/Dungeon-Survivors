@@ -747317,7 +747317,7 @@ MonoBehaviour:
   - {fileID: 3381548320089685549, guid: 804865bfc06b62243ac2136c6d8bc5c2, type: 3}
   boss: {fileID: 5150948367337922774, guid: 8f2a4a26a56153f4db359b3122cb4d4a, type: 3}
   enemyCost: 010000000200000003000000
-  waves: 1
+  waves: 9
   spawnLimit: 0
   isSpawning: 0
   Offset: 0.1
