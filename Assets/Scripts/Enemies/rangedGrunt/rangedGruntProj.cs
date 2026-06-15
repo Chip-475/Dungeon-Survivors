@@ -20,6 +20,12 @@ public class rangedGruntProj : MonoBehaviour
 
         dir = ((Vector2)(parent.playerObj.transform.position) - self.position).normalized;
         atk = parent.atk;
+        //parte della freccia per essere dritta
+        transform.SetParent(null, true);
+        transform.localScale = Vector3.one;
+        float angle=Mathf.Atan2(dir.y, dir.x)*Mathf.Rad2Deg;
+        Debug.Log("Angolo calcolato: " + angle);
+        transform.rotation=Quaternion.Euler(0,0,angle-135f);
 
         transform.SetParent(null, true);
 
