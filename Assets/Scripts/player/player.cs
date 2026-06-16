@@ -103,6 +103,13 @@ public class player : MonoBehaviour, IDamageable
     public void onDamaged(float damage)
     {
         hp -= damage;
+        if(damage>hp)
+        {
+            if(Random.Range(0f,10f)==10f)
+            {
+              damage=hp-0.1f;  
+            }
+        }
         hp=Mathf.Clamp(hp, 0, hpMax);
         StartCoroutine(hpBar.hpBarMovement(hp, hp - damage));
         if (hp < hpMax * 0.3f && !onTenacity && tenacityEffect.instance.tenacity)
@@ -115,8 +122,7 @@ public class player : MonoBehaviour, IDamageable
             onTenacity = false;
             atk /= 2;
         }
-
-        if (hp == 0)
+        if (hp <= 0)
         { 
             sr.enabled = false;
             isDead = true;

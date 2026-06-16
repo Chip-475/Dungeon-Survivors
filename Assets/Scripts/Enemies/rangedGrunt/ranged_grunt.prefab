@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae24e388003c244d97dd4e705b904f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyHP
-  enemyClass: {fileID: 0}
+  enemyClass: {fileID: 1423036320012496982}
   hpBar: {fileID: 7411155602612165356}
   rot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1919323045699155180

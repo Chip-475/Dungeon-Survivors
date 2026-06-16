@@ -17,7 +17,7 @@ public class uiManager : MonoBehaviour
         wave.text = "wave: " + spawnManager.waves;
         enemyKilled.text = "killed: " + data.killCount;
         enemyRemaining.text = "remaining: " + spawnManager.enemyCount;
-        if (player.hp < 1f) hpText.text = "0.1 / " + Mathf.RoundToInt(player.hpMax);
+        if (player.hp < 1f && player.hp > 0f) hpText.text = "0.1 / " + Mathf.RoundToInt(player.hpMax);
         else hpText.text = Mathf.RoundToInt(player.hp) + " / " + Mathf.RoundToInt(player.hpMax);
         xpText.text = Mathf.RoundToInt(data.xp) + " / " +Mathf.RoundToInt(data.xpMax);
         lvlText.text = data.level.ToString();

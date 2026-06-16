@@ -8,6 +8,8 @@ public class scythe : MonoBehaviour
 
     public player player;
     public SpriteRenderer sr;
+    public Sprite baseSprite;
+    public Sprite fireSprite;
     public PolygonCollider2D bc;
     public AnimationCurve curve;
     public AudioClip attack;
@@ -15,6 +17,8 @@ public class scythe : MonoBehaviour
 {
     player = GetComponentInParent<player>();
     sr = GetComponent<SpriteRenderer>();
+    if (baseSprite == null) baseSprite = sr.sprite;
+    updateSprite();
     sr.enabled = false;
 
     bc = GetComponent<PolygonCollider2D>();
@@ -86,6 +90,15 @@ public class scythe : MonoBehaviour
     {
         {
             transform.localPosition = new Vector3(2.3f, 1.01f, 0f);
+            updateSprite();
         }
+    }
+
+    private void updateSprite()
+    {
+        if (sr == null) return;
+
+        if (data.fireAspectLvl > 0 && fireSprite != null) sr.sprite = fireSprite;
+        else if (baseSprite != null) sr.sprite = baseSprite;
     }
 }

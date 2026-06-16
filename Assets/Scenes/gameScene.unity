@@ -745653,6 +745653,7 @@ GameObject:
   - component: {fileID: 621900516}
   - component: {fileID: 621900515}
   - component: {fileID: 621900517}
+  - component: {fileID: 621900523}
   - component: {fileID: 621900518}
   - component: {fileID: 621900519}
   - component: {fileID: 621900520}
@@ -745714,7 +745715,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -7760524718537194871, guid: 52c6a709ba4876f49a045e720e230334, type: 3}
+  m_Sprite: {fileID: -8631524400307354256, guid: 4501f717192eafb45b71a1a01590d3ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -745934,12 +745935,15 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: 0.955883, y: -0.35099357}
-  - {x: -0.14985871, y: -0.43670887}
-  - {x: -1.0943305, y: -0.050292164}
-  - {x: -0.047837257, y: 0.3849607}
-  - {x: 0.9085711, y: 0.45775825}
-  - {x: 1.7819636, y: 0.032282233}
-  - {x: 0.9802431, y: -0.32834885}
+  - {x: 1.2571161, y: -1.5095367}
+  - {x: -0.21164036, y: -1.4499269}
+  - {x: -0.2664578, y: -0.27270618}
+  - {x: 0.12308192, y: 0.28648376}
+  - {x: -0.023124218, y: 0.99041986}
+  - {x: 0.5625938, y: 1.3968375}
+  - {x: 1.0776546, y: 0.9466499}
+  - {x: 0.9836514, y: 0.1679554}
+  - {x: 1.2026571, y: -0.26656792}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -745988,6 +745992,44 @@ MonoBehaviour:
     m_RotationOrder: 4
   animTime: 0.3
   running: 0
+--- !u!114 &621900523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621900514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e13f4c49094dd9b5c74f1ad2ed814d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpriteAnimator
+  targetRenderer: {fileID: 621900515}
+  rb: {fileID: 621900518}
+  idleSprites:
+  - {fileID: -8631524400307354256, guid: 4501f717192eafb45b71a1a01590d3ed, type: 3}
+  - {fileID: 5359922176079170113, guid: 4501f717192eafb45b71a1a01590d3ed, type: 3}
+  - {fileID: -4194442264894315668, guid: 4501f717192eafb45b71a1a01590d3ed, type: 3}
+  - {fileID: -2765853704645492468, guid: 4501f717192eafb45b71a1a01590d3ed, type: 3}
+  - {fileID: -4496401743606748762, guid: 4501f717192eafb45b71a1a01590d3ed, type: 3}
+  - {fileID: -3144734964895342018, guid: 4501f717192eafb45b71a1a01590d3ed, type: 3}
+  - {fileID: 5901398680950790882, guid: 4501f717192eafb45b71a1a01590d3ed, type: 3}
+  - {fileID: -4613054707761741711, guid: 4501f717192eafb45b71a1a01590d3ed, type: 3}
+  - {fileID: 8406075951753682057, guid: 4501f717192eafb45b71a1a01590d3ed, type: 3}
+  - {fileID: 7637594604472759234, guid: 4501f717192eafb45b71a1a01590d3ed, type: 3}
+  runSprites:
+  - {fileID: -5137347292791377154, guid: 5a3b5276f5b1c184fa1b537cfb0e16c1, type: 3}
+  - {fileID: 6657595157756443020, guid: 5a3b5276f5b1c184fa1b537cfb0e16c1, type: 3}
+  - {fileID: 8722172773007090907, guid: 5a3b5276f5b1c184fa1b537cfb0e16c1, type: 3}
+  - {fileID: -8616486473074159260, guid: 5a3b5276f5b1c184fa1b537cfb0e16c1, type: 3}
+  - {fileID: -8122238519177077406, guid: 5a3b5276f5b1c184fa1b537cfb0e16c1, type: 3}
+  - {fileID: -4008325934516458446, guid: 5a3b5276f5b1c184fa1b537cfb0e16c1, type: 3}
+  - {fileID: 1134832413728818332, guid: 5a3b5276f5b1c184fa1b537cfb0e16c1, type: 3}
+  - {fileID: 2525343423203238361, guid: 5a3b5276f5b1c184fa1b537cfb0e16c1, type: 3}
+  - {fileID: 8884614345245867568, guid: 5a3b5276f5b1c184fa1b537cfb0e16c1, type: 3}
+  - {fileID: -7524113512786872, guid: 5a3b5276f5b1c184fa1b537cfb0e16c1, type: 3}
+  idleFramesPerSecond: 8
+  runFramesPerSecond: 10
 --- !u!1 &630313873
 GameObject:
   m_ObjectHideFlags: 0
@@ -750606,6 +750648,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::scythe
   player: {fileID: 0}
   sr: {fileID: 0}
+  baseSprite: {fileID: 5904610872164556363, guid: 11268402e8a5c1e4e8097fa5d44302e8, type: 3}
+  fireSprite: {fileID: -6087916541707978380, guid: 21002644d840a0240b6ea48230535ad3, type: 3}
   bc: {fileID: 0}
   curve:
     serializedVersion: 2
