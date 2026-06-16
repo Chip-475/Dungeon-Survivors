@@ -257,6 +257,7 @@ MonoBehaviour:
   spd: 2
   fovRange: 10
   fovAngle: 180
+  hpBar: {fileID: 977601984224474734}
   spawnSound: {fileID: 8300000, guid: 8d0f77ae8f787624d93dee39b3720fb4, type: 3}
   points:
   - {fileID: 822463542783515618}

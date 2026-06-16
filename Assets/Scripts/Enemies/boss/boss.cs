@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using DG.Tweening;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEngine.UI; 
 
 public class boss : enemyClass
 {
+    public Image hpBar;
     public AudioClip spawnSound;
     public List<Transform> points = new();
     public GameObject enemyToSpawn;
@@ -23,6 +25,7 @@ public class boss : enemyClass
         base.Start();
         skillTimer = 0;
         timerLockout = false;
+        hpBar.fillAmount = 1f;
     }
     new void FixedUpdate()
     {
@@ -101,5 +104,11 @@ public class boss : enemyClass
         }
 
         Destroy(spawnEffect);
+    }
+
+    public override void damage(float damage)
+    {
+        base.damage(damage);
+        hpBar.fillAmount = hp / hpMax;
     }
 }

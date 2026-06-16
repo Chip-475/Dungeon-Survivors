@@ -107,7 +107,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
 
 
     // Interface Methods
-    public void damage(float damage)
+    public virtual void damage(float damage)
     {
         onDamaged(damage);
     }
