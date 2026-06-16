@@ -20,7 +20,7 @@ public class spawnManager : MonoBehaviour
     private void Start()
     {
         waves = 0;
-        victoryScreen.active = false;
+        victoryScreen.SetActive(false);
     }
     private void Update()
     {
@@ -38,13 +38,14 @@ public class spawnManager : MonoBehaviour
     {
         if(waves == 31)
         {
-            victoryScreen.active = true;
+            victoryScreen.SetActive(true);
             Time.timeScale = 0f;
+            return;
         }
-        if (waves % 10 == 0)
+        if (waves %2 == 0)   // modifica per il boss per bug fix
         {
             enemyCount = 0;
-            for (int i = 0; i < waves / 10; i++)
+            for (int i = 0; i < waves /2; i++)
             {
                 Instantiate(boss, getPosition(), Quaternion.identity);
                 enemyCount++;
@@ -106,7 +107,7 @@ public class spawnManager : MonoBehaviour
         y = UnityEngine.Random.Range(minY, maxY);
         Vector3 spawnPos=new Vector3(x,y,0f);
         Vector2 spawnPos2D = new Vector2(x, y);
-        if (Vector2.Distance(player.playerInstance.transform.position,spawnPos2D)>30f && Vector2.Distance(player.playerInstance.transform.position, spawnPos2D) < 15f)
+        if(Vector2.Distance(player.playerInstance.transform.position,spawnPos2D)>30f||Vector2.Distance(player.playerInstance.transform.position, spawnPos2D)<15f)
         { 
             return getPosition();
         }

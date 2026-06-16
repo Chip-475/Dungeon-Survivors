@@ -31,7 +31,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
     public float fovRange;
     [Range(0, 360)] public float fovAngle;
 
-
+    private Vector3 _baseScale;
     // Virtuals
     protected virtual void Start()
     {
@@ -52,12 +52,16 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
             hp /= 2;
         }
         hpMax = hp;
+        _baseScale = transform.localScale;
     }
     protected virtual void FixedUpdate()
     {
-        if (playerObj.transform.position.x < transform.position.x) transform.localScale = new Vector3(-1, 1, 1);
+        if (playerObj.transform.position.x < transform.position.x) transform.localScale = new Vector3(-Mathf.Abs(_baseScale.x), _baseScale.y, _baseScale.z);
+        else transform.localScale = new Vector3(Mathf.Abs(_baseScale.x), _baseScale.y, _baseScale.z);
+        
+        /*if (playerObj.transform.position.x < transform.position.x) transform.localScale = new Vector3(-1, 1, 1);
         else transform.localScale = new Vector3(1, 1, 1);
-
+        */
         _agent.speed = spd;
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -103,7 +107,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
 
 
     // Interface Methods
-    public void damage(float damage)
+    public virtual void damage(float damage)
     {
         onDamaged(damage);
     }
