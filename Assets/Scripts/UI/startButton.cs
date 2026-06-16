@@ -7,5 +7,6 @@ public class startButton : MonoBehaviour
     {
         await SceneManager.LoadSceneAsync("loadingScreen", LoadSceneMode.Single);
         await SceneManager.LoadSceneAsync("gameScene", LoadSceneMode.Single);
+        
     }
 }

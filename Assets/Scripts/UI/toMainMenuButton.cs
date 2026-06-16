@@ -7,5 +7,6 @@ public class toMainMenuButton : MonoBehaviour
     {
         await SceneManager.LoadSceneAsync("loadingScreen", LoadSceneMode.Single);
         await SceneManager.LoadSceneAsync("mainMenu", LoadSceneMode.Single);
+        data.killCount = 0;
     }
 }
