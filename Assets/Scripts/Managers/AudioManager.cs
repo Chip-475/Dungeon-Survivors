@@ -31,20 +31,26 @@ public class audioManager : MonoBehaviour
     public void setMaster(float volume)
     {
         data.master = volume;
+        PlayerPrefs.SetFloat("master",volume);
         ApplyMixerVolume("Master", volume);
     }
     public void setSFX(float volume)
     {
         data.sfx = volume;
+        PlayerPrefs.SetFloat("sfx", volume);
         ApplyMixerVolume("SFX", volume);
     }
     public void setBGM(float volume)
     {
         data.music = volume;
+        PlayerPrefs.SetFloat("bgm", volume);
         ApplyMixerVolume("BGM", volume);
     }
     public void Start()
     {
+        data.master = PlayerPrefs.GetFloat("master",1f);
+        data.sfx = PlayerPrefs.GetFloat("sfx",1f);
+        data.music = PlayerPrefs.GetFloat("music", 1f);
         EnsureSliderReferences();
         SyncSlidersWithSavedValues();
         ApplyMixerVolume("Master", data.master);

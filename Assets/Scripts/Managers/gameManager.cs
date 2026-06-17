@@ -20,7 +20,7 @@ public class gameManager : MonoBehaviour
     private void Start()
     {
         instance = this;
-
+        Time.timeScale = 1.0f;
         obstacle = LayerMask.GetMask("Obstacle");
         enemy = LayerMask.GetMask("Enemy");
     }
