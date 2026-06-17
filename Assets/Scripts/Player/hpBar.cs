@@ -21,7 +21,7 @@ public class hpBar : MonoBehaviour // ATTACHED TO PLAYER
         while (x < animTime)
         {
             hpBarObject.fillAmount = hpBarCurve.Evaluate(x);
-            x += Time.deltaTime;
+            x += Time.unscaledTime;
             yield return null;
         }
         running = false;

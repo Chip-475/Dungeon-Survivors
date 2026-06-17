@@ -76,6 +76,8 @@ public class boss : enemyClass
         foreach(var point in points)
         {
             Instantiate(enemyToSpawn, point.position, Quaternion.identity);
+            spawnManager.enemyCount++;
+            
         }
         audioManager.manager.playSFX(spawnSound, transform, data.sfx);
 

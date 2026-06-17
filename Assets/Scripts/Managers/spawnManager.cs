@@ -42,7 +42,7 @@ public class spawnManager : MonoBehaviour
             Time.timeScale = 0f;
             return;
         }
-        if (waves %2 == 0)   // modifica per il boss per bug fix
+        if (waves %10 == 0)   // modifica per il boss per bug fix
         {
             enemyCount = 0;
             for (int i = 0; i < waves /2; i++)
