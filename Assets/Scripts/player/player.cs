@@ -116,7 +116,7 @@ public class player : MonoBehaviour, IDamageable
 
         StartCoroutine(hpBar.hpBarMovement(currentHp, nextHp));
 
-        if (hp < hpMax * 0.3f && !onTenacity && tenacityEffect.instance.tenacity)
+        if (hp < hpMax * 0.4f && !onTenacity && tenacityEffect.instance.tenacity)
         {
             onTenacity = true;
             atk *= 2;
@@ -131,7 +131,6 @@ public class player : MonoBehaviour, IDamageable
             sr.enabled = false;
             isDead = true;
             gameManager.instance.startDeath();
-            
         }
     }
 

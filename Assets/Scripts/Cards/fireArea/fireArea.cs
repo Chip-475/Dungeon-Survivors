@@ -18,7 +18,7 @@ public class fireArea : cardClass
         if(collision.gameObject.CompareTag("Enemy") && !collision.gameObject.TryGetComponent<DoT>(out _))
         {
             DoT dot = collision.gameObject.AddComponent<DoT>();
-            dot.damage = player.playerInstance.atk * data.fireAreaLvl / 5;
+            dot.damage = player.playerInstance.atk * data.fireAreaLvl / 4;
             dot.duration = 5f;
             dot.tick = 1 / 3f;
         }

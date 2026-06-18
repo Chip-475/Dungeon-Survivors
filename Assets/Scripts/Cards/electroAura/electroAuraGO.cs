@@ -16,7 +16,7 @@ public class electroAuraGO : cardClass, ICardEffect
         for(int i = 0; i < enemiesInRange.Count; i++)
         {
             enemiesInRange[i].gameObject.TryGetComponent(out IDamageable x);
-            if(x != null) x.damage(player.playerInstance.atk / 4);
+            if(x != null) x.damage(player.playerInstance.atk / 3);
         }
 
         yield return new WaitForSeconds(0.5f);
