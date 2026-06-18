@@ -108,6 +108,13 @@ public class boss : enemyClass
         Destroy(spawnEffect);
     }
 
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Collisione boss");
+        if (!collision.gameObject.CompareTag("Player")) return;
+        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable IDamageable)) IDamageable.damage(40f);
+    }
+
     public override void damage(float damage)
     {
         base.damage(damage);

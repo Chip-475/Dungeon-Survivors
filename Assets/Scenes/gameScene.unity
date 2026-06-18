@@ -745849,7 +745849,7 @@ MonoBehaviour:
   onTenacity: 0
   mousePosition: {x: 0, y: 0, z: 0}
   mouseWorldPosition: {x: 0, y: 0, z: 0}
-  hp: 100
+  hp: 1000
   hpMax: 0
   atk: 3
   spd: 7.5
@@ -745880,7 +745880,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &621900519
 MonoBehaviour:
