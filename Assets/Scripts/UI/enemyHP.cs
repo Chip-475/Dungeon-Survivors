@@ -13,6 +13,7 @@ public class enemyHP : MonoBehaviour
     }
     void Update()
     {
+        if (enemyClass == null) return;
         hpBar.fillAmount = enemyClass.hp/enemyClass.hpMax;
         float scalex = parentrans.localScale.x;
 

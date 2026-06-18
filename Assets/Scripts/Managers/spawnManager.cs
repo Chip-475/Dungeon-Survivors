@@ -36,18 +36,18 @@ public class spawnManager : MonoBehaviour
     [ContextMenu("Run Function")]
     public void newWave()
     {
-        if(waves == 31)
+        if (waves == 31)
         {
             victoryScreen.SetActive(true);
             Time.timeScale = 0f;
             return;
         }
-        if (waves %10 == 0)   // modifica per il boss per bug fix
+        if (waves % 10 == 0)   // modifica per il boss per bug fix
         {
             enemyCount = 0;
-            for (int i = 0; i < waves /2; i++)
+            for (int i = 0; i < waves / 2; i++)
             {
-                Instantiate(boss, getPosition(), Quaternion.identity);
+                Instantiate(boss, getPosition(1.2f), Quaternion.identity);
                 enemyCount++;
             }
             isSpawning = false;
@@ -74,7 +74,7 @@ public class spawnManager : MonoBehaviour
         }
         isSpawning = false;
     }
-    public Vector3 getPosition()
+    public Vector3 getPosition(float radius=0.5f)
     {
         float x = 0f;
         float y = 0f;
@@ -109,7 +109,13 @@ public class spawnManager : MonoBehaviour
         Vector2 spawnPos2D = new Vector2(x, y);
         if(Vector2.Distance(player.playerInstance.transform.position,spawnPos2D)>30f||Vector2.Distance(player.playerInstance.transform.position, spawnPos2D)<15f)
         { 
-            return getPosition();
+            return getPosition(radius);
+        }
+        Collider2D hitObstacle = Physics2D.OverlapCircle(spawnPos2D, 0.5f, gameManager.instance.obstacle);
+        if (hitObstacle!=null)
+        {
+            Debug.Log("Ci ha provato "+hitObstacle.gameObject.name);
+            return getPosition(radius); //overlapCircle cerca se ce un collider se si sovrappne a un cerchio immaginario proprio come prova
         }
         return spawnPos;
     }
