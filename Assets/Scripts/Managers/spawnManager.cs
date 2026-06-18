@@ -38,6 +38,7 @@ public class spawnManager : MonoBehaviour
     {
         if (waves == 31)
         {
+            waves=30;
             victoryScreen.SetActive(true);
             Time.timeScale = 0f;
             return;
