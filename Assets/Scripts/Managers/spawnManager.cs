@@ -42,10 +42,10 @@ public class spawnManager : MonoBehaviour
             Time.timeScale = 0f;
             return;
         }
-        if (waves % 10 == 0)   // modifica per il boss per bug fix
+        if (waves % 10 == 0)   // modifica per il boss per bug fix //2
         {
             enemyCount = 0;
-            for (int i = 0; i < waves / 2; i++)
+            for (int i = 0; i < waves / 10; i++)//2
             {
                 Instantiate(boss, getPosition(1.2f), Quaternion.identity);
                 enemyCount++;

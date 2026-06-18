@@ -32,6 +32,7 @@ public class cardManager : MonoBehaviour
     [ContextMenu("Run spawnCards")]
     public void spawnCards()
     {
+        
         if(spawnableCards.Count == 0) { Debug.LogWarning("out of cards"); return; }
 
         Time.timeScale = 0;

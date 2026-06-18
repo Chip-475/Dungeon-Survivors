@@ -16,6 +16,7 @@ public class gameManager : MonoBehaviour
     public gameState state = gameState.running;
     public GameObject pauseMenu;
     public GameObject deathScreen;
+    public GameObject[] toggleableObjects;
 
     private void Start()
     {
@@ -62,5 +63,9 @@ public class gameManager : MonoBehaviour
     {
         StartCoroutine(death());
         state = gameState.deathScreen;
+        foreach (var obj in toggleableObjects)
+        {
+            obj.SetActive(false);
+        }
     }
 }

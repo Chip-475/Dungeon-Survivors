@@ -745842,7 +745842,6 @@ MonoBehaviour:
   xpBar: {fileID: 0}
   lowHp: {fileID: 1629561024}
   deathSound: {fileID: 8300000, guid: fb96c2d3645283a4884a7427a6aabca4, type: 3}
-  icearea: {fileID: 0}
   isDead: 0
   canAttack: 1
   canLaunch: 1
@@ -749762,13 +749761,6 @@ MonoBehaviour:
   state: 0
   pauseMenu: {fileID: 1701881807}
   deathScreen: {fileID: 1212779836}
-  toggleableObjects:
-  - {fileID: 2004926121}
-  - {fileID: 1946500059}
-  - {fileID: 1195172730}
-  - {fileID: 904154857}
-  - {fileID: 380954466}
-  - {fileID: 1057472906}
 --- !u!1 &1622327813
 GameObject:
   m_ObjectHideFlags: 0

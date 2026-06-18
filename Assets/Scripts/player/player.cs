@@ -23,6 +23,7 @@ public class player : MonoBehaviour, IDamageable
     public AudioSource lowHp;
     public AudioClip deathSound;
 
+    public GameObject icearea;
 
     public bool isDead;
     public bool canAttack = true;
@@ -102,16 +103,19 @@ public class player : MonoBehaviour, IDamageable
     // Player Misc
     public void onDamaged(float damage)
     {
-        hp -= damage;
-        if(damage>hp)
+        float currentHp = hp;
+        float nextHp = hp - damage;
+
+        if(damage > hp)
         {
-            if(Random.Range(0f,10f)==10f)
+            if(Random.Range(0f, 10f) == 10f)
             {
-              damage=hp-0.1f;  
+                nextHp = 0.1f;
             }
         }
-        hp=Mathf.Clamp(hp, 0, hpMax);
-        StartCoroutine(hpBar.hpBarMovement(hp, hp - damage));
+
+        StartCoroutine(hpBar.hpBarMovement(currentHp, nextHp));
+
         if (hp < hpMax * 0.3f && !onTenacity && tenacityEffect.instance.tenacity)
         {
             onTenacity = true;
@@ -127,6 +131,7 @@ public class player : MonoBehaviour, IDamageable
             sr.enabled = false;
             isDead = true;
             gameManager.instance.startDeath();
+            
         }
     }
 

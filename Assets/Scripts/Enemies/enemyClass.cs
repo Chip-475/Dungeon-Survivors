@@ -71,6 +71,8 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable))
         {
             collision.gameObject.GetComponent<IDamageable>().damage(atk);
+            xpGiven=0;
+            
         }
         Destroy(gameObject);
     }

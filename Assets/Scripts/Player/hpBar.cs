@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System.Security.Cryptography;
 
 public class hpBar : MonoBehaviour // ATTACHED TO PLAYER
 {
@@ -10,20 +9,35 @@ public class hpBar : MonoBehaviour // ATTACHED TO PLAYER
     public AnimationCurve hpBarCurve;
     public float animTime;
     public bool running;
+    private int movementId;
 
     public IEnumerator hpBarMovement(float currentHp, float nextHp)
     {
-        Debug.Log("cr started");
+        movementId++;
+        int currentMovementId = movementId;
+
+        nextHp = Mathf.Clamp(nextHp, 0, player.playerInstance.hpMax);
         player.playerInstance.hp = nextHp;
-        hpBarCurve = AnimationCurve.EaseInOut(0, currentHp / player.playerInstance.hpMax, animTime, nextHp / player.playerInstance.hpMax);
+
+        float currentFill = hpBarObject != null ? hpBarObject.fillAmount : currentHp / player.playerInstance.hpMax;
+        float nextFill = player.playerInstance.hpMax > 0 ? nextHp / player.playerInstance.hpMax : 0f;
+        hpBarCurve = AnimationCurve.EaseInOut(0, currentFill, animTime, nextFill);
+
         running = true;
         var x = 0f;
         while (x < animTime)
         {
+            if (currentMovementId != movementId)
+            {
+                yield break;
+            }
+
             hpBarObject.fillAmount = hpBarCurve.Evaluate(x);
-            x += Time.unscaledTime;
+            x += Time.unscaledDeltaTime;
             yield return null;
         }
+
+        hpBarObject.fillAmount = nextFill;
         running = false;
     }
 }

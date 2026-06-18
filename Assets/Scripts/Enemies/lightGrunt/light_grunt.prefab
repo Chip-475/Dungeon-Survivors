@@ -384,10 +384,10 @@ MonoBehaviour:
   xpBar: {fileID: 0}
   deathSound: {fileID: 8300000, guid: caf5b354972c21b4ebfe3bcd6e45f228, type: 3}
   bossDeathSound: {fileID: 8300000, guid: fb0b3882571a4c84e8e582b63a83cdd8, type: 3}
-  hp: 10
+  hp: 12
   hpMax: 0
-  xpGiven: 10
-  atk: 5
+  xpGiven: 12
+  atk: 10
   spd: 3
   fovRange: 5
   fovAngle: 120
