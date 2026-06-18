@@ -745737,7 +745737,6 @@ GameObject:
   - component: {fileID: 621900520}
   - component: {fileID: 621900522}
   - component: {fileID: 621900521}
-  - component: {fileID: 621900524}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -745850,7 +745849,7 @@ MonoBehaviour:
   onTenacity: 0
   mousePosition: {x: 0, y: 0, z: 0}
   mouseWorldPosition: {x: 0, y: 0, z: 0}
-  hp: 100
+  hp: 1000
   hpMax: 0
   atk: 3
   spd: 7.5
@@ -745984,7 +745983,7 @@ EdgeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621900514}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -746110,52 +746109,6 @@ MonoBehaviour:
   - {fileID: -7524113512786872, guid: 5a3b5276f5b1c184fa1b537cfb0e16c1, type: 3}
   idleFramesPerSecond: 8
   runFramesPerSecond: 10
---- !u!61 &621900524
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621900514}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.49695098, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.57, y: 2.96}
-    newSize: {x: 19.2, y: 10.8}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.5760977, y: 2.96}
-  m_EdgeRadius: 0
 --- !u!1 &630313873
 GameObject:
   m_ObjectHideFlags: 0
@@ -748104,7 +748057,7 @@ MonoBehaviour:
   - {fileID: 3381548320089685549, guid: 804865bfc06b62243ac2136c6d8bc5c2, type: 3}
   boss: {fileID: 5150948367337922774, guid: 8f2a4a26a56153f4db359b3122cb4d4a, type: 3}
   enemyCost: 010000000200000003000000
-  waves: 10
+  waves: 9
   spawnLimit: 0
   isSpawning: 0
   Offset: 0.1

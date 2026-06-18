@@ -104,8 +104,9 @@ public class player : MonoBehaviour, IDamageable
     public void onDamaged(float damage)
     {
         float currentHp = hp;
-        float nextHp = hp - damage;
-
+       // float nextHp = hp - damage;
+        float nextHp=Mathf.Clamp(hp-damage, 0, hpMax);
+        hp = nextHp;
         if(damage > hp)
         {
             if(Random.Range(0f, 10f) == 10f)

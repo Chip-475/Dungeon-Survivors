@@ -27,7 +27,13 @@ public class spawnManager : MonoBehaviour
         if (enemyCount <= 0 && !isSpawning)
         {
             waves++;
-            if (!tenacityEffect.instance.tenacity) StartCoroutine(player.playerInstance.hpBar.hpBarMovement(player.playerInstance.hp, player.playerInstance.hp + player.playerInstance.hpMax * 0.2f));
+            //recupero del 25% della vita 
+            if (!tenacityEffect.instance.tenacity)
+            {
+                float newHp=Mathf.Clamp(player.playerInstance.hp+player.playerInstance.hpMax*0.25f,0,player.playerInstance.hpMax);
+                player.playerInstance.hp = newHp;
+                StartCoroutine(player.playerInstance.hpBar.hpBarMovement(player.playerInstance.hp, newHp));
+            }
             Invoke(nameof(newWave), 2.5f);
             isSpawning = true;
         }
