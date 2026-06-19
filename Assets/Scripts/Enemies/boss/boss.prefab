@@ -252,8 +252,8 @@ MonoBehaviour:
   xpBar: {fileID: 0}
   deathSound: {fileID: 8300000, guid: caf5b354972c21b4ebfe3bcd6e45f228, type: 3}
   bossDeathSound: {fileID: 8300000, guid: fb0b3882571a4c84e8e582b63a83cdd8, type: 3}
-  hp: 100
-  hpMax: 100
+  hp: 500
+  hpMax: 500
   xpGiven: 300
   atk: 30
   spd: 2.5
@@ -272,7 +272,7 @@ MonoBehaviour:
   spawnAnimationFPS: 8
   spawnAnimationScale: 1
   skillTimer: 0
-  skillCD: 7.5
+  skillCD: 5
   timerLockout: 0
 --- !u!114 &7119346502873984125
 MonoBehaviour:

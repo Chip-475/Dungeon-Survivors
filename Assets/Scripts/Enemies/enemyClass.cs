@@ -17,6 +17,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
     protected Collider2D _collider;
     protected NavMeshAgent _agent;
     protected EnemySpriteAnimator spriteAnimator;
+    public AnimationCurve hpBarCurve;
 
     protected bool inRange;
     protected bool detecting;

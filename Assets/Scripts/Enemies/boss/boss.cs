@@ -121,13 +121,13 @@ public class boss : enemyClass
         else Debug.Log("danno no " + collision.gameObject.name);
     }
     */
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) 
     {
         Debug.Log("Trigger con: " + other.gameObject.name);
         if (!other.gameObject.CompareTag("Player")) return;
         if (other.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
-            damageable.damage(15f);
+            damageable.damage(30f);
         }
     }
     public override void damage(float damage)
