@@ -107,7 +107,29 @@ public class boss : enemyClass
 
         Destroy(spawnEffect);
     }
-
+    /*
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Collisione boss"+collision.gameObject.name+collision.gameObject.tag+collision.gameObject.layer);
+        if (!collision.gameObject.CompareTag("Player")) return;
+        //Debug.Log("Palyer trovato");
+        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
+        {
+            Debug.Log("posso applicare il danno");
+            damageable.damage(5f);
+        }
+        else Debug.Log("danno no " + collision.gameObject.name);
+    }
+    */
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Trigger con: " + other.gameObject.name);
+        if (!other.gameObject.CompareTag("Player")) return;
+        if (other.TryGetComponent<IDamageable>(out IDamageable damageable))
+        {
+            damageable.damage(15f);
+        }
+    }
     public override void damage(float damage)
     {
         base.damage(damage);

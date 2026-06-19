@@ -83,7 +83,13 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         spawnManager.enemyCount--;
         data.xpQueue.Enqueue(xpGiven);
         if(!xpBar.queueing) xpBar.startMedium();
-
+        //ogni 1o kill recuperi 10 di vita
+        if(data.killCount%10==0)
+        {
+            float newHp = Mathf.Clamp(player.playerInstance.hp + 10f, 0, player.playerInstance.hpMax);
+            player.playerInstance.hp = newHp;
+            StartCoroutine(player.playerInstance.hpBar.hpBarMovement(player.playerInstance.hp, newHp));
+        }
         if(TryGetComponent(out boss _))
         {
             audioManager.manager.playSFX(bossDeathSound, transform, data.sfx);
@@ -106,7 +112,6 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
     //{
     //    // To do
     //}
-
 
     // Interface Methods
     public virtual void damage(float damage)

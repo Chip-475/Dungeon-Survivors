@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 7723111793877829692}
   - component: {fileID: 6393275123860915268}
   - component: {fileID: 4516386599610590319}
+  - component: {fileID: 5518909771801240419}
   m_Layer: 0
   m_Name: boss
   m_TagString: Enemy
@@ -304,9 +305,9 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5150948367337922774}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
@@ -321,8 +322,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!61 &6393275123860915268
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -391,6 +392,83 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!68 &5518909771801240419
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5150948367337922774}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.08904732, y: -0.052501813}
+  - {x: -0.09989592, y: -0.06799984}
+  - {x: -0.11849359, y: -0.0850477}
+  - {x: -0.14945877, y: -0.08225393}
+  - {x: -0.19443394, y: -0.06954964}
+  - {x: -0.20410243, y: -0.015261903}
+  - {x: -0.18178627, y: 0.05549091}
+  - {x: -0.16144042, y: 0.112678856}
+  - {x: -0.14245401, y: 0.14310136}
+  - {x: -0.09346937, y: 0.14344086}
+  - {x: -0.07068404, y: 0.15057607}
+  - {x: -0.043237038, y: 0.22855277}
+  - {x: -0.015398176, y: 0.24638085}
+  - {x: 0.027062353, y: 0.24008475}
+  - {x: 0.053832684, y: 0.19509788}
+  - {x: 0.05940567, y: 0.1520176}
+  - {x: 0.10355115, y: 0.14048798}
+  - {x: 0.14016724, y: 0.13736609}
+  - {x: 0.16252239, y: 0.11451378}
+  - {x: 0.17515132, y: 0.06103719}
+  - {x: 0.1849806, y: -0.036391556}
+  - {x: 0.1534799, y: -0.06404405}
+  - {x: 0.1534799, y: -0.06404405}
+  - {x: 0.09768699, y: -0.07024327}
+  - {x: 0.12713328, y: -0.22212403}
+  - {x: 0.07289016, y: -0.23452246}
+  - {x: 0.046543498, y: -0.1647813}
+  - {x: 0.05739212, y: -0.08884094}
+  - {x: 0.009348214, y: -0.0686935}
+  - {x: -0.00924943, y: -0.118287206}
+  - {x: -0.007699628, y: -0.23607232}
+  - {x: -0.08209021, y: -0.2345225}
+  - {x: -0.08364002, y: -0.08109193}
+  - {x: -0.08364002, y: -0.08109193}
+  - {x: -0.08364002, y: -0.081091926}
+  - {x: -0.09138903, y: -0.05164565}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &5685430181612991188
 GameObject:
   m_ObjectHideFlags: 0
