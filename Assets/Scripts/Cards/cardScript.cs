@@ -47,6 +47,7 @@ public class cardScript : MonoBehaviour
     {
         if (manager != null && entry != null)
         {
+            
             audioManager.manager.playSFX(pickCard, player.playerInstance.transform, data.sfx);
             manager.pickCard(entry);
         }

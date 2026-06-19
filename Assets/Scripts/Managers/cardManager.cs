@@ -37,6 +37,12 @@ public class cardManager : MonoBehaviour
 
         Time.timeScale = 0;
         cardPanel.SetActive(true);
+            float time = 0;
+            while(time< 10f)
+            {
+                time += Time.deltaTime;
+            }
+
         int cardsToSpawn = Mathf.Min(3, spawnableCards.Count);
 
         List<int> index = new List<int>();
