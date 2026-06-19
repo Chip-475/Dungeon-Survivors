@@ -20,6 +20,7 @@ public class boss : enemyClass
     public float skillCD;
     public bool timerLockout;
 
+    private bool isDamaging=false;
     new void Start()
     {
         base.Start();
@@ -125,9 +126,30 @@ public class boss : enemyClass
     {
         Debug.Log("Trigger con: " + other.gameObject.name);
         if (!other.gameObject.CompareTag("Player")) return;
+        /*
         if (other.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
-            damageable.damage(15f);
+            damageable.damage(5f);
+            lastDamageTime = Time.time;
+        }*/
+        if (!isDamaging)
+        {
+            isDamaging = true;
+            StartCoroutine(damageOverTime(other));
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))isDamaging=false;
+    }
+
+    private IEnumerator damageOverTime(Collider2D other)
+    {
+        while (isDamaging)
+        {
+            if (other.TryGetComponent<IDamageable>(out IDamageable damageable)) damageable.damage(5f);
+            yield return new WaitForSeconds(1f);
         }
     }
     public override void damage(float damage)
