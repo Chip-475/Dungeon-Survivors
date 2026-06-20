@@ -72,6 +72,7 @@ public class cardManager : MonoBehaviour
             print($"index {x}");
 
             CardEntry entry = spawnableCards[x];
+            ///spawnableCards.Remove(entry);
             if (entry.effect.lvl == 5)
             {
                 spawnableCards.Remove(entry);

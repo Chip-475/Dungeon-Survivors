@@ -8,6 +8,7 @@ public class spawnManager : MonoBehaviour
     public int waves = 30;
     public int spawnLimit;
     public static int enemyCount;
+    public static int bosscount;
     public bool isSpawning = false;
     public float Offset = 0.1f;
     public GameObject victoryScreen;
@@ -51,11 +52,24 @@ public class spawnManager : MonoBehaviour
         if (waves % 10 == 0)   // modifica per il boss per bug fix //2
         {
             enemyCount = 0;
-            for (int i = 0; i < waves / 10; i++)//2
-            {
                 Instantiate(boss, getPosition(1.2f), Quaternion.identity);
+                if(bosscount==1)
+                {
+                    boss.GetComponent<boss>().hpMax = boss.GetComponent<boss>().hpMax * 1.2f;
+                    boss.GetComponent<boss>().hp = boss.GetComponent<boss>().hpMax;
+                    boss.GetComponent<boss>().atk = boss.GetComponent<boss>().atk +5f;
+                    boss.GetComponent<boss>().xpGiven = boss.GetComponent<boss>().xpGiven + 500f;
+                }
+                else if(bosscount==2)
+                {
+                    boss.GetComponent<boss>().hpMax = boss.GetComponent<boss>().hpMax * 1.4f;
+                    boss.GetComponent<boss>().hp = boss.GetComponent<boss>().hpMax;
+                    boss.GetComponent<boss>().atk = boss.GetComponent<boss>().atk +10f;
+                    boss.GetComponent<boss>().xpGiven = boss.GetComponent<boss>().xpGiven + 1000f;
+                    boss.GetComponent<boss>().spd = boss.GetComponent<boss>().spd + 0.5f;
+                }
                 enemyCount++;
-            }
+                bosscount++;
             isSpawning = false;
             return;
         }

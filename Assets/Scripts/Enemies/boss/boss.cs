@@ -127,7 +127,7 @@ public class boss : enemyClass
         if (!other.gameObject.CompareTag("Player")) return;
         if (other.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
-            damageable.damage(30f);
+            damageable.damage(atk);
         }
     }
     public override void damage(float damage)
