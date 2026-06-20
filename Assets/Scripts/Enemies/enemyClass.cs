@@ -88,8 +88,8 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         if(data.killCount%10==0)
         {
             float newHp = Mathf.Clamp(player.playerInstance.hp + 10f, 0, player.playerInstance.hpMax);
-            player.playerInstance.hp = newHp;
-            StartCoroutine(player.playerInstance.hpBar.hpBarMovement(player.playerInstance.hp, newHp));
+            //player.playerInstance.hp = newHp;
+            player.playerInstance.StartCoroutine(player.playerInstance.hpBar.hpBarMovement(player.playerInstance.hp, newHp));
         }
         if(TryGetComponent(out boss _))
         {
