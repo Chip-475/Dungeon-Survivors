@@ -15,6 +15,11 @@ public class boss : enemyClass
     public Sprite[] spawnAnimationSprites;
     public float spawnAnimationFPS = 8f;
     public float spawnAnimationScale = 1f;
+     [Header("corners")]
+    public Transform topRight;
+    public Transform topLeft;
+    public Transform bottomRight;
+    public Transform bottomLeft;
 
     public float skillTimer;
     public float skillCD;
@@ -64,6 +69,7 @@ public class boss : enemyClass
         spriteAnimator?.PlaySummon();
         foreach (var point in points)
         {
+            point.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0f);
             StartCoroutine(playSpawnAnimation(point.position));
         }
         if (spawnAnimationSprites != null && spawnAnimationSprites.Length > 0)

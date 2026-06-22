@@ -745856,6 +745856,8 @@ MonoBehaviour:
   spd: 7.5
   aspd: 1.2
   range: 1
+  isInvicible: 0
+  iFrames: 0.5
 --- !u!50 &621900518
 Rigidbody2D:
   serializedVersion: 5

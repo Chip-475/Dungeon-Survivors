@@ -278,7 +278,7 @@ MonoBehaviour:
   spawnAnimationFPS: 8
   spawnAnimationScale: 1
   skillTimer: 0
-  skillCD: 8
+  skillCD: 7
   timerLockout: 0
 --- !u!114 &7119346502873984125
 MonoBehaviour:
