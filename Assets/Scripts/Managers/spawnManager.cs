@@ -52,7 +52,8 @@ public class spawnManager : MonoBehaviour
         if (waves % 10 == 0)   // modifica per il boss per bug fix //2
         {
             enemyCount = 0;
-                Instantiate(boss, getPosition(1.2f), Quaternion.identity);
+            Instantiate(boss, getPosition(1.2f), Quaternion.identity);
+            //boss newBoss = boss.Instance.GetComponent<boss>();
                 if(bosscount==1)
                 {
                     boss.GetComponent<boss>().hpMax = boss.GetComponent<boss>().hpMax * 1.2f;

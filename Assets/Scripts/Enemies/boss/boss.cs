@@ -69,7 +69,10 @@ public class boss : enemyClass
         spriteAnimator?.PlaySummon();
         foreach (var point in points)
         {
-            point.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0f);
+            Vector3 spawnPoint= new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0f);
+            spawnPoint = ClampToMapBounds(spawnPoint);//cosi limita dentro la mappa
+            if (Physics2D.OverlapCircle(spawnPoint, 0.5f, gameManager.instance.obstacle)) spawnPoint = findFreePosition(spawnPoint);
+            point.position = spawnPoint;
             StartCoroutine(playSpawnAnimation(point.position));
         }
         if (spawnAnimationSprites != null && spawnAnimationSprites.Length > 0)
@@ -86,6 +89,29 @@ public class boss : enemyClass
         audioManager.manager.playSFX(spawnSound, transform, data.sfx);
 
         timerLockout = false;
+    }
+
+    private Vector3 ClampToMapBounds(Vector3 pos)
+    {
+        float minX = bottomLeft.position.x;
+        float maxX=bottomRight.position.x;
+        float minY = bottomLeft.position.y;
+        float maxY = topLeft.position.y;
+        float clampedX=Mathf.Clamp(pos.x,minX, maxX);
+        float clampedY=Mathf.Clamp(pos.y,minY, maxY);   
+        return new Vector3(clampedX, clampedY,0f);
+    }
+
+    private Vector3 findFreePosition(Vector3 orgin)
+    {
+        for(int i=0;i<20;i++)
+        {
+            Vector2 randomOffset = Random.insideUnitCircle * 2f;
+            Vector3 prova=orgin+new Vector3(randomOffset.x,randomOffset.y,0);
+            prova = ClampToMapBounds(prova);
+            if (!Physics2D.OverlapCircle(prova, 0.5f, gameManager.instance.obstacle)) return prova;
+        }
+        return orgin;
     }
 
     private IEnumerator playSpawnAnimation(Vector3 position)
@@ -125,6 +151,7 @@ public class boss : enemyClass
         else Debug.Log("danno no " + collision.gameObject.name);
     }
     */
+   
     private void OnTriggerStay2D(Collider2D other) 
     {
         Debug.Log("Trigger con: " + other.gameObject.name);
@@ -134,6 +161,7 @@ public class boss : enemyClass
             damageable.damage(atk);
         }
     }
+   
     public override void damage(float damage)
     {
         base.damage(damage);
