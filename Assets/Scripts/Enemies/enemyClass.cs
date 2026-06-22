@@ -115,8 +115,11 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
     //}
 
     // Interface Methods
+
+    
     public virtual void damage(float damage)
     {
         onDamaged(damage);
     }
+    
 }

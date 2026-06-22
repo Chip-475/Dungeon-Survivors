@@ -59,6 +59,8 @@ public class spawnManager : MonoBehaviour
                     boss.GetComponent<boss>().hp = boss.GetComponent<boss>().hpMax;
                     boss.GetComponent<boss>().atk = boss.GetComponent<boss>().atk +5f;
                     boss.GetComponent<boss>().xpGiven = boss.GetComponent<boss>().xpGiven + 500f;
+                    boss.GetComponent<boss>().skillCD = boss.GetComponent<boss>().skillCD - 1f;
+
                 }
                 else if(bosscount==2)
                 {
@@ -67,6 +69,7 @@ public class spawnManager : MonoBehaviour
                     boss.GetComponent<boss>().atk = boss.GetComponent<boss>().atk +10f;
                     boss.GetComponent<boss>().xpGiven = boss.GetComponent<boss>().xpGiven + 1000f;
                     boss.GetComponent<boss>().spd = boss.GetComponent<boss>().spd + 0.5f;
+                    boss.GetComponent<boss>().skillCD = boss.GetComponent<boss>().skillCD - 2f;
                 }
                 enemyCount++;
                 bosscount++;

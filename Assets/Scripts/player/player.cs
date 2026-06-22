@@ -40,6 +40,9 @@ public class player : MonoBehaviour, IDamageable
     public float spd;
     public float aspd;
     public float range;
+    public bool isInvicible;
+    public float iFrames;
+
 
     private Vector2 moveInput;
 
@@ -134,10 +137,19 @@ public class player : MonoBehaviour, IDamageable
             gameManager.instance.startDeath();
         }
     }
+        private IEnumerator invincibility()
+    {
+        isInvicible = true;
+        yield return new WaitForSeconds(iFrames);
+        isInvicible=false;
+    }
+    
 
     // Interface Methods
     public void damage(float damage)
     {
+        if (isInvicible) return;
         onDamaged(damage);
+        StartCoroutine(invincibility());
     }
 }

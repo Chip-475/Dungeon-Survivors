@@ -66,7 +66,6 @@ public class boss : enemyClass
         {
             StartCoroutine(playSpawnAnimation(point.position));
         }
-
         if (spawnAnimationSprites != null && spawnAnimationSprites.Length > 0)
         {
             float frameDuration = 1f / Mathf.Max(1f, spawnAnimationFPS);
@@ -77,7 +76,6 @@ public class boss : enemyClass
         {
             Instantiate(enemyToSpawn, point.position, Quaternion.identity);
             spawnManager.enemyCount++;
-            
         }
         audioManager.manager.playSFX(spawnSound, transform, data.sfx);
 
@@ -121,7 +119,7 @@ public class boss : enemyClass
         else Debug.Log("danno no " + collision.gameObject.name);
     }
     */
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnTriggerStay2D(Collider2D other) 
     {
         Debug.Log("Trigger con: " + other.gameObject.name);
         if (!other.gameObject.CompareTag("Player")) return;
