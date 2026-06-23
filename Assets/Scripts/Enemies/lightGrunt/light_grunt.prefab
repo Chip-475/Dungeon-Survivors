@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 806921996564952953}
   - component: {fileID: 3343955616969736633}
   - component: {fileID: 4256612765370918629}
-  - component: {fileID: 2070092357416305327}
   m_Layer: 5
   m_Name: hpOverlay
   m_TagString: Untagged
@@ -76,21 +75,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2070092357416305327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234015202418859520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae24e388003c244d97dd4e705b904f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::enemyHP
-  enemyClass: {fileID: 5911353155923243712}
-  hpBar: {fileID: 4256612765370918629}
-  rot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3328945643406244437
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +368,12 @@ MonoBehaviour:
   xpBar: {fileID: 0}
   deathSound: {fileID: 8300000, guid: caf5b354972c21b4ebfe3bcd6e45f228, type: 3}
   bossDeathSound: {fileID: 8300000, guid: fb0b3882571a4c84e8e582b63a83cdd8, type: 3}
+  hpBarCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   hp: 12
   hpMax: 0
   xpGiven: 12
