@@ -52,25 +52,25 @@ public class spawnManager : MonoBehaviour
         if (waves % 10 == 0)   // modifica per il boss per bug fix //2
         {
             enemyCount = 0;
-            Instantiate(boss, getPosition(1.2f), Quaternion.identity);
-            //boss newBoss = boss.Instance.GetComponent<boss>();
+            //Instantiate(boss, getPosition(1.2f), Quaternion.identity);
+            boss newBoss = Instantiate(boss, getPosition(1.2f), Quaternion.identity).GetComponent<boss>();
                 if(bosscount==1)
                 {
-                    boss.GetComponent<boss>().hpMax = boss.GetComponent<boss>().hpMax * 1.2f;
-                    boss.GetComponent<boss>().hp = boss.GetComponent<boss>().hpMax;
-                    boss.GetComponent<boss>().atk = boss.GetComponent<boss>().atk +5f;
-                    boss.GetComponent<boss>().xpGiven = boss.GetComponent<boss>().xpGiven + 500f;
-                    boss.GetComponent<boss>().skillCD = boss.GetComponent<boss>().skillCD - 1f;
+                    newBoss.hpMax*=1.2f;
+                    newBoss.hp = newBoss.hpMax;
+                    newBoss.atk+=5f;
+                    newBoss.xpGiven+=500f;
+                    newBoss.skillCD-=1f;
 
                 }
                 else if(bosscount==2)
                 {
-                    boss.GetComponent<boss>().hpMax = boss.GetComponent<boss>().hpMax * 1.4f;
-                    boss.GetComponent<boss>().hp = boss.GetComponent<boss>().hpMax;
-                    boss.GetComponent<boss>().atk = boss.GetComponent<boss>().atk +10f;
-                    boss.GetComponent<boss>().xpGiven = boss.GetComponent<boss>().xpGiven + 1000f;
-                    boss.GetComponent<boss>().spd = boss.GetComponent<boss>().spd + 0.5f;
-                    boss.GetComponent<boss>().skillCD = boss.GetComponent<boss>().skillCD - 2f;
+                    newBoss.hpMax*=1.4f;
+                    newBoss.hp=newBoss.hpMax;
+                    newBoss.atk+=10f;
+                    newBoss.atk += 1000f;
+                    newBoss.xpGiven+=0.5f;
+                    newBoss.skillCD-=2f;
                 }
                 enemyCount++;
                 bosscount++;

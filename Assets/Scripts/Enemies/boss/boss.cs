@@ -25,12 +25,19 @@ public class boss : enemyClass
     public float skillCD;
     public bool timerLockout;
 
+    private List<Vector3> puntiFissi = new();
     new void Start()
     {
         base.Start();
         skillTimer = 0;
         timerLockout = false;
         hpBar.fillAmount = 1f;
+        puntiFissi.Clear();
+        foreach(var p in points)
+        {
+            puntiFissi.Add(p.localPosition);
+        }
+        if (puntiFissi.Count != points.Count) Debug.Log("i punti non coincidono");
     }
     new void FixedUpdate()
     {
@@ -66,6 +73,7 @@ public class boss : enemyClass
     }
     public IEnumerator spawn()
     {
+        /*
         spriteAnimator?.PlaySummon();
         foreach (var point in points)
         {
@@ -85,14 +93,37 @@ public class boss : enemyClass
         {
             Instantiate(enemyToSpawn, point.position, Quaternion.identity);
             spawnManager.enemyCount++;
+        }*/
+        Debug.Log("spawn nemici");
+        if(puntiFissi.Count!=points.Count)
+        {
+            Debug.Log("punti fiss non coincisiono in spwn");
+            timerLockout = false;
+            yield break;
+        }
+        spriteAnimator?.PlaySummon();
+        for (int i = 0; i < points.Count; i++)
+        {
+            Vector3 spawnPoint = transform.position + puntiFissi[i];
+            spawnPoint = ClampToMapBounds(spawnPoint);
+            if (Physics2D.OverlapCircle(spawnPoint, 0.5f, gameManager.instance.obstacle)) spawnPoint = findFreePosition(spawnPoint);
+            StartCoroutine(playSpawnAnimation(spawnPoint));
+            Instantiate(enemyToSpawn, spawnPoint, Quaternion.identity);
+            spawnManager.enemyCount++;
         }
         audioManager.manager.playSFX(spawnSound, transform, data.sfx);
 
         timerLockout = false;
+        yield return null;
     }
 
     private Vector3 ClampToMapBounds(Vector3 pos)
     {
+        if (topLeft == null || topRight == null || bottomLeft == null || bottomRight == null)
+        {
+            Debug.Log("un angolo è null");
+            return pos;
+        }
         float minX = bottomLeft.position.x;
         float maxX=bottomRight.position.x;
         float minY = bottomLeft.position.y;
@@ -154,7 +185,7 @@ public class boss : enemyClass
    
     private void OnTriggerStay2D(Collider2D other) 
     {
-        Debug.Log("Trigger con: " + other.gameObject.name);
+        //Debug.Log("Trigger con: " + other.gameObject.name);
         if (!other.gameObject.CompareTag("Player")) return;
         if (other.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
