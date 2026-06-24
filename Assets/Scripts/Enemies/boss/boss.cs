@@ -123,7 +123,7 @@ public class boss : enemyClass
                 Instantiate(enemyToSpawn, spawnPoint, Quaternion.identity);
                 spawnManager.enemyCount++;
             }
-            else Debug.Log("enemy è null");
+            else Debug.Log("enemy ï¿½ null");
         }
         Debug.Log("dopo il for");
         audioManager.manager.playSFX(spawnSound, transform, data.sfx);
@@ -136,7 +136,7 @@ public class boss : enemyClass
     {
         if (topLeft == null || topRight == null || bottomLeft == null || bottomRight == null)
         {
-            Debug.Log("un angolo è null");
+            Debug.Log("un angolo ï¿½ null");
             return pos;
         }
         float minX = bottomLeft.position.x;
@@ -198,11 +198,11 @@ public class boss : enemyClass
     }
     */
    
-    private void OnTriggerStay2D(Collider2D other) 
+    private void OnCollisionStay2D(Collision2D other) 
     {
         //Debug.Log("Trigger con: " + other.gameObject.name);
         if (!other.gameObject.CompareTag("Player")) return;
-        if (other.TryGetComponent<IDamageable>(out IDamageable damageable))
+        if (other.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
             damageable.damage(atk);
         }

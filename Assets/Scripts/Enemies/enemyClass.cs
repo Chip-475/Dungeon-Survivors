@@ -75,7 +75,12 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
             xpGiven=0;
             
         }
-        Destroy(gameObject);
+        if(gameObject.CompareTag("Boss"))
+        {
+            return;
+        } 
+            Destroy(gameObject);
+        
     }
     protected virtual void OnDestroy()
     {
