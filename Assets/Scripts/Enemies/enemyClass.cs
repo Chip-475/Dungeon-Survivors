@@ -91,6 +91,11 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
             //player.playerInstance.hp = newHp;
             player.playerInstance.StartCoroutine(player.playerInstance.hpBar.hpBarMovement(player.playerInstance.hp, newHp));
         }
+        Vector3 deathPosition = transform.position;
+        bool isBoss = TryGetComponent(out boss _);
+        AudioClip clipToPlay= isBoss ? bossDeathSound : deathSound;
+        if(audioManager.manager!=null&&clipToPlay!=null)audioManager.manager.playSFXAtPosition(clipToPlay,deathPosition,data.sfx);
+        /*
         if(TryGetComponent(out boss _))
         {
             audioManager.manager.playSFX(bossDeathSound, transform, data.sfx);
@@ -98,7 +103,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         else
         {
             audioManager.manager.playSFX(deathSound, transform, data.sfx);
-        }
+        }*/
     }
 
 

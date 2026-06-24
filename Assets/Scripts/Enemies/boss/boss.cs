@@ -33,6 +33,11 @@ public class boss : enemyClass
         timerLockout = false;
         hpBar.fillAmount = 1f;
         puntiFissi.Clear();
+        spawnManager sm = FindObjectOfType<spawnManager>();
+        topRight = sm.topRight;
+        bottomRight = sm.bottomRight;
+        bottomLeft = sm.bottomLeft;
+        topLeft= sm.topLeft;
         foreach(var p in points)
         {
             puntiFissi.Add(p.localPosition);
@@ -47,14 +52,17 @@ public class boss : enemyClass
 
         if (!timerLockout) skillTimer += Time.deltaTime;
 
+        //Debug.Log("skillTimer: " + skillTimer + " timerLockout " + timerLockout + " dis: " + dis + " hit: " + (hit.collider != null));
+        //Debug.Log("FixedUpdate gira, skillTimer: " + skillTimer + " timerLockout: " + timerLockout + " deltaTime: " + Time.deltaTime);
         if (skillTimer > skillCD && dis < fovRange && !hit)
         {
             var x = Random.Range(0, 2);
+            Debug.Log("Skill scelta: " + (x == 0 ? "dash" : "spawn"));
             if (x == 0) StartCoroutine(dash());
             else StartCoroutine(spawn());
 
             skillTimer = 0;
-            timerLockout = true;
+            timerLockout = false;
         }
 
         if(_agent.enabled) _agent.SetDestination(playerObj.transform.position);
@@ -62,6 +70,7 @@ public class boss : enemyClass
 
     public IEnumerator dash()
     {
+        Debug.Log("dash iniziata");
         float duration = 1f;
         spriteAnimator?.PlayDash();
         _agent.enabled = false;
@@ -70,6 +79,7 @@ public class boss : enemyClass
         _agent.enabled = true;
 
         timerLockout = false;
+        Debug.Log("finito con timerLockaut " + timerLockout);
     }
     public IEnumerator spawn()
     {
@@ -108,12 +118,17 @@ public class boss : enemyClass
             spawnPoint = ClampToMapBounds(spawnPoint);
             if (Physics2D.OverlapCircle(spawnPoint, 0.5f, gameManager.instance.obstacle)) spawnPoint = findFreePosition(spawnPoint);
             StartCoroutine(playSpawnAnimation(spawnPoint));
-            Instantiate(enemyToSpawn, spawnPoint, Quaternion.identity);
-            spawnManager.enemyCount++;
+            if (enemyToSpawn != null)
+            {
+                Instantiate(enemyToSpawn, spawnPoint, Quaternion.identity);
+                spawnManager.enemyCount++;
+            }
+            else Debug.Log("enemy è null");
         }
+        Debug.Log("dopo il for");
         audioManager.manager.playSFX(spawnSound, transform, data.sfx);
-
         timerLockout = false;
+        Debug.Log("finito con " + timerLockout);
         yield return null;
     }
 
