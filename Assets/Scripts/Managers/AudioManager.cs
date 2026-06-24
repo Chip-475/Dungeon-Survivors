@@ -116,4 +116,13 @@ public class audioManager : MonoBehaviour
 
         mixer.SetFloat(parameter, Mathf.Log10(volume) * 20);
     }
+
+    public void playSFXAtPosition(AudioClip clip, Vector3 position, float volume)
+    {
+        AudioSource audioSource = Instantiate(source, position, Quaternion.identity);
+        audioSource.clip = clip;
+        audioSource.volume = volume;
+        audioSource.Play();
+        Destroy(audioSource.gameObject, audioSource.clip.length);
+    }
 }

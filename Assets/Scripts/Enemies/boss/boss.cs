@@ -25,12 +25,24 @@ public class boss : enemyClass
     public float skillCD;
     public bool timerLockout;
 
+    private List<Vector3> puntiFissi = new();
     new void Start()
     {
         base.Start();
         skillTimer = 0;
         timerLockout = false;
         hpBar.fillAmount = 1f;
+        puntiFissi.Clear();
+        spawnManager sm = FindObjectOfType<spawnManager>();
+        topRight = sm.topRight;
+        bottomRight = sm.bottomRight;
+        bottomLeft = sm.bottomLeft;
+        topLeft= sm.topLeft;
+        foreach(var p in points)
+        {
+            puntiFissi.Add(p.localPosition);
+        }
+        if (puntiFissi.Count != points.Count) Debug.Log("i punti non coincidono");
     }
     new void FixedUpdate()
     {
@@ -40,14 +52,17 @@ public class boss : enemyClass
 
         if (!timerLockout) skillTimer += Time.deltaTime;
 
+        //Debug.Log("skillTimer: " + skillTimer + " timerLockout " + timerLockout + " dis: " + dis + " hit: " + (hit.collider != null));
+        //Debug.Log("FixedUpdate gira, skillTimer: " + skillTimer + " timerLockout: " + timerLockout + " deltaTime: " + Time.deltaTime);
         if (skillTimer > skillCD && dis < fovRange && !hit)
         {
             var x = Random.Range(0, 2);
+            Debug.Log("Skill scelta: " + (x == 0 ? "dash" : "spawn"));
             if (x == 0) StartCoroutine(dash());
             else StartCoroutine(spawn());
 
             skillTimer = 0;
-            timerLockout = true;
+            timerLockout = false;
         }
 
         if(_agent.enabled) _agent.SetDestination(playerObj.transform.position);
@@ -55,6 +70,7 @@ public class boss : enemyClass
 
     public IEnumerator dash()
     {
+        Debug.Log("dash iniziata");
         float duration = 1f;
         spriteAnimator?.PlayDash();
         _agent.enabled = false;
@@ -63,9 +79,11 @@ public class boss : enemyClass
         _agent.enabled = true;
 
         timerLockout = false;
+        Debug.Log("finito con timerLockaut " + timerLockout);
     }
     public IEnumerator spawn()
     {
+        /*
         spriteAnimator?.PlaySummon();
         foreach (var point in points)
         {
@@ -85,14 +103,42 @@ public class boss : enemyClass
         {
             Instantiate(enemyToSpawn, point.position, Quaternion.identity);
             spawnManager.enemyCount++;
+        }*/
+        Debug.Log("spawn nemici");
+        if(puntiFissi.Count!=points.Count)
+        {
+            Debug.Log("punti fiss non coincisiono in spwn");
+            timerLockout = false;
+            yield break;
         }
+        spriteAnimator?.PlaySummon();
+        for (int i = 0; i < points.Count; i++)
+        {
+            Vector3 spawnPoint = transform.position + puntiFissi[i];
+            spawnPoint = ClampToMapBounds(spawnPoint);
+            if (Physics2D.OverlapCircle(spawnPoint, 0.5f, gameManager.instance.obstacle)) spawnPoint = findFreePosition(spawnPoint);
+            StartCoroutine(playSpawnAnimation(spawnPoint));
+            if (enemyToSpawn != null)
+            {
+                Instantiate(enemyToSpawn, spawnPoint, Quaternion.identity);
+                spawnManager.enemyCount++;
+            }
+            else Debug.Log("enemy è null");
+        }
+        Debug.Log("dopo il for");
         audioManager.manager.playSFX(spawnSound, transform, data.sfx);
-
         timerLockout = false;
+        Debug.Log("finito con " + timerLockout);
+        yield return null;
     }
 
     private Vector3 ClampToMapBounds(Vector3 pos)
     {
+        if (topLeft == null || topRight == null || bottomLeft == null || bottomRight == null)
+        {
+            Debug.Log("un angolo è null");
+            return pos;
+        }
         float minX = bottomLeft.position.x;
         float maxX=bottomRight.position.x;
         float minY = bottomLeft.position.y;
@@ -154,7 +200,7 @@ public class boss : enemyClass
    
     private void OnTriggerStay2D(Collider2D other) 
     {
-        Debug.Log("Trigger con: " + other.gameObject.name);
+        //Debug.Log("Trigger con: " + other.gameObject.name);
         if (!other.gameObject.CompareTag("Player")) return;
         if (other.TryGetComponent<IDamageable>(out IDamageable damageable))
         {

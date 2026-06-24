@@ -166,7 +166,7 @@ Transform:
   m_GameObject: {fileID: 5150948367337922774}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.94, z: 0}
+  m_LocalPosition: {x: 6.70715, y: 28.5346, z: 0}
   m_LocalScale: {x: 11, y: 11, z: 11}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -705,7 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae24e388003c244d97dd4e705b904f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyHP
-  enemyClass: {fileID: 0}
+  enemyClass: {fileID: 7942540714545883241}
   hpBar: {fileID: 977601984224474734}
   rot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &9058182559234801761
