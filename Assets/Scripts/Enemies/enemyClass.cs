@@ -39,7 +39,8 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
         playerObj = GameObject.FindGameObjectWithTag("Player");
         player = playerObj.GetComponent<player>();
-        xpBar = playerObj.GetComponent<xpBar>();
+        xpBar = FindObjectOfType<xpBar>();
+        if (xpBar == null) Debug.LogWarning("xp Null" + gameObject.name);
         prb = playerObj.GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         _agent = GetComponent<NavMeshAgent>();
@@ -79,7 +80,7 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         {
             return;
         } 
-            Destroy(gameObject);
+        Destroy(gameObject);
         
     }
     protected virtual void OnDestroy()
@@ -88,9 +89,9 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         print(data.killCount);
         spawnManager.enemyCount--;
         data.xpQueue.Enqueue(xpGiven);
-        if(!xpBar.queueing) xpBar.startMedium();
+        if(!xpBar.queueing&&xpBar!=null) xpBar.startMedium();
         //ogni 1o kill recuperi 10 di vita
-        if(data.killCount%10==0)
+        if(data.killCount%10==0&&player.playerInstance!=null&&player.playerInstance.hpBar!=null)
         {
             float newHp = Mathf.Clamp(player.playerInstance.hp + 10f, 0, player.playerInstance.hpMax);
             //player.playerInstance.hp = newHp;

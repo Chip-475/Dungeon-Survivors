@@ -13,6 +13,7 @@ public class hpBar : MonoBehaviour // ATTACHED TO PLAYER
 
     public IEnumerator hpBarMovement(float currentHp, float nextHp)
     {
+        if (hpBarObject == null) yield break;
         movementId++;
         int currentMovementId = movementId;
 

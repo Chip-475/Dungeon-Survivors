@@ -123,7 +123,7 @@ public class boss : enemyClass
                 Instantiate(enemyToSpawn, spawnPoint, Quaternion.identity);
                 spawnManager.enemyCount++;
             }
-            else Debug.Log("enemy � null");
+            else Debug.Log("enemy null");
         }
         Debug.Log("dopo il for");
         audioManager.manager.playSFX(spawnSound, transform, data.sfx);
