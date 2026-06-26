@@ -125,7 +125,7 @@ public class boss : enemyClass
             }
             else Debug.Log("enemy null");
         }
-        Debug.Log("dopo il for");
+       // Debug.Log("dopo il for");
         audioManager.manager.playSFX(spawnSound, transform, data.sfx);
         timerLockout = false;
         Debug.Log("finito con " + timerLockout);
