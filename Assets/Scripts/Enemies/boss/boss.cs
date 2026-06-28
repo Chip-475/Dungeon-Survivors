@@ -74,6 +74,13 @@ public class boss : enemyClass
         float duration = 1f;
         spriteAnimator?.PlayDash();
         _agent.enabled = false;
+        Vector3 startPos = transform.position;
+        Vector3 targetPos=player.transform.position;
+        RaycastHit2D hit = Physics2D.Raycast(startPos, (targetPos - startPos).normalized, Vector2.Distance(startPos, targetPos), gameManager.instance.obstacle);
+        if (hit.collider != null)
+        {
+            targetPos = hit.point;
+        }
         transform.DOMove(player.transform.position, duration);
         yield return new WaitForSeconds(duration);
         _agent.enabled = true;
