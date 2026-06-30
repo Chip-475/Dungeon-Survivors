@@ -31,9 +31,8 @@ public class spawnManager : MonoBehaviour
             //recupero del 25% della vita 
             if(!tenacityEffect.instance.tenacity)
             {
-                //float newHp=Mathf.Clamp(player.playerInstance.hp+player.playerInstance.hpMax*0.25f,0,player.playerInstance.hpMax);
-                //StartCoroutine(player.playerInstance.hpBar.hpBarMovement(player.playerInstance.hp, newHp));
-                player.playerInstance.healAmount(player.playerInstance.hpMax * 0.25f);
+                float newHp=Mathf.Clamp(player.playerInstance.hp+player.playerInstance.hpMax*0.25f,0,player.playerInstance.hpMax);
+                StartCoroutine(player.playerInstance.hpBar.hpBarMovement(player.playerInstance.hp, newHp));
             }
             Invoke(nameof(newWave), 2.5f);
             isSpawning = true;

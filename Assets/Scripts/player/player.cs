@@ -137,7 +137,7 @@ public class player : MonoBehaviour, IDamageable
             gameManager.instance.startDeath();
         }
     }
-    private IEnumerator invincibility()
+        private IEnumerator invincibility()
     {
         isInvicible = true;
         yield return new WaitForSeconds(iFrames);
@@ -151,13 +151,5 @@ public class player : MonoBehaviour, IDamageable
         if (isInvicible) return;
         onDamaged(damage);
         StartCoroutine(invincibility());
-    }
-
-    public void healAmount(float amount)
-    {
-        float currentHp = hp;
-        float newHp=Mathf.Clamp(hp+amount,0, hpMax);
-        hp = newHp;
-        StartCoroutine(hpBar.hpBarMovement(currentHp, newHp));
     }
 }

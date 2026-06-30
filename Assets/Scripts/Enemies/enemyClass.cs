@@ -93,10 +93,9 @@ public abstract class enemyClass : MonoBehaviour, IDamageable
         //ogni 1o kill recuperi 10 di vita
         if(data.killCount%10==0&&player.playerInstance!=null&&player.playerInstance.hpBar!=null)
         {
-            //float newHp = Mathf.Clamp(player.playerInstance.hp + 10f, 0, player.playerInstance.hpMax);
+            float newHp = Mathf.Clamp(player.playerInstance.hp + 10f, 0, player.playerInstance.hpMax);
             //player.playerInstance.hp = newHp;
-            //player.playerInstance.StartCoroutine(player.playerInstance.hpBar.hpBarMovement(player.playerInstance.hp, newHp));
-            player.playerInstance.healAmount(10f);
+            player.playerInstance.StartCoroutine(player.playerInstance.hpBar.hpBarMovement(player.playerInstance.hp, newHp));
         }
         Vector3 deathPosition = transform.position;
         bool isBoss = TryGetComponent(out boss _);

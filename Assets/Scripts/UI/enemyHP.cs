@@ -8,7 +8,7 @@ public class enemyHP : MonoBehaviour
     public Quaternion rot;
     private Transform parentrans;
     
-    
+     
     void Start()
     {
         parentrans = gameObject.transform.parent.parent.parent;
