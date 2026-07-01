@@ -104,6 +104,7 @@ public class boss : enemyClass
             Instantiate(enemyToSpawn, point.position, Quaternion.identity);
             spawnManager.enemyCount++;
         }*/
+        List<Vector3> spawnPoints = new List<Vector3>();
         Debug.Log("spawn nemici");
         if(puntiFissi.Count!=points.Count)
         {
@@ -114,18 +115,27 @@ public class boss : enemyClass
         spriteAnimator?.PlaySummon();
         for (int i = 0; i < points.Count; i++)
         {
-            Vector3 spawnPoint = transform.position + puntiFissi[i];
+            Vector3 spawnPoint = points[i].position;
             spawnPoint = ClampToMapBounds(spawnPoint);
             if (Physics2D.OverlapCircle(spawnPoint, 0.5f, gameManager.instance.obstacle)) spawnPoint = findFreePosition(spawnPoint);
+            spawnPoints.Add(spawnPoint);
             StartCoroutine(playSpawnAnimation(spawnPoint));
+        }
+        // Debug.Log("dopo il for");
+        if(spawnAnimationSprites!=null&& spawnAnimationSprites.Length>0)
+        {
+            float totalAnimTime = spawnAnimationSprites.Length / Mathf.Max(1f, spawnAnimationFPS);
+            yield return new WaitForSeconds(totalAnimTime);
+        }
+        foreach(Vector3 spawnPoint in spawnPoints)
+        {
             if (enemyToSpawn != null)
             {
                 Instantiate(enemyToSpawn, spawnPoint, Quaternion.identity);
                 spawnManager.enemyCount++;
             }
-            else Debug.Log("enemy null");
+            else Debug.Log("nemico non spawnato");
         }
-       // Debug.Log("dopo il for");
         audioManager.manager.playSFX(spawnSound, transform, data.sfx);
         timerLockout = false;
         Debug.Log("finito con " + timerLockout);

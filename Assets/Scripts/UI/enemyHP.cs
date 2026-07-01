@@ -19,7 +19,7 @@ public class enemyHP : MonoBehaviour
         hpBar.fillAmount = enemyClass.hp/enemyClass.hpMax;
         float scalex = parentrans.localScale.x;
 
-        if (scalex==-1)
+        if (scalex<0)
         {
             GetComponent<RectTransform>().localScale = new Vector3(-1, 1, 1);
         }
