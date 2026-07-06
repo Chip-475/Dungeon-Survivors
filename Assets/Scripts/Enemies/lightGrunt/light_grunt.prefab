@@ -366,8 +366,8 @@ MonoBehaviour:
   playerObj: {fileID: 0}
   player: {fileID: 0}
   xpBar: {fileID: 0}
-  deathSound: {fileID: 8300000, guid: caf5b354972c21b4ebfe3bcd6e45f228, type: 3}
-  bossDeathSound: {fileID: 8300000, guid: 8345dce4132357d4d9cd423f99207ad0, type: 3}
+  deathSound: {fileID: 8300000, guid: 8345dce4132357d4d9cd423f99207ad0, type: 3}
+  bossDeathSound: {fileID: 8300000, guid: fb0b3882571a4c84e8e582b63a83cdd8, type: 3}
   hpBarCurve:
     serializedVersion: 2
     m_Curve: []

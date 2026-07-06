@@ -10,14 +10,21 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void Start()
     {
-        masterSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("master", 1f));
-        sfxSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("sfx", 1f));
-        musicSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("music", 1f));
+        SyncSliders();
     }
-
+    void OnEnable()
+    {
+        SyncSliders();
+    }
     public void onOptionsClick()
     {
         options.SetActive(true);
+    }
+    private void SyncSliders()
+    {
+        masterSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("master", 1f));
+        sfxSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("sfx", 1f));
+        musicSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("music", 1f));
     }
     public void exitClick()
     {

@@ -43,7 +43,7 @@ public class audioManager : MonoBehaviour
     public void setBGM(float volume)
     {
         data.music = volume;
-        PlayerPrefs.SetFloat("bgm", volume);
+        PlayerPrefs.SetFloat("music", volume);
         ApplyMixerVolume("BGM", volume);
     }
     public void Start()
