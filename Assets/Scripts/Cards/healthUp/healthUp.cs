@@ -4,10 +4,10 @@ public class healthUp : cardClass, ICardEffect
 {
     public void effect()
     {
-        player.playerInstance.hpMax += player.playerInstance.hpMax * 0.25f;
-        StartCoroutine(player.playerInstance.hpBar.hpBarMovement(player.playerInstance.hp, player.playerInstance.hp + player.playerInstance.hp * 0.25f));
+        Player.instance.hpMax += Player.instance.hpMax * 0.25f;
+        StartCoroutine(Player.instance.hpBar.hpBarMovement(Player.instance.hp, Player.instance.hp + Player.instance.hp * 0.25f));
     }
-    public void cardEffect()
+    public void CardEffect()
     {
         effect();
     }

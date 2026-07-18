@@ -4,10 +4,10 @@ public class damageUp : cardClass, ICardEffect
 {
     public void effect()
     {
-        player.playerInstance.atk += player.playerInstance.atk * 0.2f;
+        Player.instance.atk += Player.instance.atk * 0.2f;
     }
 
-    public void cardEffect()
+    public void CardEffect()
     {
         effect();
     }

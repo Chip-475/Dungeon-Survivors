@@ -6,7 +6,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine.UI; 
 
-public class boss : enemyClass
+public class Boss : EnemyClass
 {
     public Image hpBar;
     public AudioClip spawnSound;
@@ -33,7 +33,7 @@ public class boss : enemyClass
         timerLockout = false;
         hpBar.fillAmount = 1f;
         puntiFissi.Clear();
-        spawnManager sm = FindObjectOfType<spawnManager>();
+        SpawnManager sm = SpawnManager.instance;
         topRight = sm.topRight;
         bottomRight = sm.bottomRight;
         bottomLeft = sm.bottomLeft;
@@ -47,14 +47,14 @@ public class boss : enemyClass
     new void FixedUpdate()
     {
         base.FixedUpdate();
-        float dis = Vector2.Distance(transform.position, playerObj.transform.position);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, playerObj.transform.position - transform.position, dis, gameManager.instance.obstacle);
+        float dis = Vector2.Distance(transform.position, Player.instance.transform.position);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Player.instance.transform.position - transform.position, dis, GameManager.instance.obstacle);
 
         if (!timerLockout) skillTimer += Time.deltaTime;
 
         //Debug.Log("skillTimer: " + skillTimer + " timerLockout " + timerLockout + " dis: " + dis + " hit: " + (hit.collider != null));
         //Debug.Log("FixedUpdate gira, skillTimer: " + skillTimer + " timerLockout: " + timerLockout + " deltaTime: " + Time.deltaTime);
-        if (skillTimer > skillCD && dis < fovRange && !hit)
+        if (skillTimer > skillCD && dis < info.fovRange && !hit)
         {
             var x = Random.Range(0, 2);
             Debug.Log("Skill scelta: " + (x == 0 ? "dash" : "spawn"));
@@ -65,7 +65,7 @@ public class boss : enemyClass
             timerLockout = false;
         }
 
-        if(_agent.enabled) _agent.SetDestination(playerObj.transform.position);
+        if(agent.enabled) agent.SetDestination(Player.instance.transform.position);
     }
 
     public IEnumerator dash()
@@ -73,10 +73,10 @@ public class boss : enemyClass
         Debug.Log("dash iniziata");
         float duration = 1f;
         spriteAnimator?.PlayDash();
-        _agent.enabled = false;
-        transform.DOMove(player.transform.position, duration);
+        agent.enabled = false;
+        transform.DOMove(Player.instance.transform.position, duration);
         yield return new WaitForSeconds(duration);
-        _agent.enabled = true;
+        agent.enabled = true;
 
         timerLockout = false;
         Debug.Log("finito con timerLockaut " + timerLockout);
@@ -117,7 +117,7 @@ public class boss : enemyClass
         {
             Vector3 spawnPoint = points[i].position;
             spawnPoint = ClampToMapBounds(spawnPoint);
-            if (Physics2D.OverlapCircle(spawnPoint, 0.5f, gameManager.instance.obstacle)) spawnPoint = findFreePosition(spawnPoint);
+            if (Physics2D.OverlapCircle(spawnPoint, 0.5f, GameManager.instance.obstacle)) spawnPoint = findFreePosition(spawnPoint);
             spawnPoints.Add(spawnPoint);
             StartCoroutine(playSpawnAnimation(spawnPoint));
         }
@@ -132,11 +132,11 @@ public class boss : enemyClass
             if (enemyToSpawn != null)
             {
                 Instantiate(enemyToSpawn, spawnPoint, Quaternion.identity);
-                spawnManager.enemyCount++;
+                SpawnManager.enemyCount++;
             }
             else Debug.Log("nemico non spawnato");
         }
-        audioManager.manager.playSFX(spawnSound, transform, data.sfx);
+        audioManager.manager.playSFX(spawnSound, transform, Data.sfx);
         timerLockout = false;
         Debug.Log("finito con " + timerLockout);
         yield return null;
@@ -165,7 +165,7 @@ public class boss : enemyClass
             Vector2 randomOffset = Random.insideUnitCircle * 2f;
             Vector3 prova=orgin+new Vector3(randomOffset.x,randomOffset.y,0);
             prova = ClampToMapBounds(prova);
-            if (!Physics2D.OverlapCircle(prova, 0.5f, gameManager.instance.obstacle)) return prova;
+            if (!Physics2D.OverlapCircle(prova, 0.5f, GameManager.instance.obstacle)) return prova;
         }
         return orgin;
     }
@@ -193,34 +193,15 @@ public class boss : enemyClass
 
         Destroy(spawnEffect);
     }
-    /*
-    protected override void OnCollisionEnter2D(Collision2D collision)
+
+    protected new void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collisione boss"+collision.gameObject.name+collision.gameObject.tag+collision.gameObject.layer);
+        return;
+    }
+    private void OnCollisionStay2D(Collision2D collision) 
+    {
         if (!collision.gameObject.CompareTag("Player")) return;
-        //Debug.Log("Palyer trovato");
-        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
-        {
-            Debug.Log("posso applicare il danno");
-            damageable.damage(5f);
-        }
-        else Debug.Log("danno no " + collision.gameObject.name);
-    }
-    */
-   
-    private void OnCollisionStay2D(Collision2D other) 
-    {
-        //Debug.Log("Trigger con: " + other.gameObject.name);
-        if (!other.gameObject.CompareTag("Player")) return;
-        if (other.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
-        {
-            damageable.damage(atk);
-        }
-    }
-   
-    public override void damage(float damage)
-    {
-        base.damage(damage);
-        hpBar.fillAmount = hp / hpMax;
+
+        Player.instance.ChangeHealth(info.atk);
     }
 }

@@ -5,7 +5,7 @@ public class startButton : MonoBehaviour
 {
     public async void onClick()
     {
-        data.reset();
+        Data.reset();
         Time.timeScale = 1.0f;
         await SceneManager.LoadSceneAsync("loadingScreen", LoadSceneMode.Single);
         await SceneManager.LoadSceneAsync("gameScene", LoadSceneMode.Single);

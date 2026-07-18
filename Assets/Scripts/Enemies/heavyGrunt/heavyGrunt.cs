@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class heavyGrunt : enemyClass
+public class heavyGrunt : EnemyClass
 {
     private new void Start()
     {
@@ -11,7 +11,7 @@ public class heavyGrunt : enemyClass
     {
         base.FixedUpdate();
 
-        _agent.SetDestination(playerObj.transform.position);
+        agent.SetDestination(Player.instance.transform.position);
     }
 
     private new void OnCollisionEnter2D(Collision2D collision)

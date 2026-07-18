@@ -363,24 +363,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed35013f20e0884ca64f1d2e85481a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::lightGrunt
-  playerObj: {fileID: 0}
-  player: {fileID: 0}
-  xpBar: {fileID: 0}
-  deathSound: {fileID: 8300000, guid: 8345dce4132357d4d9cd423f99207ad0, type: 3}
-  bossDeathSound: {fileID: 8300000, guid: fb0b3882571a4c84e8e582b63a83cdd8, type: 3}
+  rb: {fileID: 0}
+  collider_: {fileID: 0}
+  agent: {fileID: 0}
+  spriteAnimator: {fileID: 0}
+  baseInfo: {fileID: 11400000, guid: fd7c8326a7407e64691157c72961b4ac, type: 2}
+  info: {fileID: 0}
   hpBarCurve:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  hp: 12
-  hpMax: 0
-  xpGiven: 12
-  atk: 10
-  spd: 3
-  fovRange: 5
-  fovAngle: 120
 --- !u!114 &6875082948372615043
 MonoBehaviour:
   m_ObjectHideFlags: 0

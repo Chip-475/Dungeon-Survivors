@@ -1,17 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-public class NewMonoBehaviourScript : MonoBehaviour
+public class MainMenuAudioOptions : MonoBehaviour
 {
     public GameObject options;
     public Slider masterSlider;
     public Slider sfxSlider;
     public Slider musicSlider;
 
-    void Start()
-    {
-        SyncSliders();
-    }
     void OnEnable()
     {
         SyncSliders();

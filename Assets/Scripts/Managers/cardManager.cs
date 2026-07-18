@@ -115,7 +115,7 @@ public class cardManager : MonoBehaviour
         }
 
         pickedCards.Add(entry);
-        entry.effect.GetComponent<ICardEffect>().cardEffect();
+        entry.effect.GetComponent<ICardEffect>().CardEffect();
 
         if (!entry.levelable)
         {

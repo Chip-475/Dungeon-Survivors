@@ -30,32 +30,32 @@ public class audioManager : MonoBehaviour
 
     public void setMaster(float volume)
     {
-        data.master = volume;
+        Data.master = volume;
         PlayerPrefs.SetFloat("master",volume);
         ApplyMixerVolume("Master", volume);
     }
     public void setSFX(float volume)
     {
-        data.sfx = volume;
+        Data.sfx = volume;
         PlayerPrefs.SetFloat("sfx", volume);
         ApplyMixerVolume("SFX", volume);
     }
     public void setBGM(float volume)
     {
-        data.music = volume;
+        Data.music = volume;
         PlayerPrefs.SetFloat("music", volume);
         ApplyMixerVolume("BGM", volume);
     }
     public void Start()
     {
-        data.master = PlayerPrefs.GetFloat("master",1f);
-        data.sfx = PlayerPrefs.GetFloat("sfx",1f);
-        data.music = PlayerPrefs.GetFloat("music", 1f);
+        Data.master = PlayerPrefs.GetFloat("master",1f);
+        Data.sfx = PlayerPrefs.GetFloat("sfx",1f);
+        Data.music = PlayerPrefs.GetFloat("music", 1f);
         EnsureSliderReferences();
         SyncSlidersWithSavedValues();
-        ApplyMixerVolume("Master", data.master);
-        ApplyMixerVolume("SFX", data.sfx);
-        ApplyMixerVolume("BGM", data.music);
+        ApplyMixerVolume("Master", Data.master);
+        ApplyMixerVolume("SFX", Data.sfx);
+        ApplyMixerVolume("BGM", Data.music);
     }
 
     private void EnsureSliderReferences()
@@ -92,17 +92,17 @@ public class audioManager : MonoBehaviour
     {
         if (masterSlider != null)
         {
-            masterSlider.SetValueWithoutNotify(data.master);
+            masterSlider.SetValueWithoutNotify(Data.master);
         }
 
         if (sfxSlider != null)
         {
-            sfxSlider.SetValueWithoutNotify(data.sfx);
+            sfxSlider.SetValueWithoutNotify(Data.sfx);
         }
 
         if (musicSlider != null)
         {
-            musicSlider.SetValueWithoutNotify(data.music);
+            musicSlider.SetValueWithoutNotify(Data.music);
         }
     }
 

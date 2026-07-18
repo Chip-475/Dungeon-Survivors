@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class data : MonoBehaviour
+public class Data : MonoBehaviour
 {
     // Misc
     public static bool isPaused;

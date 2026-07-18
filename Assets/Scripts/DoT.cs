@@ -19,7 +19,7 @@ public class DoT : MonoBehaviour
     {
         for(int i = (int)(duration / tick); i >= 0; i--)
         {
-            damageable.damage(damage);
+            damageable.ChangeHealth(damage);
             yield return new WaitForSeconds(tick);
         }
         Destroy(this);

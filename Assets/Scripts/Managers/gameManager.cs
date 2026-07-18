@@ -2,9 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class gameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static gameManager instance;
+    public static GameManager instance;
     public enum gameState
     {
         running,

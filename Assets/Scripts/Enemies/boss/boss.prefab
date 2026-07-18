@@ -246,24 +246,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d75548f0d28e8b468296234eba74e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::boss
-  playerObj: {fileID: 0}
-  player: {fileID: 0}
-  xpBar: {fileID: 0}
-  deathSound: {fileID: 8300000, guid: caf5b354972c21b4ebfe3bcd6e45f228, type: 3}
-  bossDeathSound: {fileID: 8300000, guid: fb0b3882571a4c84e8e582b63a83cdd8, type: 3}
+  rb: {fileID: 0}
+  collider_: {fileID: 0}
+  agent: {fileID: 0}
+  spriteAnimator: {fileID: 0}
+  baseInfo: {fileID: 11400000, guid: 09ca7dc88663bf34ba235a87e3677b10, type: 2}
+  info: {fileID: 0}
   hpBarCurve:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  hp: 300
-  hpMax: 300
-  xpGiven: 1000
-  atk: 20
-  spd: 2.5
-  fovRange: 10
-  fovAngle: 180
   hpBar: {fileID: 977601984224474734}
   spawnSound: {fileID: 8300000, guid: 8d0f77ae8f787624d93dee39b3720fb4, type: 3}
   points:

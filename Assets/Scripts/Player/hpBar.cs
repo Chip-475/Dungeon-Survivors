@@ -17,11 +17,11 @@ public class hpBar : MonoBehaviour // ATTACHED TO PLAYER
         movementId++;
         int currentMovementId = movementId;
 
-        nextHp = Mathf.Clamp(nextHp, 0, player.playerInstance.hpMax);
-        player.playerInstance.hp = nextHp;
+        nextHp = Mathf.Clamp(nextHp, 0, Player.instance.hpMax);
+        Player.instance.hp = nextHp;
 
-        float currentFill = hpBarObject != null ? hpBarObject.fillAmount : currentHp / player.playerInstance.hpMax;
-        float nextFill = player.playerInstance.hpMax > 0 ? nextHp / player.playerInstance.hpMax : 0f;
+        float currentFill = hpBarObject != null ? hpBarObject.fillAmount : currentHp / Player.instance.hpMax;
+        float nextFill = Player.instance.hpMax > 0 ? nextHp / Player.instance.hpMax : 0f;
         hpBarCurve = AnimationCurve.EaseInOut(0, currentFill, animTime, nextFill);
 
         running = true;

@@ -4,12 +4,12 @@ using UnityEngine;
 public class camera : MonoBehaviour
 {
     private GameObject playerObj;
-    private player player;
+    private Player player;
 
     private void Start()
     {
         playerObj = GameObject.FindGameObjectWithTag("Player");
-        player = playerObj.GetComponent<player>();
+        player = playerObj.GetComponent<Player>();
         StartCoroutine(cameraFollow());
     }
     IEnumerator cameraFollow()

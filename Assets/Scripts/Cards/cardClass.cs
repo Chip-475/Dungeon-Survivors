@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class cardClass : MonoBehaviour
 {
-    protected player player;
+    protected Player player;
     public enum cardType
     {
         damageUp,
@@ -21,6 +21,6 @@ public class cardClass : MonoBehaviour
 
     protected void Start()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<player>();
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 }

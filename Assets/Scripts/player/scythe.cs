@@ -6,7 +6,7 @@ public class scythe : MonoBehaviour
 {
     List<IDamageable> toDamage = new List<IDamageable>();
 
-    public player player;
+    public Player player;
     public SpriteRenderer sr;
     public Sprite baseSprite;
     public Sprite fireSprite;
@@ -15,7 +15,7 @@ public class scythe : MonoBehaviour
     public AudioClip attack;
    void Start()
 {
-    player = GetComponentInParent<player>();
+    player = GetComponentInParent<Player>();
     sr = GetComponent<SpriteRenderer>();
     if (baseSprite == null) baseSprite = sr.sprite;
     updateSprite();
@@ -29,7 +29,7 @@ public class scythe : MonoBehaviour
 
     public IEnumerator swing()
     {
-        audioManager.manager.playSFX(attack,player.transform,data.sfx);
+        audioManager.manager.playSFX(attack,player.transform,Data.sfx);
         Quaternion start = Quaternion.Euler(0, 0, 60);
         Quaternion end = Quaternion.Euler(0, 0, -60);
 
@@ -73,12 +73,12 @@ public class scythe : MonoBehaviour
         if (other.TryGetComponent<IDamageable>(out IDamageable damageable) && !toDamage.Contains(damageable))
         {
             toDamage.Add(damageable);
-            damageable.damage(player.atk);
+            damageable.ChangeHealth(player.atk);
 
-            if (data.fireAspectLvl > 0 && !other.gameObject.TryGetComponent<DoT>(out _))
+            if (Data.fireAspectLvl > 0 && !other.gameObject.TryGetComponent<DoT>(out _))
             {
                 var dot = other.gameObject.AddComponent<DoT>();
-                dot.damage = (player.atk * 0.2f) * data.fireAspectLvl;
+                dot.damage = (player.atk * 0.2f) * Data.fireAspectLvl;
                 dot.duration = 3;
                 dot.tick = 0.5f;
             }
@@ -98,7 +98,7 @@ public class scythe : MonoBehaviour
     {
         if (sr == null) return;
 
-        if (data.fireAspectLvl > 0 && fireSprite != null) sr.sprite = fireSprite;
+        if (Data.fireAspectLvl > 0 && fireSprite != null) sr.sprite = fireSprite;
         else if (baseSprite != null) sr.sprite = baseSprite;
     }
 }
