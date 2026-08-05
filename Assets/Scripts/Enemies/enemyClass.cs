@@ -16,6 +16,7 @@ public abstract class EnemyClass : MonoBehaviour, IDamageable
 
     protected bool inRange;
     protected bool detecting;
+    private Vector3 _baseScale;
     #endregion
 
     #region Unity Methods
@@ -31,6 +32,7 @@ public abstract class EnemyClass : MonoBehaviour, IDamageable
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         agent.speed = info.spd;
+        _baseScale = transform.localScale;
     }
     protected virtual void Start()
     {
@@ -48,10 +50,10 @@ public abstract class EnemyClass : MonoBehaviour, IDamageable
 
         if(playerPosition.x >= transform.position.x)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(Mathf.Abs(_baseScale.x),_baseScale.y,1);
         }else
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-Mathf.Abs(_baseScale.x), _baseScale.y, 1);
         }
     }
     public virtual void OnCollisionEnter2D(Collision2D collision)
@@ -65,9 +67,9 @@ public abstract class EnemyClass : MonoBehaviour, IDamageable
     {
         Data.killCount++;
         SpawnManager.enemyCount--;
-
         Data.xpQueue.Enqueue(info.xpGiven);
-
+        XpBar xpBar = Player.instance?.GetComponent<XpBar>();
+        if (xpBar != null &&!xpBar.queueing) xpBar.StartXpGain();
         // Heal every 10 kills
         if(Data.killCount % 10 == 0)
         {
