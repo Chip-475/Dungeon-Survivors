@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Boss info
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMeta
   deathSound: {fileID: 0}
-  hp: 0
-  hpMax: 0
-  xpGiven: 0
-  atk: 0
-  spd: 0
-  fovRange: 0
-  fovAngle: 0
+  hp: 300
+  hpMax: 300
+  xpGiven: 1000
+  atk: 20
+  spd: 2.5
+  fovRange: 10
+  fovAngle: 180
