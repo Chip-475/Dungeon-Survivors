@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +23,8 @@ public class cardManager : MonoBehaviour
     public List<CardEntry> pickedCards = new List<CardEntry>();
 
     public GameObject cardPanel;
+    [SerializeField] private float cardRevealDelay = 0.5f;
+    private Coroutine spawnCardsCoroutine;
 
     void Awake()
     {
@@ -32,58 +35,97 @@ public class cardManager : MonoBehaviour
     [ContextMenu("Run spawnCards")]
     public void spawnCards()
     {
-        if(spawnableCards.Count == 0) { Debug.LogWarning("out of cards"); return; }
+        if (spawnableCards.Count == 0)
+        {
+            Debug.LogWarning("out of cards");
+            return;
+        }
 
         Time.timeScale = 0;
         cardPanel.SetActive(true);
-        int cardsToSpawn = Mathf.Min(3, spawnableCards.Count);
 
-        List<int> index = new List<int>();
+        if (spawnCardsCoroutine != null)
+        {
+            StopCoroutine(spawnCardsCoroutine);
+        }
+
+        spawnCardsCoroutine = StartCoroutine(spawnCardsAfterDelay());
+    }
+
+    private IEnumerator spawnCardsAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(cardRevealDelay);
+
+        int cardsToSpawn = Mathf.Min(3, spawnableCards.Count);
+        List<int> indexes = new List<int>();
+
         for (int i = 0; i < cardsToSpawn; i++)
         {
             int x = Random.Range(0, spawnableCards.Count);
-            if (index.Contains(x)) { i--; continue; }
-            index.Add(x);
+            if (indexes.Contains(x))
+            {
+                i--;
+                continue;
+            }
+
+            indexes.Add(x);
             print($"index {x}");
 
             CardEntry entry = spawnableCards[x];
+            ///spawnableCards.Remove(entry);
             if (entry.effect.lvl == 5)
             {
                 spawnableCards.Remove(entry);
-                if (spawnableCards.Count == 0) return;
+                if (spawnableCards.Count == 0)
+                {
+                    spawnCardsCoroutine = null;
+                    yield break;
+                }
+
                 i--;
                 continue;
-               
             }
 
-            spawnedCards.Add(Instantiate(entry.prefab, spawnPoints[i].transform.position, Quaternion.identity, cardPanel.transform));
+            GameObject spawnedCard = Instantiate(entry.prefab, spawnPoints[i].transform.position, Quaternion.identity, cardPanel.transform);
+            spawnedCards.Add(spawnedCard);
             print("card spawned");
 
-            spawnedCards[i].TryGetComponent(out cardScript choice);
-            if (choice != null)
+            if (spawnedCard.TryGetComponent(out cardScript choice))
             {
                 choice.setup(instance, entry);
             }
             else
             {
-                print($"card {spawnedCards[i]} doesnt contain cardChoice");
+                print($"card {spawnedCard} doesnt contain cardChoice");
                 i--;
-                continue;
             }
         }
+
+        spawnCardsCoroutine = null;
     }
 
     public void pickCard(CardEntry entry)
     {
         if (!canSpawn(entry)) return;
 
+        if (spawnCardsCoroutine != null)
+        {
+            StopCoroutine(spawnCardsCoroutine);
+            spawnCardsCoroutine = null;
+        }
+
         pickedCards.Add(entry);
-        entry.effect.GetComponent<ICardEffect>().cardEffect();
+        entry.effect.GetComponent<ICardEffect>().CardEffect();
+
         if (!entry.levelable)
         {
             spawnableCards.Remove(entry);
         }
-        else entry.effect.lvl++;
+        else
+        {
+            entry.effect.lvl++;
+        }
+
         clearSpawnedCards();
         cardPanel.SetActive(false);
         Time.timeScale = 1;
@@ -93,7 +135,6 @@ public class cardManager : MonoBehaviour
     {
         if (entry.levelable && entry.effect.lvl == 5)
         {
-            Debug.Log($"cardManager: skipped {entry.prefab.name} lvl {entry.effect.lvl}; effect is already maxed at {entry.effect.lvl}/{5}.");
             return false;
         }
 
@@ -106,6 +147,7 @@ public class cardManager : MonoBehaviour
         {
             Destroy(x);
         }
+
         spawnedCards.Clear();
     }
 }

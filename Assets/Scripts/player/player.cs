@@ -3,10 +3,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour, IDamageable
 {
+    #region Declarations
     [Header("Misc")]
-    public static player playerInstance;
+    public static Player instance;
 
     public Rigidbody2D rb;
     public SpriteRenderer sr;
@@ -16,18 +17,17 @@ public class player : MonoBehaviour, IDamageable
 
     public GameObject fireArea;
 
-    public gameManager gameManager;
+    public GameManager gameManager;
     public hpBar hpBar;
-    public xpBar xpBar;
 
     public AudioSource lowHp;
     public AudioClip deathSound;
 
+    public GameObject icearea;
 
     public bool isDead;
     public bool canAttack = true;
     public bool canLaunch = true;
-    public bool onTenacity = false;
 
     public Vector3 mousePosition;
     public Vector3 mouseWorldPosition;
@@ -36,15 +36,20 @@ public class player : MonoBehaviour, IDamageable
     public float hp;
     public float hpMax;
     public float atk;
+    public float baseAtk;
     public float spd;
     public float aspd;
     public float range;
+    public bool isInvicible;
+    public float iFrames;
+
 
     private Vector2 moveInput;
+    #endregion
 
-    private void Start()
+    private void Awake()
     {
-        playerInstance = this;
+        instance = this;
 
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
@@ -53,13 +58,16 @@ public class player : MonoBehaviour, IDamageable
         scytheTrf.SetActive(true);
 
         hpBar = GetComponent<hpBar>();
-        xpBar = GetComponent<xpBar>();
 
+        baseAtk = atk;
+    }
+    private void Start()
+    {
         hpMax = hp;
     }
     void FixedUpdate()
     {
-        hp = Mathf.Clamp(hp, 0, hpMax);
+        
         // Mouse Positions Assignment
         mousePosition = Mouse.current.position.ReadValue();
         mouseWorldPosition = new Vector3(Camera.main.ScreenToWorldPoint(mousePosition).x, Camera.main.ScreenToWorldPoint(mousePosition).y, 0);
@@ -71,21 +79,25 @@ public class player : MonoBehaviour, IDamageable
         rb.linearVelocity = moveInput * spd;
 
         //sounds
-        if (hp <= hpMax / 5) lowHp.volume = data.sfx;
+        if (hp <= hpMax / 5) lowHp.volume = Data.sfx;
         else lowHp.volume = 0;
-        if (isDead) audioManager.manager.playSFX(deathSound, player.playerInstance.transform, data.sfx);
+        if (isDead)
+        {
+            audioManager.manager.playSFX(deathSound, instance.transform, Data.sfx);
+            lowHp.volume = 0;
+        };
     }
 
     // Player Controls
     public void move(InputAction.CallbackContext context)
     {
-        if(data.isPaused || isDead == true) return;
+        if(Data.isPaused || isDead == true) return;
 
         moveInput = context.ReadValue<Vector2>();
     }
     public void attack(InputAction.CallbackContext context)
     {
-        if (!context.performed || !canAttack || data.isPaused || isDead == true) return;
+        if (!context.performed || !canAttack || Data.isPaused || isDead == true) return;
 
         StartCoroutine(scythe.swing());
     }
@@ -96,37 +108,37 @@ public class player : MonoBehaviour, IDamageable
         gameManager.togglePause();
     }
 
-    // Couroutines
-    
-
-    // Player Misc
-    public void onDamaged(float damage)
+    public void ChangeHealth(float damage)
     {
-        hp -= damage;
-        hp=Mathf.Clamp(hp, 0, hpMax);
-        StartCoroutine(hpBar.hpBarMovement(hp, hp - damage));
-        if (hp < hpMax * 0.3f && !onTenacity && tenacityEffect.instance.tenacity)
+        if (isInvicible) return;
+
+        hp = Mathf.Clamp(hp, 0, hpMax);
+        float nextHp = Mathf.Clamp(hp - damage, 0, hpMax);
+        hp = nextHp;
+        if (damage > hp)
         {
-            onTenacity = true;
-            atk *= 2;
-        }
-        else if(onTenacity && tenacityEffect.instance.tenacity)
-        {
-            onTenacity = false;
-            atk /= 2;
+            if (Random.Range(0f, 10f) == 10f)
+            {
+                nextHp = 0.1f;
+            }
         }
 
-        if (hp == 0)
-        { 
+        StartCoroutine(hpBar.hpBarMovement(hp, nextHp));
+
+        if (hp < hpMax * 0.4f && Tenacity.isActive)
+        {
+            atk = baseAtk * 2;
+        }
+        else if (Tenacity.isActive)
+        {
+            atk = baseAtk;
+        }
+
+        if (hp <= 0)
+        {
             sr.enabled = false;
             isDead = true;
-            gameManager.instance.startDeath();
+            GameManager.instance.startDeath();
         }
-    }
-
-    // Interface Methods
-    public void damage(float damage)
-    {
-        onDamaged(damage);
     }
 }

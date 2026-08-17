@@ -1,31 +1,46 @@
 using UnityEngine;
 
-public class spawnManager : MonoBehaviour
+public class SpawnManager : MonoBehaviour
 {
+    public static SpawnManager instance;
+
     public GameObject[] enemyList;
     public GameObject boss;
     public int[] enemyCost;
-    public int waves = 0;
+    public int waves = 30;
     public int spawnLimit;
     public static int enemyCount;
+    public static int bosscount;
     public bool isSpawning = false;
     public float Offset = 0.1f;
+    public GameObject victoryScreen;
 
     [Header("corners")]
     public Transform topRight;
     public Transform topLeft;
     public Transform bottomRight;
     public Transform bottomLeft;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         waves = 0;
+        victoryScreen.SetActive(false);
     }
     private void Update()
     {
         if (enemyCount <= 0 && !isSpawning)
         {
             waves++;
-            if (!tenacityEffect.instance.tenacity) StartCoroutine(player.playerInstance.hpBar.hpBarMovement(player.playerInstance.hp, player.playerInstance.hp + player.playerInstance.hpMax * 0.2f));
+            //recupero del 25% della vita 
+            if(!Tenacity.isActive)
+            {
+                float newHp=Mathf.Clamp(Player.instance.hp+Player.instance.hpMax*0.25f,0,Player.instance.hpMax);
+                StartCoroutine(Player.instance.hpBar.hpBarMovement(Player.instance.hp, newHp));
+            }
             Invoke(nameof(newWave), 2.5f);
             isSpawning = true;
         }
@@ -34,19 +49,43 @@ public class spawnManager : MonoBehaviour
     [ContextMenu("Run Function")]
     public void newWave()
     {
-        if (waves % 10 == 0)
+        if (waves == 31)
+        {
+            waves=30;
+            victoryScreen.SetActive(true);
+            Time.timeScale = 0f;
+            return;
+        }
+        if (waves % 10 == 0)   // modifica per il boss per bug fix //2
         {
             enemyCount = 0;
-            for (int i = 0; i < waves / 10; i++)
-            {
-                Instantiate(boss, getPosition(), Quaternion.identity);
+            //Instantiate(boss, getPosition(1.2f), Quaternion.identity);
+            Boss newBoss = Instantiate(boss, getPosition(1.2f), Quaternion.identity).GetComponent<Boss>();
+                if(bosscount==1)
+                {
+                    newBoss.info.hpMax*=1.2f;
+                    newBoss.info.hp = newBoss.info.hpMax;
+                    newBoss.info.atk+=5f;
+                    newBoss.info.xpGiven +=500f;
+                    newBoss.skillCD-=1f;
+
+                }
+                else if(bosscount==2)
+                {
+                    newBoss.info.hpMax *=1.4f;
+                    newBoss.info.hp =newBoss.info.hpMax;
+                    newBoss.info.atk +=10f;
+                    newBoss.info.atk += 1000f;
+                    newBoss.info.xpGiven +=0.5f;
+                    newBoss.skillCD-=2f;
+                }
                 enemyCount++;
-            }
+                bosscount++;
             isSpawning = false;
             return;
         }
         spawnLimit = waves * 10;
-        if (swarmEffect.swarm)
+        if (Swarm.isActive)
         {
             spawnLimit *= 2;
         }
@@ -66,7 +105,7 @@ public class spawnManager : MonoBehaviour
         }
         isSpawning = false;
     }
-    public Vector3 getPosition()
+    public Vector3 getPosition(float radius=0.5f)
     {
         float x = 0f;
         float y = 0f;
@@ -99,9 +138,15 @@ public class spawnManager : MonoBehaviour
         y = UnityEngine.Random.Range(minY, maxY);
         Vector3 spawnPos=new Vector3(x,y,0f);
         Vector2 spawnPos2D = new Vector2(x, y);
-        if (Vector2.Distance(player.playerInstance.transform.position,spawnPos2D)>30f && Vector2.Distance(player.playerInstance.transform.position, spawnPos2D) < 15f)
+        if(Vector2.Distance(Player.instance.transform.position,spawnPos2D)>30f||Vector2.Distance(Player.instance.transform.position, spawnPos2D)<15f)
         { 
-            return getPosition();
+            return getPosition(radius);
+        }
+        Collider2D hitObstacle = Physics2D.OverlapCircle(spawnPos2D, 0.5f, GameManager.instance.obstacle);
+        if (hitObstacle!=null)
+        {
+            Debug.Log("Ci ha provato "+hitObstacle.gameObject.name);
+            return getPosition(radius); //overlapCircle cerca se ce un collider se si sovrappne a un cerchio immaginario proprio come prova
         }
         return spawnPos;
     }

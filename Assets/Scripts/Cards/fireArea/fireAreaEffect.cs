@@ -14,9 +14,9 @@ public class fireAreaEffect : cardClass, ICardEffect
     public void effect()
     {
         StartCoroutine(spawnArea());
-        data.fireAreaLvl++;
+        Data.fireAreaLvl++;
     }
-    public void cardEffect()
+    public void CardEffect()
     {
         effect();
     }

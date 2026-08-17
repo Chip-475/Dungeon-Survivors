@@ -2,107 +2,91 @@ using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class enemyClass : MonoBehaviour, IDamageable
+public abstract class EnemyClass : MonoBehaviour, IDamageable
 {
-    [Header("Meta Data")]
+    #region Declarations
+    public Rigidbody2D rb;
+    public Collider2D collider_;
+    public NavMeshAgent agent;
+    public EnemySpriteAnimator spriteAnimator;
 
-    IDamageable IDamageable;
-    public GameObject playerObj;
-    public player player;
-    public xpBar xpBar;
-    public AudioClip deathSound;
-    public AudioClip bossDeathSound;
-    protected Rigidbody2D prb;
-    protected Rigidbody2D rb;
-    protected Collider2D _collider;
-    protected NavMeshAgent _agent;
+    [SerializeField] EnemyMeta baseInfo;
+    public EnemyMeta info;
+    public AnimationCurve hpBarCurve;
 
     protected bool inRange;
     protected bool detecting;
+    private Vector3 _baseScale;
+    #endregion
 
-    [Header("Stats")]
-    [SerializeField] public float hp;
-    public float hpMax;
-    public float xpGiven;
-    [SerializeField] public float atk;
-    [SerializeField] public float spd;
+    #region Unity Methods
+    private void Awake()
+    {
+        info = Instantiate(baseInfo);
 
-    public float fovRange;
-    [Range(0, 360)] public float fovAngle;
+        rb = GetComponent<Rigidbody2D>();
+        collider_ = GetComponent<Collider2D>();
+        agent = GetComponent<NavMeshAgent>();
+        spriteAnimator = GetComponent<EnemySpriteAnimator>();
 
-
-    // Virtuals
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        agent.speed = info.spd;
+        _baseScale = transform.localScale;
+    }
     protected virtual void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        playerObj = GameObject.FindGameObjectWithTag("Player");
-        player = playerObj.GetComponent<player>();
-        xpBar = playerObj.GetComponent<xpBar>();
-        prb = playerObj.GetComponent<Rigidbody2D>();
-        _collider = GetComponent<Collider2D>();
-        _agent = GetComponent<NavMeshAgent>();
+        info.hp = info.hpMax;
 
-        _agent.updateRotation = false;
-        _agent.updateUpAxis = false;
-
-        if (swarmEffect.swarm)
+        if (Swarm.isActive)
         {
-            hp /= 2;
+            info.hpMax /= 2;
+            Mathf.Clamp(info.hp, 0, info.hpMax);
         }
-        hpMax = hp;
     }
     protected virtual void FixedUpdate()
     {
-        if (playerObj.transform.position.x < transform.position.x) transform.localScale = new Vector3(-1, 1, 1);
-        else transform.localScale = new Vector3(1, 1, 1);
+        var playerPosition = Player.instance.gameObject.transform.position;
 
-        _agent.speed = spd;
+        if(playerPosition.x >= transform.position.x)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(_baseScale.x),_baseScale.y,1);
+        }else
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(_baseScale.x), _baseScale.y, 1);
+        }
     }
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Player")) return;
 
-        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable))
-        {
-            collision.gameObject.GetComponent<IDamageable>().damage(atk);
-        }
-        Destroy(gameObject);
+        Player.instance.ChangeHealth(info.hp);
+        Destroy(gameObject); 
     }
     protected virtual void OnDestroy()
     {
-        data.killCount++;
-        print(data.killCount);
-        spawnManager.enemyCount--;
-        data.xpQueue.Enqueue(xpGiven);
-        if(!xpBar.queueing) xpBar.startMedium();
-
-        if(TryGetComponent(out boss _))
+        Data.killCount++;
+        SpawnManager.enemyCount--;
+        Data.xpQueue.Enqueue(info.xpGiven);
+        XpBar xpBar = Player.instance?.GetComponent<XpBar>();
+        if (xpBar != null &&!xpBar.queueing) xpBar.StartXpGain();
+        // Heal every 10 kills
+        if(Data.killCount % 10 == 0)
         {
-            audioManager.manager.playSFX(bossDeathSound, transform, data.sfx);
+            float newHp = Mathf.Clamp(Player.instance.hp + 10f, 0, Player.instance.hpMax);
+            //player.playerInstance.hp = newHp;
+            Player.instance.StartCoroutine(Player.instance.hpBar.hpBarMovement(Player.instance.hp, newHp));
         }
-        else
-        {
-            audioManager.manager.playSFX(deathSound, transform, data.sfx);
-        }
+
+        // death sfx
     }
+    #endregion
 
-
-    // Misc
-    protected void onDamaged(float damage)
+    public void ChangeHealth(float damage)
     {
-        hp -= damage;
-        hp = Mathf.Clamp(hp, 0, hpMax);
-        if (hp == 0) { Destroy(gameObject); return; }
-    }
-    //protected void detect()
-    //{
-    //    // To do
-    //}
+        info.hp -= damage;
+        info.hp = Mathf.Clamp(info.hp, 0, info.hpMax);
 
-
-    // Interface Methods
-    public void damage(float damage)
-    {
-        onDamaged(damage);
+        if (info.hp == 0) Destroy(gameObject);
     }
 }

@@ -18,8 +18,14 @@ public class rangedGruntProj : MonoBehaviour
         self = GetComponent<Rigidbody2D>();
         parent = transform.parent.GetComponent<rangedGrunt>();
 
-        dir = ((Vector2)(parent.playerObj.transform.position) - self.position).normalized;
-        atk = parent.atk;
+        dir = ((Vector2)(Player.instance.transform.position) - self.position).normalized;
+        atk = parent.info.atk;
+        //parte della freccia per essere dritta
+        transform.SetParent(null, true);
+        transform.localScale = Vector3.one;
+        float angle=Mathf.Atan2(dir.y, dir.x)*Mathf.Rad2Deg;
+        Debug.Log("Angolo calcolato: " + angle);
+        transform.rotation=Quaternion.Euler(0,0,angle-135f);
 
         transform.SetParent(null, true);
 
@@ -32,7 +38,7 @@ public class rangedGruntProj : MonoBehaviour
         {
             if (other.TryGetComponent<IDamageable>(out IDamageable))
             {
-                other.GetComponent<IDamageable>().damage(atk);
+                other.GetComponent<IDamageable>().ChangeHealth(atk);
             }
             Destroy(gameObject);
         }

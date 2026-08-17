@@ -4,6 +4,11 @@ public class quitButton : MonoBehaviour
 {
     public void onClick()
     {
-        Application.Quit();
+        //Application.Quit();
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit(); 
+        #endif
     }
 }

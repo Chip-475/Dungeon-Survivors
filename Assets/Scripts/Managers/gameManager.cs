@@ -2,9 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class gameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static gameManager instance;
+    public static GameManager instance;
     public enum gameState
     {
         running,
@@ -16,11 +16,12 @@ public class gameManager : MonoBehaviour
     public gameState state = gameState.running;
     public GameObject pauseMenu;
     public GameObject deathScreen;
+    public GameObject[] toggleableObjects;
 
     private void Start()
     {
         instance = this;
-
+        Time.timeScale = 1.0f;
         obstacle = LayerMask.GetMask("Obstacle");
         enemy = LayerMask.GetMask("Enemy");
     }
@@ -62,5 +63,9 @@ public class gameManager : MonoBehaviour
     {
         StartCoroutine(death());
         state = gameState.deathScreen;
+        foreach (var obj in toggleableObjects)
+        {
+            obj.SetActive(false);
+        }
     }
 }

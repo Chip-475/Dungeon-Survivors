@@ -5,14 +5,14 @@ public class attackSpeedUp : cardClass, ICardEffect
     public float baseAspd;
     private new void Start()
     {
-        baseAspd = player.playerInstance.aspd;
+        baseAspd = Player.instance.aspd;
     }
     public void effect()
     {
-        player.playerInstance.aspd += baseAspd * 0.2f;
+        Player.instance.aspd += baseAspd * 0.2f;
     }
 
-    public void cardEffect()
+    public void CardEffect()
     {
         effect();
     }

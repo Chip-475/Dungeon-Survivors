@@ -25,15 +25,20 @@ Enemies award XP when destroyed. XP gains are queued, animated into the XP bar, 
 
 So every level becomes gradually more expensive but never break the game flow.
 
+![xpbar](./public/xp_BAR.png)
+
 ## Combat
 
 The player attacks with a scythe swing. The attack is split in three timing phases based on attack speed:
+
+![](./public/swing.gif)
 
 | Phase | Swing time | Gameplay effect |
 | --- | --- | --- |
 | Windup | 25% | Scythe is visible, collider still disabled |
 | Attack | 50% | Collider is enabled and can damage enemies |
 | Recovery | 25% | Collider disabled, player waits before attacking again |
+
 
 ```csharp
 float swingDuration = 1f / player.aspd;
@@ -43,6 +48,8 @@ float recovery = swingDuration * 0.25f;
 ```
 
 Each enemy can be hit once per swing because damaged targets are stored in a list during the attack.
+
+
 
 ## Waves and Enemies
 
@@ -56,37 +63,39 @@ Current enemy values:
 
 | Enemy | HP | Attack | Speed | XP |Cost|
 | --- | --- | --- | --- | --- |--- |
-| Light Grunt | 10 | 5 | 3 | 10 |1
-| Heavy Grunt | 25 | 10 | 2 | 20 |2
-| Ranged Grunt | 10 | 15 | 2 | 20 |3
+| Light Grunt | 12 | 10 | 3 | 12 |1
+| Heavy Grunt | 24 | 20 | 2 | 22 |2
+| Ranged Grunt | 9 | 15 | 2 | 18 |3
 
-When an enemy collides with the player, it deals damage by current hp. On death, it increments the kill counter, decreases the active enemy count, and gives its XP reward.
+When an enemy collides with the player, it deals damage by current hp. On death, it increments the kill counter, decreases the active enemy count, doesnt gives its XP reward.
 
 ## Cards and Perks
 
 On level-up, the card manager picks three random entries from the available pool.
 
+![](./public/choice.png)
+
 ### Levelable Cards
 
-| Card | Effect |
-| --- | --- |
-| Damage Up | Increases player damage by 20% per pick |
-| Max Health Up | Increases max HP by 20% per pick |
-| Speed Up | Increases movement speed by 20% per pick |
-| Attack Speed Up | Increases by 20% attack speed per pick |
-| Range Up | Adds 20% of base range to aoe cards per pick |
+| Card | Effect |image|
+| --- | --- |---|
+| Damage Up | Increases player damage by 20% per pick | ![](./public/damageup.png) |
+| Max Health Up | Increases max HP by 25% per pick |![](./public/healtup.png) |
+| Speed Up | Increases movement speed by 20% per pick | ![](./public/speedup.png) |
+| Attack Speed Up | Increases by 20% attack speed per pick | ![](./public/attackspeed.png) |
+| Range Up | Adds 20% of base range to aoe cards per pick | ![](./public/aurarange.png) |
 
 ### Special Cards
 
-| Card | Effect |
-| --- | --- |
-| Fire Aspect | Base attacks apply damage over time |
-| Fire Area | Spawns a fire circle at the player's position every 10 seconds |
-| Electro Aura | Periodically damages enemies around the player |
-| Ice Aura | Slows enemies inside the aura |
-| Orbiting Blades | Summons two blades that rotate around the player |
-| Swarm | Doubles the wave budget, but halves enemy HP |
-| Tenacity | Doubles damage under 30% HP but disables wave healing |
+| Card | Effect |image|
+| --- | --- |---|
+| Fire Aspect | Base attacks apply damage over time | ![](./public/fireaspect.png) |
+| Fire Area | Spawns a fire circle at the player's position every 10 seconds | ![](./public/firearea.png) |
+| Electro Aura | Periodically damages enemies around the player |![](./public/electroaura.png) |
+| Ice Aura | Slows enemies inside the aura | ![](./public/iceaaura.png) |
+| Orbiting Blades | Summons two blades that rotate around the player | ![](./public/blades.png) |
+| Swarm | Doubles the wave budget, but halves enemy HP | ![](./public/swarm.png) |
+| Tenacity | Doubles damage under 40% HP but disables wave healing | ![](./public/tenacity.png) |
 
 ## Now a Bit of Maths
 
@@ -97,7 +106,7 @@ Most direct stat upgrades use a simple 20% multiplier:
 ```csharp
 player.playerInstance.atk += player.playerInstance.atk * 0.2f;
 player.playerInstance.spd += player.playerInstance.spd * 0.2f;
-player.playerInstance.hpMax += player.playerInstance.hpMax * 0.2f;
+player.playerInstance.hpMax += player.playerInstance.hpMax * 0.25f;
 ```
 
 Attack speed and range are based on their original value rather than using the current value:
@@ -119,6 +128,8 @@ player.playerInstance.range += baseRange * 0.2f;
  DoT damage is based on player attack, damage upgrades also make elemental effects stronger.
  DoT ticks a variable number of times set by the card, and can be applied multiple times to the same target.
 
+![](./public/fireaspect.gif)
+
 ## How to Install
 
 Download the executable file or visit the itch.io page.
@@ -138,4 +149,8 @@ AI tools were used for:
 - Optimizing code with Unity specific functions No AI-generated images or sounds were directly used in the final game.
 ## License
 
-to add
+
+This project is proprietary software.
+The repository is public for portfolio and viewing purposes only.
+Unauthorized use, reproduction, or redistribution is prohibited.
+

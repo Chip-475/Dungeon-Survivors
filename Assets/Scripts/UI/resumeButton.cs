@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class resumeButton : MonoBehaviour
 {
-    public gameManager manager;
+    public GameManager manager;
 
     public void onClick()
     {

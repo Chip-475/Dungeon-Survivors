@@ -4,9 +4,9 @@ public class moveSpeedUp : cardClass, ICardEffect
 {
     public void effect()
     {
-        player.playerInstance.spd += player.playerInstance.spd * 0.2f;
+        Player.instance.spd += Player.instance.spd * 0.2f;
     }
-    public void cardEffect()
+    public void CardEffect()
     {
         effect();
     }
