@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class PlayerSpriteAnimator : MonoBehaviour
 {
@@ -99,3 +99,5 @@ public class PlayerSpriteAnimator : MonoBehaviour
         targetRenderer.sprite = currentSprites[frameIndex];
     }
 }
+*/
+

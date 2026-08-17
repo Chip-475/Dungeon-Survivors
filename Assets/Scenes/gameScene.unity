@@ -747150,7 +747150,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 621900517}
-        m_TargetAssemblyTypeName: player, Assembly-CSharp
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: move
         m_Mode: 0
         m_Arguments:
@@ -747213,7 +747213,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Inventory[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &621900521
@@ -747298,6 +747298,10 @@ MonoBehaviour:
   - {fileID: -7524113512786872, guid: 5a3b5276f5b1c184fa1b537cfb0e16c1, type: 3}
   idleFramesPerSecond: 8
   runFramesPerSecond: 10
+  currentSprites: []
+  frameTimer: 0
+  frameIndex: 0
+  wasMoving: 0
 --- !u!61 &621900524
 BoxCollider2D:
   m_ObjectHideFlags: 0

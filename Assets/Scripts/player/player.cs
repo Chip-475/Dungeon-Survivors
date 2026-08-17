@@ -77,7 +77,6 @@ public class Player : MonoBehaviour, IDamageable
 
         // Player Movement
         rb.linearVelocity = moveInput * spd;
-
         //sounds
         if (hp <= hpMax / 5) lowHp.volume = Data.sfx;
         else lowHp.volume = 0;
