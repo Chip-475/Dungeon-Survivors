@@ -10,6 +10,10 @@ public class PlayerSpriteAnimator : MonoBehaviour
     [SerializeField] private Sprite[] idleSprites;
     [SerializeField] private Sprite[] runSprites;
 
+    [Header("Directional Clips")]
+    [SerializeField] private Sprite[] runUpSprites;
+    [SerializeField] private Sprite[] runDownSprites;
+
     [Header("Timing")]
     [SerializeField] private float idleFramesPerSecond = 8f;
     [SerializeField] private float runFramesPerSecond = 10f;
@@ -17,7 +21,10 @@ public class PlayerSpriteAnimator : MonoBehaviour
     private Sprite[] currentSprites;
     private float frameTimer;
     private int frameIndex;
-    private bool wasMoving;
+
+    private const string VerticalSpritesResourcesPath = "PlayerAnimations";
+    private const int DirectionalFrameCount = 3;
+    private const float DirectionalSpritesPixelsPerUnit = 85f;
 
     private void Awake()
     {
@@ -30,41 +37,80 @@ public class PlayerSpriteAnimator : MonoBehaviour
         {
             rb = GetComponent<Rigidbody2D>();
         }
+
+        if (runUpSprites == null || runUpSprites.Length == 0)
+        {
+            runUpSprites = CreateDirectionalSprites("player_walk_up");
+        }
+
+        if (runDownSprites == null || runDownSprites.Length == 0)
+        {
+            runDownSprites = CreateDirectionalSprites("player_walk_down");
+        }
     }
 
     private void OnEnable()
     {
-        PlayIdle();
+        Play(idleSprites);
     }
 
     private void Update()
     {
-        bool isMoving = rb != null && rb.linearVelocity.sqrMagnitude > 0.01f;
-        if (isMoving != wasMoving)
-        {
-            if (isMoving)
-            {
-                PlayRun();
-            }
-            else
-            {
-                PlayIdle();
-            }
+        Vector2 velocity = rb != null ? rb.linearVelocity : Vector2.zero;
+        bool isMoving = velocity.sqrMagnitude > 0.01f;
+        Sprite[] desiredSprites = GetSpritesFor(velocity, isMoving);
 
-            wasMoving = isMoving;
+        if (desiredSprites != currentSprites)
+        {
+            Play(desiredSprites);
         }
 
         Tick(isMoving ? runFramesPerSecond : idleFramesPerSecond);
     }
 
-    private void PlayIdle()
+    private Sprite[] GetSpritesFor(Vector2 velocity, bool isMoving)
     {
-        Play(idleSprites);
+        if (!isMoving)
+        {
+            return idleSprites;
+        }
+
+        if (Mathf.Abs(velocity.y) <= Mathf.Abs(velocity.x))
+        {
+            return runSprites;
+        }
+
+        Sprite[] directionalSprites = velocity.y > 0f ? runUpSprites : runDownSprites;
+        return directionalSprites != null && directionalSprites.Length > 0 ? directionalSprites : runSprites;
     }
 
-    private void PlayRun()
+    private Sprite[] CreateDirectionalSprites(string spriteSheetName)
     {
-        Play(runSprites);
+        string resourcePath = $"{VerticalSpritesResourcesPath}/{spriteSheetName}";
+        Texture2D spriteSheet = Resources.Load<Texture2D>(resourcePath);
+        if (spriteSheet == null)
+        {
+            Sprite sourceSprite = Resources.Load<Sprite>(resourcePath);
+            spriteSheet = sourceSprite != null ? sourceSprite.texture : null;
+        }
+
+        if (spriteSheet == null)
+        {
+            Debug.LogWarning($"Player directional sprite sheet not found at Resources/{resourcePath}.", this);
+            return System.Array.Empty<Sprite>();
+        }
+
+        spriteSheet.filterMode = FilterMode.Point;
+        Sprite[] sprites = new Sprite[DirectionalFrameCount];
+        for (int frame = 0; frame < DirectionalFrameCount; frame++)
+        {
+            int left = Mathf.RoundToInt(frame * spriteSheet.width / (float)DirectionalFrameCount);
+            int right = Mathf.RoundToInt((frame + 1) * spriteSheet.width / (float)DirectionalFrameCount);
+            Rect frameRect = new Rect(left, 0f, right - left, spriteSheet.height);
+            sprites[frame] = Sprite.Create(spriteSheet, frameRect, new Vector2(0.5f, 0f), DirectionalSpritesPixelsPerUnit);
+        }
+
+        return sprites;
     }
 
     private void Play(Sprite[] sprites)
