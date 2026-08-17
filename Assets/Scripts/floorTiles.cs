@@ -4,7 +4,6 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 public class floorTiles : MonoBehaviour
 {
-    public static floorTiles instance;
     public Tilemap tilemap;
     public List<TileBase> tiles = new();
     public List<TileBase> roadTiles = new();

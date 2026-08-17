@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class rangedGrunt : EnemyClass
+public class rangedGrunt : enemyClass
 {
     public GameObject projectile;
     public Transform shootPoint;
@@ -18,17 +18,17 @@ public class rangedGrunt : EnemyClass
     private new void FixedUpdate()
     {
         base.FixedUpdate();
-        float dis = Vector2.Distance(transform.position, Player.instance.transform.position);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Player.instance.transform.position - transform.position, dis, GameManager.instance.obstacle);
+        float dis = Vector2.Distance(transform.position, playerObj.transform.position);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, playerObj.transform.position - transform.position, dis, gameManager.instance.obstacle);
 
         if ( dis > 10)
         {
-            agent.SetDestination(Player.instance.transform.position);
+            _agent.SetDestination(playerObj.transform.position);
             canShoot = false;
         }
         else if(dis < 10 && !hit) 
         {
-            agent.SetDestination(transform.position);
+            _agent.SetDestination(transform.position);
             canShoot = true; 
         }
 
@@ -38,7 +38,6 @@ public class rangedGrunt : EnemyClass
 
     public void shoot()
     {
-        spriteAnimator?.PlayAttack();
         Instantiate(projectile, shootPoint.position, Quaternion.identity, transform);
         sinceShoot = 0;
     }

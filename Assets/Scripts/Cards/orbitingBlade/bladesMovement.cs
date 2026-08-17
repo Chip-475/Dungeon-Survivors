@@ -13,7 +13,7 @@ public class bladesMovement : cardClass, ICardEffect
 
     private void LateUpdate()
     {
-        transform.position = Player.instance.transform.position;
+        transform.position = player.playerInstance.transform.position;
         transform.Rotate(new Vector3(0, 0, 90 * Time.deltaTime));
         bladesObj[0].transform.Rotate(new Vector3(0, 0, 720 * Time.deltaTime));
         bladesObj[1].transform.Rotate(new Vector3(0, 0, 720 * Time.deltaTime));
@@ -24,7 +24,7 @@ public class bladesMovement : cardClass, ICardEffect
         bladesObj[0].SetActive(true);
         bladesObj[1].SetActive(true);
     }
-    public void CardEffect()
+    public void cardEffect()
     {
         effect();
     }

@@ -3,23 +3,20 @@ using UnityEngine;
 using UnityEngine.UI;
 public class enemyHP : MonoBehaviour
 {
-    public EnemyClass enemyClass;
+    public enemyClass enemyClass;
     public Image hpBar;
     public Quaternion rot;
     private Transform parentrans;
-    
-     
     void Start()
     {
-        parentrans = gameObject.transform.parent.parent.parent;
+        parentrans = this.transform.parent.parent.parent;
     }
     void Update()
     {
-        if (enemyClass == null) return;
-        hpBar.fillAmount = enemyClass.info.hp/enemyClass.info.hpMax;
+        hpBar.fillAmount = enemyClass.hp/enemyClass.hpMax;
         float scalex = parentrans.localScale.x;
 
-        if (scalex<0)
+        if (scalex==-1)
         {
             GetComponent<RectTransform>().localScale = new Vector3(-1, 1, 1);
         }
@@ -28,6 +25,4 @@ public class enemyHP : MonoBehaviour
             GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         }
     }
- 
-    
 }

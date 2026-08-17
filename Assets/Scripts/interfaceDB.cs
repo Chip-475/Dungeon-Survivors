@@ -1,8 +1,8 @@
 public interface IDamageable
 {
-    void ChangeHealth(float damage);
+    void damage(float damage);
 }
 public interface ICardEffect
 {
-    void CardEffect();
+    void cardEffect();
 }

@@ -1,24 +1,19 @@
-using System.Collections;
 using UnityEngine;
 
 public class camera : MonoBehaviour
 {
-    private GameObject playerObj;
-    private Player player;
+    private GameObject player;
 
     private void Start()
     {
-        playerObj = GameObject.FindGameObjectWithTag("Player");
-        player = playerObj.GetComponent<Player>();
-        StartCoroutine(cameraFollow());
+        // Player Fetch
+        player = GameObject.FindGameObjectWithTag("Player");
     }
-    IEnumerator cameraFollow()
+    void Update()
     {
-        while (true)
-        {
-            if (player.isDead == true) break; 
-            transform.position = new Vector3(playerObj.transform.position.x, playerObj.transform.position.y, -10);
-            yield return null;
-        }
+        // Camera Follow
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
+
+        //<3| >--------<| <3
     }
 }

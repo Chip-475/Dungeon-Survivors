@@ -30,32 +30,26 @@ public class audioManager : MonoBehaviour
 
     public void setMaster(float volume)
     {
-        Data.master = volume;
-        PlayerPrefs.SetFloat("master",volume);
+        data.master = volume;
         ApplyMixerVolume("Master", volume);
     }
     public void setSFX(float volume)
     {
-        Data.sfx = volume;
-        PlayerPrefs.SetFloat("sfx", volume);
+        data.sfx = volume;
         ApplyMixerVolume("SFX", volume);
     }
     public void setBGM(float volume)
     {
-        Data.music = volume;
-        PlayerPrefs.SetFloat("music", volume);
+        data.music = volume;
         ApplyMixerVolume("BGM", volume);
     }
     public void Start()
     {
-        Data.master = PlayerPrefs.GetFloat("master",1f);
-        Data.sfx = PlayerPrefs.GetFloat("sfx",1f);
-        Data.music = PlayerPrefs.GetFloat("music", 1f);
         EnsureSliderReferences();
         SyncSlidersWithSavedValues();
-        ApplyMixerVolume("Master", Data.master);
-        ApplyMixerVolume("SFX", Data.sfx);
-        ApplyMixerVolume("BGM", Data.music);
+        ApplyMixerVolume("Master", data.master);
+        ApplyMixerVolume("SFX", data.sfx);
+        ApplyMixerVolume("BGM", data.music);
     }
 
     private void EnsureSliderReferences()
@@ -92,17 +86,17 @@ public class audioManager : MonoBehaviour
     {
         if (masterSlider != null)
         {
-            masterSlider.SetValueWithoutNotify(Data.master);
+            masterSlider.SetValueWithoutNotify(data.master);
         }
 
         if (sfxSlider != null)
         {
-            sfxSlider.SetValueWithoutNotify(Data.sfx);
+            sfxSlider.SetValueWithoutNotify(data.sfx);
         }
 
         if (musicSlider != null)
         {
-            musicSlider.SetValueWithoutNotify(Data.music);
+            musicSlider.SetValueWithoutNotify(data.music);
         }
     }
 
@@ -115,14 +109,5 @@ public class audioManager : MonoBehaviour
         }
 
         mixer.SetFloat(parameter, Mathf.Log10(volume) * 20);
-    }
-
-    public void playSFXAtPosition(AudioClip clip, Vector3 position, float volume)
-    {
-        AudioSource audioSource = Instantiate(source, position, Quaternion.identity);
-        audioSource.clip = clip;
-        audioSource.volume = volume;
-        audioSource.Play();
-        Destroy(audioSource.gameObject, audioSource.clip.length);
     }
 }

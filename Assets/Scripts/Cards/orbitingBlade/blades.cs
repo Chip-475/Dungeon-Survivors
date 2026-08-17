@@ -7,7 +7,7 @@ public class blades : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy")) collision.gameObject.GetComponent<IDamageable>().ChangeHealth(Player.instance.atk * 1.5f);
+        if (collision.CompareTag("Enemy")) collision.gameObject.GetComponent<IDamageable>().damage(player.playerInstance.atk * 2);
     }
 
     

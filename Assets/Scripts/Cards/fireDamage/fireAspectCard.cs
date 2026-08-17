@@ -6,14 +6,14 @@ public class fireAspectCard : cardClass, ICardEffect
     public GameObject scythe;
     private void effect()
     {
-        Data.fireAspectLvl++;
+        data.fireAspectLvl++;
         print("fireAspect picked");
-            if (Data.fireAspectLvl == 1)
+            if (data.fireAspectLvl == 1)
             {
                 scythe.GetComponent<SpriteRenderer>().sprite = FireScythe;
         }
     }
-    public void CardEffect()
+    public void cardEffect()
     {
         effect();
     }

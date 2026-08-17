@@ -6,30 +6,25 @@ public class scythe : MonoBehaviour
 {
     List<IDamageable> toDamage = new List<IDamageable>();
 
-    public Player player;
+    public player player;
     public SpriteRenderer sr;
-    public Sprite baseSprite;
-    public Sprite fireSprite;
-    public PolygonCollider2D bc;
+    public BoxCollider2D bc;
     public AnimationCurve curve;
     public AudioClip attack;
-   void Start()
-{
-    player = GetComponentInParent<Player>();
-    sr = GetComponent<SpriteRenderer>();
-    if (baseSprite == null) baseSprite = sr.sprite;
-    updateSprite();
-    sr.enabled = false;
+    void Start()
+    {
+        player = GetComponentInParent<player>();
+        sr = GetComponent<SpriteRenderer>();
+        sr.enabled = false;
+        bc = GetComponent<BoxCollider2D>();
+        bc.enabled = false;
 
-    bc = GetComponent<PolygonCollider2D>();
-    bc.enabled = false;
-
-    transform.localEulerAngles = new Vector3(0, 0, 60);
-}
+        transform.localEulerAngles = new Vector3(0, 0, 60);
+    }
 
     public IEnumerator swing()
     {
-        audioManager.manager.playSFX(attack,player.transform,Data.sfx);
+        audioManager.manager.playSFX(attack,player.transform,data.sfx);
         Quaternion start = Quaternion.Euler(0, 0, 60);
         Quaternion end = Quaternion.Euler(0, 0, -60);
 
@@ -69,36 +64,18 @@ public class scythe : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player")) return;
         if (other.TryGetComponent<IDamageable>(out IDamageable damageable) && !toDamage.Contains(damageable))
         {
             toDamage.Add(damageable);
-            damageable.ChangeHealth(player.atk);
+            damageable.damage(player.atk);
 
-            if (Data.fireAspectLvl > 0 && !other.gameObject.TryGetComponent<DoT>(out _))
+            if (data.fireAspectLvl > 0 && !other.gameObject.TryGetComponent<DoT>(out _))
             {
                 var dot = other.gameObject.AddComponent<DoT>();
-                dot.damage = (player.atk * 0.2f) * Data.fireAspectLvl;
+                dot.damage = (player.atk * 0.2f) * data.fireAspectLvl;
                 dot.duration = 3;
                 dot.tick = 0.5f;
             }
         }
-    }
-
-
-    void Update()
-    {
-        {
-            transform.localPosition = new Vector3(2.3f, 1.01f, 0f);
-            updateSprite();
-        }
-    }
-
-    private void updateSprite()
-    {
-        if (sr == null) return;
-
-        if (Data.fireAspectLvl > 0 && fireSprite != null) sr.sprite = fireSprite;
-        else if (baseSprite != null) sr.sprite = baseSprite;
     }
 }
