@@ -1,8 +1,8 @@
-# Bootleg Vampire Survivors
+# Dungeon Survivors
 
 ## Game Description and Mechanics
 
-*Bootleg Vampire Survivors is a 2D Unity survival game inspired by wave-based arena games: move, swing the scythe, survive enemy waves, collect XP from kills, and choose cards on level-up.*
+*Dungeon Survivors is a 2D Unity survival game inspired by wave-based arena games: move, swing the scythe, survive enemy waves, collect XP from kills, and choose cards on level-up.*
 
 The current build focuses on core combat loop:
 
