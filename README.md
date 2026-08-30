@@ -134,7 +134,7 @@ player.playerInstance.range += baseRange * 0.2f;
 
 Download the executable file or visit the itch.io page.
 
-[Itch Download](https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUXbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3D)
+[Itch Download](https://blackhole-studio.itch.io/dungeonsurvivors)
 
 ## Assets
 
